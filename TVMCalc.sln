@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TVMCalc", "TVMCalc\TVMCalc.csproj", "{57F8DB16-6805-4190-A63A-4A5CB87B8C1E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TVMCalcUnitTest", "TVMCalcUnitTest\TVMCalcUnitTest.csproj", "{E73F9F69-95A8-4869-9D04-D615F175FE48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{57F8DB16-6805-4190-A63A-4A5CB87B8C1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57F8DB16-6805-4190-A63A-4A5CB87B8C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57F8DB16-6805-4190-A63A-4A5CB87B8C1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E73F9F69-95A8-4869-9D04-D615F175FE48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E73F9F69-95A8-4869-9D04-D615F175FE48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E73F9F69-95A8-4869-9D04-D615F175FE48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E73F9F69-95A8-4869-9D04-D615F175FE48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
