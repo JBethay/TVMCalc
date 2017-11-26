@@ -12,5 +12,11 @@ namespace TVMCalc.Operations.BasicOpps
             var result = del(x, y);
             return result;
         }
+
+        public static double Calculate(double x, OppsSingleDelegate del)
+        {
+            var result = del(x);
+            return result;
+        }
     }
 }
