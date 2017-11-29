@@ -105,9 +105,7 @@ namespace TVMCalc.Operations.BasicOpps
         public static OppsTvmDelegate nAdDel = (n, i, pv, pmt, fv) => //X
         {
             i = i / 100;
-            //n = (Math.Log(1 + (fv / (pmt * (1 + i))) * i)) / (Math.Log(1 + i));
-            //n = ((-1 * Math.Log(1 + i * (1 - (pv / pmt)))) / Math.Log(1 + i)) + 1;
-            //n = (1 / Math.Log(i + 1)) * (Math.Log((((-1 * fv) * i) + (i * pmt) + pmt) / (i * pmt) + (i * pv) + pmt));   FORMULA***
+            n = Math.Log((((fv * -1) * (i))+(i*pmt) + pmt) / ((i * pv) +(i*pmt)+ pmt)) / (Math.Log(1 + i));
             return n;
         };
         //Calc for i, this implements Newton's method
