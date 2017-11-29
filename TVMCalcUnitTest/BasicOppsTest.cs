@@ -9,7 +9,7 @@ namespace TVMCalcUnitTest
     [TestClass]
     public class BasicOppsTest
     {
-#region Two Input methods 
+        #region Two Input methods 
         [TestMethod]
         public void Add()
         {
@@ -71,7 +71,7 @@ namespace TVMCalcUnitTest
         }
         #endregion
 
-#region One Input Methods  
+        #region One Input Methods  
         [TestMethod]
         public void Percentage()
         {
@@ -128,10 +128,10 @@ namespace TVMCalcUnitTest
         }
         #endregion
 
- #region TVM Methods
+        #region TVM Methods regular annuity
 
         [TestMethod]
-        public void Ncompute()
+        public void NCompute()
         {
             //Arrange, 
             double n = 0.00;
@@ -140,29 +140,28 @@ namespace TVMCalcUnitTest
             double pmt = -10;
             double fv = 200;
             //Act,
-            var result = Math.Round(CalculateOpp.Calculate(n,i,pv,pmt,fv,nDel),4);
+            var result = Math.Round(CalculateOpp.Calculate(n,i,pv,pmt,fv, nDel),4);
             //Assert
             Assert.AreEqual(4.2542, result);
         }
 
-        //Need to finish calc for i
-        /* [TestMethod]
-         public void icompute()
+         [TestMethod]
+         public void ICompute()
          {
              //Arrange, 
-             double n = 4.2542;
+             double n = 10;
              double i = 0;
              double pv = -100;
              double pmt = -10;
-             double fv = 200;
+             double fv = 1000;
              //Act,
-             var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, idel), 4);
+             var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, iDel), 4);
              //Assert
-             Assert.AreEqual(10, result);
-         } */
+             Assert.AreEqual(21.7681, result);
+         } 
 
         [TestMethod]
-        public void PVcompute()
+        public void PVCompute()
         {
             //Arrange, 
             double n = 5;
@@ -177,7 +176,7 @@ namespace TVMCalcUnitTest
         }
 
         [TestMethod]
-        public void PMTcompute()
+        public void PMTCompute()
         {
             //Arrange, 
             double n = 10;
@@ -192,7 +191,7 @@ namespace TVMCalcUnitTest
         }
 
         [TestMethod]
-        public void FVcompute()
+        public void FVCompute()
         {
             //Arrange, 
             double n = 5;
@@ -204,6 +203,83 @@ namespace TVMCalcUnitTest
             var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, fvDel), 4);
             //Assert
             Assert.AreEqual(69.1036, result);
+        }
+        #endregion
+
+        #region TVM Methods annuity due
+        [TestMethod] //X
+        public void NAdCompute()
+        {
+            //Arrange, 
+            double n = 0.00;
+            double i = 10;
+            double pv = -100;
+            double pmt = -10;
+            double fv = 500;
+            //Act,
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, nAdDel), 4);
+            //Assert
+            Assert.AreEqual(11.1882, result);
+        }
+
+        [TestMethod]
+        public void IAdCompute()
+        {
+            //Arrange, 
+            double n = 10;
+            double i = 0;
+            double pv = -100;
+            double pmt = -10;
+            double fv = 1000;
+            //Act,
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, iAdDel), 4);
+            //Assert
+            Assert.AreEqual(20.9629, result);
+        }
+
+        [TestMethod]
+        public void PVAdCompute()
+        {
+            //Arrange, 
+            double n = 5;
+            double i = 10;
+            double pv = 0;
+            double pmt = -10;
+            double fv = 200;
+            //Act,
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, pvAdDel), 4);
+            //Assert
+            Assert.AreEqual(-82.4856, result);
+        }
+
+        [TestMethod] 
+        public void PMTAdCompute()
+        {
+            //Arrange, 
+            double n = 10;
+            double i = 10;
+            double pv = -15;
+            double pmt = 0;
+            double fv = 100;
+            //Act,
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, pmtAdDel), 4);
+            //Assert
+            Assert.AreEqual(-3.4849, result);
+        }
+
+        [TestMethod]
+        public void FVAdCompute()
+        {
+            //Arrange, 
+            double n = 5;
+            double i = 10;
+            double pv = -5;
+            double pmt = -10;
+            double fv = 0;
+            //Act,
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, fvAdDel), 4);
+            //Assert
+            Assert.AreEqual(75.2087, result);
         }
         #endregion
     }
