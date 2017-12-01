@@ -5,6 +5,9 @@ using static TVMCalc.Operations.BasicOpps.BasicOppsDels;
 
 namespace TVMCalc.Operations.BasicOpps
 {
+    /// <summary>
+    /// Calculate method and overloads for the calculate method. 
+    /// </summary>
     public static class CalculateOpp
     {
         public static double Calculate(double x, OppsOneDelegate del)

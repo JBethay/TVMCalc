@@ -6,32 +6,73 @@ using Microsoft.VisualBasic;
 
 namespace TVMCalc.Operations.BasicOpps
 {
+    /// <summary>
+    /// Note that the delegates below act like methods and are used to create a more dynamic "Calculate" method
+    /// Where the type of calculation is demerited by the delegate that is passed into the method overload. 
+    /// </summary>
     public static class BasicOppsDels
     {
         public delegate double OppsTvmDelegate(double n, double i, double pv, double pmt, double fv);
-        public delegate double OppsTwoDelegate(double x, double y); // may need to move this outside of the class. 
+        public delegate double OppsTwoDelegate(double x, double y);
         public delegate double OppsOneDelegate(double x);
 
+        /// <summary>
+        /// Add
+        /// </summary>
         public static OppsTwoDelegate addDel = (x, y) => x + y;
+        /// <summary>
+        /// Subtract
+        /// </summary>
         public static OppsTwoDelegate subtractDel = (x, y) => x - y;
+        /// <summary>
+        /// Multiply
+        /// </summary>
         public static OppsTwoDelegate multiplyDel = (x, y) => x * y;
+        /// <summary>
+        /// Divide
+        /// </summary>
         public static OppsTwoDelegate devideDel = (x, y) => x / y;
+        /// <summary>
+        /// Raises a number to a specified power.
+        /// </summary>
         public static OppsTwoDelegate powerDel = (x, y) => Math.Pow(x, y);
 
+        /// <summary>
+        /// Turns a single given value into a percentage
+        /// </summary>
         public static OppsOneDelegate percentDel = (x) => x / 100;
+        /// <summary>
+        /// Takes a single value and returns the square root.
+        /// </summary>
         public static OppsOneDelegate sqrtDel = (x) => Math.Sqrt(x);
+        /// <summary>
+        /// Takes a single value and squares it.
+        /// </summary>
         public static OppsOneDelegate squareDel = (x) => Math.Pow(x, 2);
+        /// <summary>
+        /// Sets a value under one. 
+        /// </summary>
         public static OppsOneDelegate oneOverDel = (x) => 1 / x;
+        /// <summary>
+        /// Takes a single value and returns the natural log of the value.
+        /// </summary>
         public static OppsOneDelegate naturalLogDel = (x) => Math.Log(x);
 
         //TVM *regular annuity* calculations *END MODE*
+        /// <summary>
+        /// Computes the number of periods in a TVM equation. Regular Annuity or payment at end of the period.
+        /// </summary>
         public static OppsTvmDelegate nDel = (n, i, pv, pmt, fv) =>
         {
             i = i / 100;
             n = Math.Log((((fv * -1) * (i)) + pmt) / ((i * pv) + pmt)) / (Math.Log(1 + i));
             return n;
         };
-        //Calc for i, this implements Newton's method
+        /// <summary>
+        /// Computes the interest rate in a TVM equation, note that this method utilizes Newton's Method
+        /// to iterate through possible options to find the best fit as interest rate cannot be directly computed.
+        /// Regular Annuity or payment at end of the period.
+        /// </summary>
         public static OppsTvmDelegate iDel = (n, i, pv, pmt, fv) =>
         {
             double t = 0;
@@ -81,19 +122,28 @@ namespace TVMCalc.Operations.BasicOpps
             }
             i = i * 100; 
             return i;
-        }; 
+        };
+        /// <summary>
+        /// Computes the present value in a TVM equation. Regular Annuity or payment at end of the period.
+        /// </summary>
         public static OppsTvmDelegate pvDel = (n, i, pv, pmt, fv) =>
         {
             i = i / 100;
             pv = (1 / i) * (Math.Pow((1 + i), (n * -1))) * (((-1 * fv) * i) - ((pmt * (Math.Pow((1 + i), n)))) + pmt);
             return pv;
         };
+        /// <summary>
+        /// Computes the payment in a TVM equation. Regular Annuity or payment at end of the period.
+        /// </summary>
         public static OppsTvmDelegate pmtDel = (n, i, pv, pmt, fv) =>
         {
             i = i / 100;
             pmt = -1 * ((i * (fv + (pv * (Math.Pow((1 + i), n))))) / (Math.Pow((1 + i), n) - 1));
             return pmt;
         };
+        /// <summary>
+        /// Computes the future value in a TVM equation. Regular Annuity or payment at end of the period.
+        /// </summary>
         public static OppsTvmDelegate fvDel = (n, i, pv, pmt, fv) =>
         {
             i = i / 100;
@@ -102,13 +152,20 @@ namespace TVMCalc.Operations.BasicOpps
         };
 
         //TVM *annuity due* calculations *BEG MODE*
-        public static OppsTvmDelegate nAdDel = (n, i, pv, pmt, fv) => //X
+        /// <summary>
+        /// Computes the number of periods in a TVM equation. Annuity Due or payment at the beginning of the period.
+        /// </summary>
+        public static OppsTvmDelegate nAdDel = (n, i, pv, pmt, fv) =>
         {
             i = i / 100;
             n = Math.Log((((fv * -1) * (i))+(i*pmt) + pmt) / ((i * pv) +(i*pmt)+ pmt)) / (Math.Log(1 + i));
             return n;
         };
-        //Calc for i, this implements Newton's method
+        /// <summary>
+        /// Computes the interest rate in a TVM equation, note that this method utilizes Newton's Method
+        /// to iterate through possible options to find the best fit as interest rate cannot be directly computed.
+        /// Annuity Due or payment at the beginning of the period.
+        /// </summary>
         public static OppsTvmDelegate iAdDel = (n, i, pv, pmt, fv) =>
         {
             double t = 1;
@@ -159,18 +216,27 @@ namespace TVMCalc.Operations.BasicOpps
             i = i * 100;
             return i;
         };
+        /// <summary>
+        /// Computes the present value in a TVM equation. Annuity Due or payment at the beginning of the period.
+        /// </summary>
         public static OppsTvmDelegate pvAdDel = (n, i, pv, pmt, fv) =>
         {
             i = i / 100;
             pv = (-1 * fv) * Math.Pow((i + 1), (n * -1)) - pmt + pmt * Math.Pow((i + 1), (n * -1)) - (pmt / i) + (pmt / i) * Math.Pow((i + 1), (n * -1));
             return pv;
         };
+        /// <summary>
+        /// Computes the payment in a TVM equation. Annuity Due or payment at the beginning of the period.
+        /// </summary>
         public static OppsTvmDelegate pmtAdDel = (n, i, pv, pmt, fv) =>
         {
             i = i / 100;
             pmt = -1 * ((i * (fv + pv * Math.Pow((i + 1), n))) / (i * Math.Pow((i + 1), n) - i + Math.Pow((i + 1), n) - 1));
             return pmt;
         };
+        /// <summary>
+        /// Computes the future value in a TVM equation. Annuity Due or payment at the beginning of the period.
+        /// </summary>
         public static OppsTvmDelegate fvAdDel = (n, i, pv, pmt, fv) =>
         {
             i = i / 100;
