@@ -1,62 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using Microsoft.VisualBasic;
+using TVMCalc.Operations.BasicOpps;
+using TVMCalc.Operations.ObjctTemps;
 
-namespace TVMCalc.Operations.BasicOpps
+
+namespace TVMCalc.Operations.OppsDelegates
 {
     /// <summary>
     /// Note that the delegates below act like methods and are used to create a more dynamic "Calculate" method
     /// Where the type of calculation is demerited by the delegate that is passed into the method overload. 
     /// </summary>
-    public static class BasicOppsDels
+    public static class TVMOppsDels
     {
         public delegate double OppsTvmDelegate(double n, double i, double pv, double pmt, double fv);
-        public delegate double OppsTwoDelegate(double x, double y);
-        public delegate double OppsOneDelegate(double x);
-
-        /// <summary>
-        /// Add
-        /// </summary>
-        public static OppsTwoDelegate addDel = (x, y) => x + y;
-        /// <summary>
-        /// Subtract
-        /// </summary>
-        public static OppsTwoDelegate subtractDel = (x, y) => x - y;
-        /// <summary>
-        /// Multiply
-        /// </summary>
-        public static OppsTwoDelegate multiplyDel = (x, y) => x * y;
-        /// <summary>
-        /// Divide
-        /// </summary>
-        public static OppsTwoDelegate devideDel = (x, y) => x / y;
-        /// <summary>
-        /// Raises a number to a specified power.
-        /// </summary>
-        public static OppsTwoDelegate powerDel = (x, y) => Math.Pow(x, y);
-
-        /// <summary>
-        /// Turns a single given value into a percentage
-        /// </summary>
-        public static OppsOneDelegate percentDel = (x) => x / 100;
-        /// <summary>
-        /// Takes a single value and returns the square root.
-        /// </summary>
-        public static OppsOneDelegate sqrtDel = (x) => Math.Sqrt(x);
-        /// <summary>
-        /// Takes a single value and squares it.
-        /// </summary>
-        public static OppsOneDelegate squareDel = (x) => Math.Pow(x, 2);
-        /// <summary>
-        /// Sets a value under one. 
-        /// </summary>
-        public static OppsOneDelegate oneOverDel = (x) => 1 / x;
-        /// <summary>
-        /// Takes a single value and returns the natural log of the value.
-        /// </summary>
-        public static OppsOneDelegate naturalLogDel = (x) => Math.Log(x);
+        public delegate double OppsCfTvmDelegate(CfObject CfObject);
 
         //TVM *regular annuity* calculations *END MODE*
         /// <summary>
@@ -120,7 +78,7 @@ namespace TVMCalc.Operations.BasicOpps
                 y1 = y;
                 ++z;
             }
-            i = i * 100; 
+            i = i * 100;
             return i;
         };
         /// <summary>
@@ -158,7 +116,7 @@ namespace TVMCalc.Operations.BasicOpps
         public static OppsTvmDelegate nAdDel = (n, i, pv, pmt, fv) =>
         {
             i = i / 100;
-            n = Math.Log((((fv * -1) * (i))+(i*pmt) + pmt) / ((i * pv) +(i*pmt)+ pmt)) / (Math.Log(1 + i));
+            n = Math.Log((((fv * -1) * (i)) + (i * pmt) + pmt) / ((i * pv) + (i * pmt) + pmt)) / (Math.Log(1 + i));
             return n;
         };
         /// <summary>
@@ -244,8 +202,54 @@ namespace TVMCalc.Operations.BasicOpps
             return fv;
         };
 
+        //CashFlow Functions (NPV IRR Calculations)
+        /// <summary>
+        /// Computes the Net Present Value or NPV of a list of provided cash flows at a set interest rate.
+        /// </summary>
+        public static OppsCfTvmDelegate npvDel = (cfoObject) =>
+        {
+            var args_cf = cfoObject.CashFlows;
+            var args_f = cfoObject.Frequency;
+            var count = args_cf.Count;
+            var t = 0;
+            var t2 = 0;
+
+            // Adjust the CF list for the frequency of the Cash flows
+            for (int x = 0; x < count; x++)
+            {
+                if (x != 0)
+                {
+                    t2++;
+                };
+                for (int y = 1; y < args_f[x]; y++)
+                {
+                    double cf = cfoObject.CashFlows[t2];
+                    args_cf.Insert(t2, cf);
+                    t2++;
+                }
+            };
+
+            // Lookup rate
+            double rate = cfoObject.I / 100;
+
+            // Initialize net present value
+            double value = 0;
+
+            // Loop on all values
+
+            for (int z = 0; z < count; z++)
+            {
+                for (int x = 0; x < args_f[z]; x++)
+                {
+                    value += args_cf[t] / Math.Pow(1 + rate, (t + 1));
+                    t++;
+                }
+            }
+
+            // Return net present value
+            cfoObject.NPV = value + cfoObject.CF0;
+            return cfoObject.NPV;
+        };
 
     }
 }
-
-

@@ -1,8 +1,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using TVMCalc;
 using TVMCalc.Operations.BasicOpps;
-using static TVMCalc.Operations.BasicOpps.BasicOppsDels;
+using static TVMCalc.Operations.OppsDelegates.BasicOppsDels;
+using System.Collections.Generic;
+using TVMCalc.Operations.ObjctTemps;
+using static TVMCalc.Operations.OppsDelegates.TVMOppsDels;
+using static TVMCalc.Operations.Methods.TVMCfMethods;
 
 namespace TVMCalcUnitTest
 {
@@ -140,7 +143,7 @@ namespace TVMCalcUnitTest
             double pmt = -15;
             double fv = 750;
             //Act,
-            var result = Math.Round(CalculateOpp.Calculate(n,i,pv,pmt,fv, nDel),4);
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, nDel), 4);
             //Assert
             Assert.AreEqual(6.3487, result);
         }
@@ -160,19 +163,19 @@ namespace TVMCalcUnitTest
         }
 
         [TestMethod]
-         public void ICompute()
-         {
-             //Arrange, 
-             double n = 10;
-             double i = 0;
-             double pv = -100;
-             double pmt = -10;
-             double fv = 1000;
-             //Act,
-             var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, iDel), 4);
-             //Assert
-             Assert.AreEqual(21.7681, result);
-         }
+        public void ICompute()
+        {
+            //Arrange, 
+            double n = 10;
+            double i = 0;
+            double pv = -100;
+            double pmt = -10;
+            double fv = 1000;
+            //Act,
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, iDel), 4);
+            //Assert
+            Assert.AreEqual(21.7681, result);
+        }
         [TestMethod]
         public void I2Compute()
         {
@@ -277,7 +280,7 @@ namespace TVMCalcUnitTest
         #endregion
 
         #region TVM Methods annuity due Methods
-        [TestMethod] 
+        [TestMethod]
         public void NAdCompute()
         {
             //Arrange, 
@@ -364,7 +367,7 @@ namespace TVMCalcUnitTest
             Assert.AreEqual(175.6238, result);
         }
 
-        [TestMethod] 
+        [TestMethod]
         public void PMTAdCompute()
         {
             //Arrange, 
@@ -420,6 +423,97 @@ namespace TVMCalcUnitTest
             var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, fvAdDel), 4);
             //Assert
             Assert.AreEqual(-348282.6396, result);
+        }
+        #endregion
+
+        #region CF Methods 
+        [TestMethod]
+        public void CFNPVCompute()
+        {
+            //Arrange, 
+            var obj = new CfObject();
+            obj.CF0 = -150;
+            obj.I = 10;
+            obj.CashFlows = new List<double>
+            {
+                10,20,5,3,250
+            };
+
+            obj.Frequency = new List<double>
+            {
+                5,2,3,5,1
+            };
+
+            //Act,
+            var result = Math.Round(CalculateOpp.Calculate(obj, npvDel), 4);
+            //Assert
+            Assert.AreEqual(-25.3669, result);
+        }
+        [TestMethod]
+        public void CFNPV2Compute()
+        {
+            //Arrange, 
+            var obj = new CfObject();
+            obj.CF0 = 150;
+            obj.I = 8.04;
+            obj.CashFlows = new List<double>
+            {
+                10,15,-5,-33,50
+            };
+
+            obj.Frequency = new List<double>
+            {
+                5,2,3,5,1
+            };
+
+            //Act,
+            var result = Math.Round(CalculateOpp.Calculate(obj, npvDel), 4);
+            //Assert
+            Assert.AreEqual(154.3204, result);
+        }
+        [TestMethod]
+        public void CFNPV3Compute()
+        {
+            //Arrange, 
+            var obj = new CfObject();
+            obj.CF0 = 0;
+            obj.I = 10;
+            obj.CashFlows = new List<double>
+            {
+                5,-10
+            };
+
+            obj.Frequency = new List<double>
+            {
+                1,1
+            };
+
+            //Act,
+            var result = Math.Round(CalculateOpp.Calculate(obj, npvDel), 4);
+            //Assert
+            Assert.AreEqual(-3.7190, result);
+        }
+
+        [TestMethod]
+        public void IRRCompute()
+        {
+            //Arrange, 
+            var obj = new CfObject();
+            obj.CF0 = 0;
+            obj.I = 10;
+            obj.CashFlows = new List<double>
+            {
+                5,-10
+            };
+            obj.Frequency = new List<double>
+            {
+                1,1
+            };
+
+            //Act,
+            var result = Math.Round(OppsCfIrrMethod(obj), 4);
+            //Assert
+            Assert.AreEqual(100.0000, result);
         }
         #endregion
     }

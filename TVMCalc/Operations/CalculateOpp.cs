@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using static TVMCalc.Operations.BasicOpps.BasicOppsDels;
+using TVMCalc.Operations.ObjctTemps;
+using static TVMCalc.Operations.OppsDelegates.BasicOppsDels;
+using static TVMCalc.Operations.OppsDelegates.TVMOppsDels;
 
 namespace TVMCalc.Operations.BasicOpps
 {
@@ -25,6 +27,12 @@ namespace TVMCalc.Operations.BasicOpps
         public static double Calculate(double n, double i, double pv, double pmt, double fv, OppsTvmDelegate del)
         {
             var result = del(n,i,pv,pmt,fv);
+            return result;
+        }
+
+        public static double Calculate(CfObject cfObject, OppsCfTvmDelegate del)
+        {
+            var result = del(cfObject);
             return result;
         }
     }
