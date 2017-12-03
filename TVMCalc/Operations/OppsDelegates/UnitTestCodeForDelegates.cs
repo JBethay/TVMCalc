@@ -1,18 +1,10 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using TVMCalc.Operations.BasicOpps;
-using static TVMCalc.Operations.OppsDelegates.BasicOppsDels;
+﻿using System;
 using System.Collections.Generic;
-using TVMCalc.Operations.ObjctTemps;
-using static TVMCalc.Operations.OppsDelegates.TVMOppsDels;
-using static TVMCalc.Operations.Methods.TVMCfMethods;
-using static TVMCalc.Operations.Methods.PrimaryOppsMethods;
-using static TVMCalc.Operations.Methods.TVMMethods;
+using System.Text;
 
-namespace TVMCalcUnitTest
+namespace TVMCalc.Operations.OppsDelegates
 {
-    [TestClass]
-    public class OppsTest
+    /*public class UnitTestCodeForDelegates
     {
         #region Two Input methods 
         [TestMethod]
@@ -22,7 +14,7 @@ namespace TVMCalcUnitTest
             double x = 4.55;
             double y = 4.5;
             //Act,
-            var result = addCompt(x, y);
+            var result = CalculateOpp.Calculate(x, y, addDel);
             //Assert
             Assert.AreEqual(9.05, result);
         }
@@ -34,7 +26,7 @@ namespace TVMCalcUnitTest
             double x = 5;
             double y = 4.5;
             //Act,
-            var result = subtractCompt(x, y);
+            var result = CalculateOpp.Calculate(x, y, subtractDel);
             //Assert
             Assert.AreEqual(0.5, result);
         }
@@ -46,7 +38,7 @@ namespace TVMCalcUnitTest
             double x = -5;
             double y = -1;
             //Act,
-            var result = multiplyCompt(x, y);
+            var result = CalculateOpp.Calculate(x, y, multiplyDel);
             //Assert
             Assert.AreEqual(5, result);
         }
@@ -58,7 +50,7 @@ namespace TVMCalcUnitTest
             double x = 25;
             double y = 5;
             //Act,
-            var result = devideCompt(x, y);
+            var result = CalculateOpp.Calculate(x, y, devideDel);
             //Assert
             Assert.AreEqual(5, result);
         }
@@ -70,7 +62,7 @@ namespace TVMCalcUnitTest
             double x = 5;
             double y = 2;
             //Act,
-            var result = powerCompt(x, y);
+            var result = CalculateOpp.Calculate(x, y, powerDel);
             //Assert
             Assert.AreEqual(25, result);
         }
@@ -83,7 +75,7 @@ namespace TVMCalcUnitTest
             //Arrange, 
             double x = 25;
             //Act,
-            var result = percentCompt(x);
+            var result = CalculateOpp.Calculate(x, percentDel);
             //Assert
             Assert.AreEqual(.25, result);
         }
@@ -94,7 +86,7 @@ namespace TVMCalcUnitTest
             //Arrange, 
             double x = 25;
             //Act,
-            var result = sqrtCompt(x);
+            var result = CalculateOpp.Calculate(x, sqrtDel);
             //Assert
             Assert.AreEqual(5, result);
         }
@@ -105,7 +97,7 @@ namespace TVMCalcUnitTest
             //Arrange, 
             double x = 5;
             //Act,
-            var result = squareCompt(x);
+            var result = CalculateOpp.Calculate(x, squareDel);
             //Assert
             Assert.AreEqual(25, result);
         }
@@ -116,7 +108,7 @@ namespace TVMCalcUnitTest
             //Arrange, 
             double x = 25;
             //Act,
-            var result = oneOverCompt(x);
+            var result = CalculateOpp.Calculate(x, oneOverDel);
             //Assert
             Assert.AreEqual(0.04, result);
         }
@@ -127,7 +119,7 @@ namespace TVMCalcUnitTest
             //Arrange, 
             double x = 25;
             //Act,
-            var result = Math.Round(naturalLogCompt(x),4);
+            var result = Math.Round(CalculateOpp.Calculate(x, naturalLogDel), 4);
             //Assert
             Assert.AreEqual(3.2189, result);
         }
@@ -139,16 +131,13 @@ namespace TVMCalcUnitTest
         public void NCompute()
         {
             //Arrange, 
-            var obj = new TvmObject
-            {
-                N = 0.00,
-                I = 15,
-                Pv = -250,
-                Pmt = -15,
-                Fv = 750,
-            };  
+            double n = 0.00;
+            double i = 15;
+            double pv = -250;
+            double pmt = -15;
+            double fv = 750;
             //Act,
-            var result = Math.Round(nCompute(obj), 4);
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, nDel), 4);
             //Assert
             Assert.AreEqual(6.3487, result);
         }
@@ -156,17 +145,13 @@ namespace TVMCalcUnitTest
         public void N2Compute()
         {
             //Arrange, 
-            var obj = new TvmObject
-            {
-                N = 0.00,
-                I = 15,
-                Pv = 200,
-                Pmt = 15,
-                Fv = -750,
-            };
+            double n = 0.00;
+            double i = 15;
+            double pv = 200;
+            double pmt = 15;
+            double fv = -750;
             //Act,
-            var result = Math.Round(nCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, nDel), 4);
             //Assert
             Assert.AreEqual(7.4516, result);
         }
@@ -174,36 +159,28 @@ namespace TVMCalcUnitTest
         [TestMethod]
         public void ICompute()
         {
-            //Arrange,
-            var obj = new TvmObject
-            {
-                N = 10,
-                I = 0,
-                Pv = -100,
-                Pmt = -10,
-                Fv = 1000,
-            };
+            //Arrange, 
+            double n = 10;
+            double i = 0;
+            double pv = -100;
+            double pmt = -10;
+            double fv = 1000;
             //Act,
-            var result = Math.Round(iCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, iDel), 4);
             //Assert
             Assert.AreEqual(21.7681, result);
         }
         [TestMethod]
         public void I2Compute()
         {
-            //Arrange,
-            var obj = new TvmObject
-            {
-                N = 12,
-                I = 0,
-                Pv = 140,
-                Pmt = 50,
-                Fv = -1000,
-            };
+            //Arrange, 
+            double n = 12;
+            double i = 0;
+            double pv = 140;
+            double pmt = 50;
+            double fv = -1000;
             //Act,
-            var result = Math.Round(iCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, iDel), 4);
             //Assert
             Assert.AreEqual(4.3512, result);
         }
@@ -212,35 +189,27 @@ namespace TVMCalcUnitTest
         public void PVCompute()
         {
             //Arrange, 
-            var obj = new TvmObject
-            {
-                N = 5,
-                I = 10,
-                Pv = 0,
-                Pmt = -10,
-                Fv = 200,
-            };
+            double n = 5;
+            double i = 10;
+            double pv = 0;
+            double pmt = -10;
+            double fv = 200;
             //Act,
-            var result = Math.Round(pvCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, pvDel), 4);
             //Assert
             Assert.AreEqual(-86.2764, result);
         }
         [TestMethod]
         public void PV2Compute()
         {
-            //Arrange,
-            var obj = new TvmObject
-            {
-                N = 8,
-                I = 12,
-                Pv = 0,
-                Pmt = 10,
-                Fv = -500,
-            };
+            //Arrange, 
+            double n = 8;
+            double i = 12;
+            double pv = 0;
+            double pmt = 10;
+            double fv = -500;
             //Act,
-            var result = Math.Round(pvCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, pvDel), 4);
             //Assert
             Assert.AreEqual(152.2652, result);
         }
@@ -249,35 +218,27 @@ namespace TVMCalcUnitTest
         public void PMTCompute()
         {
             //Arrange, 
-            var obj = new TvmObject
-            {
-                N = 10,
-                I = 10,
-                Pv = 15,
-                Pmt = 0,
-                Fv = 100,
-            };
+            double n = 10;
+            double i = 10;
+            double pv = 15;
+            double pmt = 0;
+            double fv = 100;
             //Act,
-            var result = Math.Round(pmtCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, pmtDel), 4);
             //Assert
             Assert.AreEqual(-8.7157, result);
         }
         [TestMethod]
         public void PMT2Compute()
         {
-            //Arrange,
-            var obj = new TvmObject
-            {
-                N = 15,
-                I = 5,
-                Pv = -30,
-                Pmt = 0,
-                Fv = 250,
-            };
+            //Arrange, 
+            double n = 15;
+            double i = 5;
+            double pv = -30;
+            double pmt = 0;
+            double fv = 250;
             //Act,
-            var result = Math.Round(pmtCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, pmtDel), 4);
             //Assert
             Assert.AreEqual(-8.6953, result);
         }
@@ -286,17 +247,13 @@ namespace TVMCalcUnitTest
         public void FVCompute()
         {
             //Arrange, 
-            var obj = new TvmObject
-            {
-                N = 5,
-                I = 10,
-                Pv = -5,
-                Pmt = -10,
-                Fv = 0,
-            };
+            double n = 5;
+            double i = 10;
+            double pv = -5;
+            double pmt = -10;
+            double fv = 0;
             //Act,
-            var result = Math.Round(fvCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, fvDel), 4);
             //Assert
             Assert.AreEqual(69.1036, result);
         }
@@ -304,17 +261,13 @@ namespace TVMCalcUnitTest
         public void FV2Compute()
         {
             //Arrange, 
-            var obj = new TvmObject
-            {
-                N = 10,
-                I = 6,
-                Pv = -25,
-                Pmt = -50,
-                Fv = 0,
-            };
+            double n = 10;
+            double i = 6;
+            double pv = -25;
+            double pmt = -50;
+            double fv = 0;
             //Act,
-            var result = Math.Round(fvCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, fvDel), 4);
             //Assert
             Assert.AreEqual(703.8109, result);
         }
@@ -325,17 +278,13 @@ namespace TVMCalcUnitTest
         public void NAdCompute()
         {
             //Arrange, 
-            var obj = new TvmObject
-            {
-                N = 0.00,
-                I = 10,
-                Pv = -100,
-                Pmt = -10,
-                Fv = 500,
-            };
+            double n = 0.00;
+            double i = 10;
+            double pv = -100;
+            double pmt = -10;
+            double fv = 500;
             //Act,
-            var result = Math.Round(nAdCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, nAdDel), 4);
             //Assert
             Assert.AreEqual(11.1882, result);
         }
@@ -343,17 +292,13 @@ namespace TVMCalcUnitTest
         public void NAd2Compute()
         {
             //Arrange, 
-            var obj = new TvmObject
-            {
-                N = 0.00,
-                I = 12,
-                Pv = 200,
-                Pmt = 5,
-                Fv = -400,
-            };
+            double n = 0.00;
+            double i = 12;
+            double pv = 200;
+            double pmt = 5;
+            double fv = -400;
             //Act,
-            var result = Math.Round(nAdCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, nAdDel), 4);
             //Assert
             Assert.AreEqual(5.2394, result);
         }
@@ -362,17 +307,13 @@ namespace TVMCalcUnitTest
         public void IAdCompute()
         {
             //Arrange, 
-            var obj = new TvmObject
-            {
-                N = 10,
-                I = 0,
-                Pv = -100,
-                Pmt = -10,
-                Fv = 1000,
-            };
+            double n = 10;
+            double i = 0;
+            double pv = -100;
+            double pmt = -10;
+            double fv = 1000;
             //Act,
-            var result = Math.Round(iAdCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, iAdDel), 4);
             //Assert
             Assert.AreEqual(20.9629, result);
         }
@@ -380,17 +321,13 @@ namespace TVMCalcUnitTest
         public void IAd2Compute()
         {
             //Arrange, 
-            var obj = new TvmObject
-            {
-                N = 15,
-                I = 0,
-                Pv = 100,
-                Pmt = 50,
-                Fv = -925,
-            };
+            double n = 15;
+            double i = 0;
+            double pv = 100;
+            double pmt = 50;
+            double fv = -925;
             //Act,
-            var result = Math.Round(iAdCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, iAdDel), 4);
             //Assert
             Assert.AreEqual(0.9519, result);
         }
@@ -399,35 +336,27 @@ namespace TVMCalcUnitTest
         public void PVAdCompute()
         {
             //Arrange, 
-            var obj = new TvmObject
-            {
-                N = 5,
-                I = 10,
-                Pv = 0,
-                Pmt = -10,
-                Fv = 200,
-            };
+            double n = 5;
+            double i = 10;
+            double pv = 0;
+            double pmt = -10;
+            double fv = 200;
             //Act,
-            var result = Math.Round(pvAdCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, pvAdDel), 4);
             //Assert
             Assert.AreEqual(-82.4856, result);
         }
         [TestMethod]
         public void PVAd2Compute()
         {
-            //Arrange,
-            var obj = new TvmObject
-            {
-                N = 5,
-                I = 10,
-                Pv = 0,
-                Pmt = 10,
-                Fv = -350
-            };
+            //Arrange, 
+            double n = 5;
+            double i = 10;
+            double pv = 0;
+            double pmt = 10;
+            double fv = -350;
             //Act,
-            var result = Math.Round(pvAdCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, pvAdDel), 4);
             //Assert
             Assert.AreEqual(175.6238, result);
         }
@@ -436,17 +365,13 @@ namespace TVMCalcUnitTest
         public void PMTAdCompute()
         {
             //Arrange, 
-            var obj = new TvmObject
-            {
-                N = 10,
-                I = 10,
-                Pv = -15,
-                Pmt = 0,
-                Fv = 100,
-            };
+            double n = 10;
+            double i = 10;
+            double pv = -15;
+            double pmt = 0;
+            double fv = 100;
             //Act,
-            var result = Math.Round(pmtAdCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, pmtAdDel), 4);
             //Assert
             Assert.AreEqual(-3.4849, result);
         }
@@ -454,17 +379,13 @@ namespace TVMCalcUnitTest
         public void PMTAd2Compute()
         {
             //Arrange, 
-            var obj = new TvmObject
-            {
-                N = 10,
-                I = 15,
-                Pv = 20,
-                Pmt = 0,
-                Fv = -346,
-            };
+            double n = 10;
+            double i = 15;
+            double pv = 20;
+            double pmt = 0;
+            double fv = -346;
             //Act,
-            var result = Math.Round(pmtAdCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, pmtAdDel), 4);
             //Assert
             Assert.AreEqual(11.3532, result);
         }
@@ -473,17 +394,13 @@ namespace TVMCalcUnitTest
         public void FVAdCompute()
         {
             //Arrange, 
-            var obj = new TvmObject
-            {
-                N = 5,
-                I = 10,
-                Pv = -5,
-                Pmt = -10,
-                Fv = 0,
-            };
+            double n = 5;
+            double i = 10;
+            double pv = -5;
+            double pmt = -10;
+            double fv = 0;
             //Act,
-            var result = Math.Round(fvAdCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, fvAdDel), 4);
             //Assert
             Assert.AreEqual(75.2087, result);
         }
@@ -491,17 +408,13 @@ namespace TVMCalcUnitTest
         public void FVAd2Compute()
         {
             //Arrange, 
-            var obj = new TvmObject
-            {
-                N = 65,
-                I = 8,
-                Pv = 1000,
-                Pmt = 100,
-                Fv = 0,
-            };
+            double n = 65;
+            double i = 8;
+            double pv = 1000;
+            double pmt = 100;
+            double fv = 0;
             //Act,
-            var result = Math.Round(fvAdCompute(obj), 4);
-
+            var result = Math.Round(CalculateOpp.Calculate(n, i, pv, pmt, fv, fvAdDel), 4);
             //Assert
             Assert.AreEqual(-348282.6396, result);
         }
@@ -526,7 +439,7 @@ namespace TVMCalcUnitTest
             };
 
             //Act,
-            var result = Math.Round(CfNPVMethod(obj), 4);
+            var result = Math.Round(CalculateOpp.Calculate(obj, npvDel), 4);
             //Assert
             Assert.AreEqual(-25.3669, result);
         }
@@ -548,7 +461,7 @@ namespace TVMCalcUnitTest
             };
 
             //Act,
-            var result = Math.Round(CfNPVMethod(obj), 4);
+            var result = Math.Round(CalculateOpp.Calculate(obj, npvDel), 4);
             //Assert
             Assert.AreEqual(154.3204, result);
         }
@@ -570,7 +483,7 @@ namespace TVMCalcUnitTest
             };
 
             //Act,
-            var result = Math.Round(CfNPVMethod(obj), 4);
+            var result = Math.Round(CalculateOpp.Calculate(obj, npvDel), 4);
             //Assert
             Assert.AreEqual(-3.7190, result);
         }
@@ -657,5 +570,5 @@ namespace TVMCalcUnitTest
             Assert.AreEqual(-3.3412, result);
         }
         #endregion
-    }
+    } */
 }

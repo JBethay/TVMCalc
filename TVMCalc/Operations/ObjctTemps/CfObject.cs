@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TVMCalc.Operations.ObjctTemps
 {
-    public struct CfObject
+    public class CfObject
     {
         public double CF0 { get; set; }
         public double I { get; set; }
