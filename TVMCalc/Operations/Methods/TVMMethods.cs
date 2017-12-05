@@ -14,7 +14,7 @@ namespace TVMCalc.Operations.Methods
         /// <summary>
         /// Computes the number of periods in a TVM equation. Regular Annuity or payment at end of the period.
         /// </summary>
-        public static double nCompute (TvmObject obj)
+        public static double NCompute (TvmObject obj)
         {
             double n = 0;
             var i = obj.I;
@@ -31,7 +31,7 @@ namespace TVMCalc.Operations.Methods
         /// to iterate through possible options to find the best fit as interest rate cannot be directly computed.
         /// Regular Annuity or payment at end of the period.
         /// </summary>
-        public static double iCompute (TvmObject obj)
+        public static double ICompute (TvmObject obj)
         {
             var n = obj.N;
             double i = 0;
@@ -90,7 +90,7 @@ namespace TVMCalc.Operations.Methods
         /// <summary>
         /// Computes the present value in a TVM equation. Regular Annuity or payment at end of the period.
         /// </summary>
-        public static double pvCompute (TvmObject obj)
+        public static double PvCompute (TvmObject obj)
         {
             var n = obj.N;
             var i = obj.I;
@@ -105,7 +105,7 @@ namespace TVMCalc.Operations.Methods
         /// <summary>
         /// Computes the payment in a TVM equation. Regular Annuity or payment at end of the period.
         /// </summary>
-        public static double pmtCompute (TvmObject obj)
+        public static double PmtCompute (TvmObject obj)
         {
             var n = obj.N;
             var i = obj.I;
@@ -120,7 +120,7 @@ namespace TVMCalc.Operations.Methods
         /// <summary>
         /// Computes the future value in a TVM equation. Regular Annuity or payment at end of the period.
         /// </summary>
-        public static double fvCompute (TvmObject obj)
+        public static double FvCompute (TvmObject obj)
         {
             var n = obj.N;
             var i = obj.I;
@@ -137,7 +137,7 @@ namespace TVMCalc.Operations.Methods
         /// <summary>
         /// Computes the number of periods in a TVM equation. Annuity Due or payment at the beginning of the period.
         /// </summary>
-        public static double nAdCompute (TvmObject obj)
+        public static double NAdCompute (TvmObject obj)
         {
             double n = 0;
             var i = obj.I;
@@ -154,7 +154,7 @@ namespace TVMCalc.Operations.Methods
         /// to iterate through possible options to find the best fit as interest rate cannot be directly computed.
         /// Annuity Due or payment at the beginning of the period.
         /// </summary>
-        public static double iAdCompute (TvmObject obj)
+        public static double IAdCompute (TvmObject obj)
         {
             var n = obj.N;
             double i = 0;
@@ -213,7 +213,7 @@ namespace TVMCalc.Operations.Methods
         /// <summary>
         /// Computes the present value in a TVM equation. Annuity Due or payment at the beginning of the period.
         /// </summary>
-        public static double pvAdCompute (TvmObject obj)
+        public static double PvAdCompute (TvmObject obj)
         {
             var n = obj.N;
             var i = obj.I;
@@ -228,7 +228,7 @@ namespace TVMCalc.Operations.Methods
         /// <summary>
         /// Computes the payment in a TVM equation. Annuity Due or payment at the beginning of the period.
         /// </summary>
-        public static double pmtAdCompute (TvmObject obj)
+        public static double PmtAdCompute (TvmObject obj)
         {
             var n = obj.N;
             var i = obj.I;
@@ -243,7 +243,7 @@ namespace TVMCalc.Operations.Methods
         /// <summary>
         /// Computes the future value in a TVM equation. Annuity Due or payment at the beginning of the period.
         /// </summary>
-        public static double fvAdCompute (TvmObject obj)
+        public static double FvAdCompute (TvmObject obj)
         {
             var n = obj.N;
             var i = obj.I;
