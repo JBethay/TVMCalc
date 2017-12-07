@@ -25,10 +25,9 @@ namespace TVMCalc.Operations.Methods
 
             for (int i = 1; i <= aObj.P2; i++)
             {
-                aObj.I_Paid = aObj.C_Bal * r;
+                aObj.I_Paid = aObj.C_Bal * r;                   
                 aObj.P_Paid = tObj.Pmt + aObj.I_Paid;
                 aObj.C_Bal = aObj.C_Bal + aObj.P_Paid;
-
 
                 if (i >= aObj.P1)
                 {
@@ -39,6 +38,17 @@ namespace TVMCalc.Operations.Methods
             aObj.EndBal = aObj.C_Bal;
             aObj.IntPaid = aObj.IntPaid * -1;
             return aObj;
+        }
+        /// <summary>
+        /// This method returns a random value less then 1 but greater then 0, 
+        /// used for generating a random percentage if the user converts the value to a percentage. 
+        /// </summary>
+        /// <returns></returns>
+        public static double RandCompute()
+        {
+            Random rand = new Random();
+            double x = rand.NextDouble();
+            return x;
         }
     }
 }

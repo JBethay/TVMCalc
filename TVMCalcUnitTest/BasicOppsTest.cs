@@ -741,7 +741,103 @@ namespace TVMCalcUnitTest
             Assert.AreEqual(-172.8683, Math.Round(result.PrnPaid, 4));
             Assert.AreEqual(-107.5440, Math.Round(result.IntPaid, 4));
         }
+        [TestMethod]
+        public void Amort5() // With 0 payment and -FV
+        {
+            //Arrange, 
+            var tObj = new TvmObject();
+            tObj.N = 10;
+            tObj.I = 10;
+            tObj.Pv = 250;
+            tObj.Pmt = 0;
+            tObj.Fv = -648.4356;
+            var obj = new AmortObject();
+            obj.P1 = 1;
+            obj.P2 = 1;
 
+            //Act,
+            var result = AmortCompute(tObj, obj);
+            //Assert
+            Assert.AreEqual(275.0000, Math.Round(result.EndBal, 4));
+            Assert.AreEqual(25.0000, Math.Round(result.PrnPaid, 4));
+            Assert.AreEqual(-25.0000, Math.Round(result.IntPaid, 4));
+        }
+        [TestMethod]
+        public void Amort6() // With + payment and -FV
+        {
+            //Arrange, 
+            var tObj = new TvmObject();
+            tObj.N = 10;
+            tObj.I = 10;
+            tObj.Pv = 250;
+            tObj.Pmt = 10;
+            tObj.Fv = -907.8099;
+            var obj = new AmortObject();
+            obj.P1 = 1;
+            obj.P2 = 1;
+
+            //Act,
+            var result = AmortCompute(tObj, obj);
+            //Assert
+            Assert.AreEqual(285.0000, Math.Round(result.EndBal, 4));
+            Assert.AreEqual(35.0000, Math.Round(result.PrnPaid, 4));
+            Assert.AreEqual(-25.0000, Math.Round(result.IntPaid, 4));
+        }
+        [TestMethod]
+        public void Amort7() // With - payment -PV +FV
+        {
+            //Arrange, 
+            var tObj = new TvmObject();
+            tObj.N = 10;
+            tObj.I = 10;
+            tObj.Pv = -250;
+            tObj.Pmt = -25;
+            tObj.Fv = 1046.8712;
+            var obj = new AmortObject();
+            obj.P1 = 1;
+            obj.P2 = 1;
+
+            //Act,
+            var result = AmortCompute(tObj, obj);
+            //Assert
+            Assert.AreEqual(-300.0000, Math.Round(result.EndBal, 4));
+            Assert.AreEqual(-50.0000, Math.Round(result.PrnPaid, 4));
+            Assert.AreEqual(25.0000, Math.Round(result.IntPaid, 4));
+        }
+        [TestMethod]
+        public void Amort8() // With + payment -PV -FV
+        {
+            //Arrange, 
+            var tObj = new TvmObject();
+            tObj.N = 10;
+            tObj.I = 10;
+            tObj.Pv = -250;
+            tObj.Pmt = 103.4317;
+            tObj.Fv = -1000;
+            var obj = new AmortObject();
+            obj.P1 = 1;
+            obj.P2 = 1;
+
+            //Act,
+            var result = AmortCompute(tObj, obj);
+            //Assert
+            Assert.AreEqual(-171.5683, Math.Round(result.EndBal, 4));
+            Assert.AreEqual(78.4317, Math.Round(result.PrnPaid, 4));
+            Assert.AreEqual(25.0000, Math.Round(result.IntPaid, 4));
+        }
+
+        [TestMethod]
+        public void Rand_Compute()
+        {
+            //Arrange, 
+            double x = 0;
+            double y = 0;
+            //Act,
+            x = RandCompute();
+            y = RandCompute();
+            //Assert
+            Assert.AreNotEqual(x,y);
+        }
         #endregion
     }
 }
