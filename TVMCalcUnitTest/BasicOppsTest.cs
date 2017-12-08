@@ -657,6 +657,7 @@ namespace TVMCalcUnitTest
         #endregion
 
         #region Secondary Functions
+        #region Amort
         [TestMethod]
         public void Amort()
         {
@@ -825,6 +826,7 @@ namespace TVMCalcUnitTest
             Assert.AreEqual(78.4317, Math.Round(result.PrnPaid, 4));
             Assert.AreEqual(25.0000, Math.Round(result.IntPaid, 4));
         }
+        #endregion
 
         [TestMethod]
         public void Rand_Compute()
@@ -838,6 +840,131 @@ namespace TVMCalcUnitTest
             //Assert
             Assert.AreNotEqual(x,y);
         }
+        [TestMethod]
+        public void Round_Compute()
+        {
+            //Arrange, 
+            double x = 61.4732156216;
+            int y = 2;
+            //Act,
+            var result = RoundCompute(x, y);
+            //Assert
+            Assert.AreEqual(61.47, Math.Round(result,2));
+        }
+        [TestMethod]
+        public void Factorial_Compute() //This is an extension method
+        {
+            //Arrange, 
+            double x = 5;
+            //Act,
+            var result = x.Factorial_Recursion();
+            //Assert
+            Assert.AreEqual(120.0000, Math.Round(result, 4));
+        }
+        [TestMethod]
+        public void PlusMinus_Compute() //This is an extension method
+        {
+            //Arrange, 
+            double x = 5;
+            //Act,
+            var result = x.Plus_Minus();
+            //Assert
+            Assert.AreEqual(-5.0000, Math.Round(result, 4));
+        }
+
+        [TestMethod]
+        public void Npr_Compute()
+        {
+            //Arrange, 
+            double x = 5;
+            double y = 5;
+            //Act,
+            var result = NprCompute(x,y);
+
+            //Assert
+            Assert.AreEqual(120.0000, result);
+        }
+        [TestMethod]
+        public void Cpr_Compute()
+        {
+            //Arrange, 
+            double x = 5;
+            double y = 3;
+            //Act,
+            var result = CprCompute(x, y);
+
+            //Assert
+            Assert.AreEqual(10.0000, result);
+        }
+
+        #region Sin Cos Tan
+        [TestMethod]
+        public void Sin_Compute()
+        {
+            //Arrange, 
+            double x = 25;
+            //Act,
+            var result = SinCompute(x);
+
+            //Assert
+            Assert.AreEqual(-0.1324, Math.Round(result,4));
+        }
+        [TestMethod]
+        public void Cos_Compute()
+        {
+            //Arrange, 
+            double x = 25;
+            //Act,
+            var result = CosCompute(x);
+
+            //Assert
+            Assert.AreEqual(0.9912, Math.Round(result, 4));
+        }
+        [TestMethod]
+        public void Tan_Compute()
+        {
+            //Arrange, 
+            double x = 25;
+            //Act,
+            var result = TanCompute(x);
+
+            //Assert
+            Assert.AreEqual(-0.1335, Math.Round(result, 4));
+        }
+        [TestMethod]
+        public void Asin_Compute()
+        {
+            //Arrange, 
+            double x = 0.3;
+            //Act,
+            var result = AsinCompute(x);
+
+            //Assert
+            Assert.AreEqual(0.3047, Math.Round(result, 4));
+        }
+        [TestMethod]
+        public void Acos_Compute()
+        {
+            //Arrange, 
+            double x = 0.3;
+            //Act,
+            var result = AcosCompute(x);
+
+            //Assert
+            Assert.AreEqual(1.2661, Math.Round(result, 4));
+        }
+        [TestMethod]
+        public void Atan_Compute()
+        {
+            //Arrange, 
+            double x = 0.3;
+            //Act,
+            var result = AtanCompute(x);
+
+            //Assert
+            Assert.AreEqual(0.2915, Math.Round(result, 4));
+        }
+        #endregion 
         #endregion
     }
 }

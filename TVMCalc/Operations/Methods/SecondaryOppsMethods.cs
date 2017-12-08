@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TVMCalc.Operations.ObjctTemps;
 
+
 namespace TVMCalc.Operations.Methods
 {
     /// <summary>
@@ -39,6 +40,7 @@ namespace TVMCalc.Operations.Methods
             aObj.IntPaid = aObj.IntPaid * -1;
             return aObj;
         }
+
         /// <summary>
         /// This method returns a random value less then 1 but greater then 0, 
         /// used for generating a random percentage if the user converts the value to a percentage. 
@@ -49,6 +51,117 @@ namespace TVMCalc.Operations.Methods
             Random rand = new Random();
             double x = rand.NextDouble();
             return x;
+        }
+        /// <summary>
+        /// This method rounds a parameter to a specified number of decimal places. 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"> Count of decimals desired to round</param>
+        /// <returns></returns>
+        public static double RoundCompute(double x, int y)
+        {
+            double result = Math.Round(x, y);
+            return result;
+        }
+
+        /// <summary>
+        /// This method computes the Sine or the ratio of the length of the side that is opposite that angle to the length of the longest side of the triangle (the hypotenuse).
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static double SinCompute(double x)
+        {
+            x = Math.Sin(x);
+            return x;
+        }
+        /// <summary>
+        /// This method computes the Cosine or the ratio of the side adjacent to an acute angle (in a right-angled triangle) to the hypotenuse. 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static double CosCompute(double x)
+        {
+            x = Math.Cos(x);
+            return x;
+        }
+        /// <summary>
+        /// This method computes the Tangent or the opposite side to the adjacent side.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static double TanCompute(double x)
+        {
+            x = Math.Tan(x);
+            return x;
+        }
+        /// <summary>
+        /// This method returns the angle whose sine is the parameter.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static double AsinCompute(double x)
+        {
+            x = Math.Asin(x);
+            return x;
+        }
+        /// <summary>
+        /// This method returns the angle whose cosine is the parameter.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static double AcosCompute(double x)
+        {
+            x = Math.Acos(x);
+            return x;
+        }
+        /// <summary>
+        /// This method returns the angle whose tangent is the parameter.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static double AtanCompute(double x)
+        {
+            x = Math.Atan(x);
+            return x;
+        }
+
+        /// <summary>
+        /// This method computes the permutation of two parameters.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="r"></param>
+        /// <returns></returns>
+        public static double NprCompute(double n, double r)
+        {
+            double z = 0;
+            if (n - r == 0)
+            {
+                z = n.Factorial_Recursion() / 1;
+            }
+            else
+            {
+                z = n.Factorial_Recursion() / (n-r).Factorial_Recursion();
+            }
+            return z;
+        }
+        /// <summary>
+        /// This method computes the combination of two parameters.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="r"></param>
+        /// <returns></returns>
+        public static double CprCompute(double n, double r)
+        {
+            double z = 0;
+            if (n - r == 0)
+            {
+                z = n.Factorial_Recursion() / 1;
+            }
+            else
+            {
+                z = n.Factorial_Recursion() / (r.Factorial_Recursion() * ((n-r).Factorial_Recursion()));
+            }
+            return z;
         }
     }
 }
