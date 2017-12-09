@@ -1,7 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".15">
+        <TextView
+            android:id="@+id/Calculator_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:padding="10dp"
+            android:textSize="50sp"
+            android:text="123" />
+    </HorizontalScrollView>
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".85"
+        app:orientation="horizontal"
+        app:rowCount="5"
+        app:columnCount="4">
+        <Button
+            android:id="@+id/Parenthesie_Open_Key"
+            style="@style/func2Button_calculator"
+            android:text="(" />
+        <Button
+            android:id="@+id/Parenthesie_Closed_Key"
+            style="@style/func2Button_calculator"
+            android:text=")" />
+        <Button
+            android:id="@+id/Plus_Minus_Key"
+            style="@style/func2Button_calculator"
+            android:text="+|-" />
+        <Button
+            android:id="@+id/Devide_Key"
+            style="@style/funcButton_calculator"
+            android:text="÷" />
+        <Button
+            android:id="@+id/Seven_Key"
+            style="@style/numButton_calculator"
+            android:text="7" />
+        <Button
+            android:id="@+id/Eight_Key"
+            style="@style/numButton_calculator"
+            android:text="8" />
+        <Button
+            android:id="@+id/Nine_Key"
+            style="@style/numButton_calculator"
+            android:text="9" />
+        <Button
+            android:id="@+id/Multiply_Key"
+            style="@style/funcButton_calculator"
+            android:text="x" />
+        <Button
+            android:id="@+id/Four_Key"
+            style="@style/numButton_calculator"
+            android:text="4" />
+        <Button
+            android:id="@+id/Five_Key"
+            style="@style/numButton_calculator"
+            android:text="5" />
+        <Button
+            android:id="@+id/Six_Key"
+            style="@style/numButton_calculator"
+            android:text="6" />
+        <Button
+            android:id="@+id/Minus_Key"
+            style="@style/funcButton_calculator"
+            android:text="-" />
+        <Button
+            android:id="@+id/One_Key"
+            style="@style/numButton_calculator"
+            android:text="1" />
+        <Button
+            android:id="@+id/Two_Key"
+            style="@style/numButton_calculator"
+            android:text="2" />
+        <Button
+            android:id="@+id/Three_Key"
+            style="@style/numButton_calculator"
+            android:text="3" />
+        <Button
+            android:id="@+id/Plus_Key"
+            style="@style/funcButton_calculator"
+            android:text="+" />
+        <Button
+            android:id="@+id/Clear_Key"
+            style="@style/func2Button_calculator"
+            android:text="CE|C" />
+        <Button
+            android:id="@+id/Zero_Key"
+            style="@style/numButton_calculator"
+            android:text="0" />
+        <Button
+            android:id="@+id/Dot_Key"
+            style="@style/func2Button_calculator"
+            android:text="." />
+        <Button
+            android:id="@+id/Equals_Key"
+            style="@style/funcButton_calculator"
+            android:text="=" />
+    </android.support.v7.widget.GridLayout>
 </LinearLayout>
