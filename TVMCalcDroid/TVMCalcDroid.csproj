@@ -80,17 +80,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialog_2nd.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GettingStarted.Xamarin" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout-land\Main.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout-land\dialog_2nd.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -135,6 +138,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-land\numL_button.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-land\tvmL_button.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-land\secondL_button.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

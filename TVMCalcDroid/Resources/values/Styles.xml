@@ -8,6 +8,7 @@
     <item name="android:textSize">25dp</item>
     <item name="android:onClick">ButtonClick</item>
     <item name="android:textColor" >#F5F5F5</item>
+    <item name="android:textStyle">bold</item>    
     <item name="android:background">@drawable/num_button</item>
     <item name="android:layout_margin" >3dp</item>
     <item name="android:shadowColor" >#000000</item>
@@ -24,6 +25,7 @@
     <item name="android:textSize">25dp</item>
     <item name="android:onClick">ButtonClick</item>
     <item name="android:textColor" >#F5F5F5</item>
+    <item name="android:textStyle">bold</item>    
     <item name="android:background">@drawable/func_button</item>
     <item name="android:layout_margin" >3dp</item>
     <item name="android:shadowColor" >#000000</item>
@@ -40,6 +42,7 @@
     <item name="android:textSize">25dp</item>
     <item name="android:onClick">ButtonClick</item>
     <item name="android:textColor" >#F5F5F5</item>
+    <item name="android:textStyle">bold</item>    
     <item name="android:background">@drawable/func_button</item>
     <item name="android:layout_margin" >3dp</item>
     <item name="android:shadowColor" >#000000</item>
@@ -53,9 +56,10 @@
     <item name="android:layout_height">0dp</item>
     <item name="layout_rowWeight">1</item>change
     <item name="layout_columnWeight">.2333</item>
-    <item name="android:textSize">10dp</item>
+    <item name="android:textSize">18dp</item>
     <item name="android:onClick">ButtonClick</item>
     <item name="android:textColor" >#F5F5F5</item>
+    <item name="android:textStyle">bold</item>    
     <item name="android:background">@drawable/numL_button</item>
     <item name="android:layout_margin" >3dp</item>
     <item name="android:shadowColor" >#000000</item>
@@ -64,6 +68,23 @@
     <item name="android:shadowRadius" >2</item>
   </style>
 
+  <style name="funcLButton_calculator">
+    <item name="android:layout_width">0dp</item>
+    <item name="android:layout_height">0dp</item>
+    <item name="layout_rowWeight">1</item>change
+    <item name="layout_columnWeight">.2333</item>
+    <item name="android:textSize">18dp</item>
+    <item name="android:onClick">ButtonClick</item>
+    <item name="android:textColor" >#F5F5F5</item>
+    <item name="android:textStyle">bold</item>    
+    <item name="android:background">@drawable/funcL_button</item>
+    <item name="android:layout_margin" >3dp</item>
+    <item name="android:shadowColor" >#000000</item>
+    <item name="android:shadowDx" >1</item>
+    <item name="android:shadowDy" >1</item>
+    <item name="android:shadowRadius" >2</item>
+  </style>
+  
   <style name="func2LButton_calculator">
     <item name="android:layout_width">0dp</item>
     <item name="android:layout_height">0dp</item>
@@ -72,7 +93,42 @@
     <item name="android:textSize">10dp</item>
     <item name="android:onClick">ButtonClick</item>
     <item name="android:textColor" >#F5F5F5</item>
+    <item name="android:textStyle">bold</item>    
     <item name="android:background">@drawable/funcL_button</item>
+    <item name="android:layout_margin" >3dp</item>
+    <item name="android:shadowColor" >#000000</item>
+    <item name="android:shadowDx" >1</item>
+    <item name="android:shadowDy" >1</item>
+    <item name="android:shadowRadius" >2</item>
+  </style>
+
+  <style name="secondLButton_calculator">
+    <item name="android:layout_width">0dp</item>
+    <item name="android:layout_height">0dp</item>
+    <item name="layout_rowWeight">1</item>change
+    <item name="layout_columnWeight">.2333</item>
+    <item name="android:textSize">10dp</item>
+    <item name="android:onClick">ButtonClick</item>
+    <item name="android:textColor" >#F5F5F5</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:background">@drawable/secondL_button</item>
+    <item name="android:layout_margin" >3dp</item>
+    <item name="android:shadowColor" >#000000</item>
+    <item name="android:shadowDx" >1</item>
+    <item name="android:shadowDy" >1</item>
+    <item name="android:shadowRadius" >2</item>
+  </style>
+
+  <style name="tvmLButton_calculator">
+    <item name="android:layout_width">0dp</item>
+    <item name="android:layout_height">0dp</item>
+    <item name="layout_rowWeight">1</item>change
+    <item name="layout_columnWeight">.2333</item>
+    <item name="android:textSize">10dp</item>
+    <item name="android:onClick">ButtonClick</item>
+    <item name="android:textColor" >#778899</item>
+    <item name="android:textStyle">bold</item>    
+    <item name="android:background">@drawable/tvmL_button</item>
     <item name="android:layout_margin" >3dp</item>
     <item name="android:shadowColor" >#000000</item>
     <item name="android:shadowDx" >1</item>
