@@ -29,7 +29,7 @@
             style="@style/func2LButton_calculator"
             android:text="CPT" />
         <Button
-            android:id="@+id/ENTER_Key"
+            android:id="@+id/Enter_Key"
             style="@style/func2LButton_calculator"
             android:text="ENTER" />
         <Button
@@ -41,63 +41,61 @@
             style="@style/func2LButton_calculator"
             android:text="Down" />
         <Button
-            android:id="@+id/BGN_Key"
+            android:id="@+id/NPR_Key"
             style="@style/func2LButton_calculator"
-            android:text="Bgn/End" />
-    <!-- Note here for second key-->
+            android:text="nPr" />
         <Button
-            android:id="@+id/Second_Key"
-            style="@style/secondLButton_calculator"
-            android:text="2ND" />
-    <!-- Note here for TVM keys-->
-        <Button
-            android:id="@+id/N_Key"
-            style="@style/tvmLButton_calculator"
-            android:text="N" />
-        <Button
-            android:id="@+id/IY_Key"
-            style="@style/tvmLButton_calculator"
-            android:text="I/Y" />
-        <Button
-            android:id="@+id/PV_Key"
-            style="@style/tvmLButton_calculator"
-            android:text="PV" />
-        <Button
-            android:id="@+id/PMT_Key"
-            style="@style/tvmLButton_calculator"
-            android:text="PMT" />
-        <Button
-            android:id="@+id/FV_Key"
-            style="@style/tvmLButton_calculator"
-            android:text="FV" />
-        <Button
-            android:id="@+id/ClrTvm_Key"
-            style="@style/tvmLButton_calculator"
-            android:text="CLR TVM" />
-        <Button
-            android:id="@+id/Amort_Key"
+            android:id="@+id/NCR_Key"
             style="@style/func2LButton_calculator"
-            android:text="Amort" />
+            android:text="nCr" />
         <Button
-            android:id="@+id/NPV_Key"
+            android:id="@+id/Sin_Key"
             style="@style/func2LButton_calculator"
-            android:text="NPV" />
+            android:text="SIN" />
         <Button
-            android:id="@+id/IRR_Key"
+            android:id="@+id/Cos_Key"
             style="@style/func2LButton_calculator"
-            android:text="IRR" />
+            android:text="COS" />
         <Button
-            android:id="@+id/CF_Key"
+            android:id="@+id/Tan_Key"
             style="@style/func2LButton_calculator"
-            android:text="CF" />
+            android:text="TAN" />
         <Button
-            android:id="@+id/Parenthesie_Open_Key"
+            android:id="@+id/Asin_Key"
             style="@style/func2LButton_calculator"
-            android:text="(" />
+            android:text="ASIN" />
         <Button
-            android:id="@+id/Parenthesie_Closed_Key"
+            android:id="@+id/Acos_Key"
             style="@style/func2LButton_calculator"
-            android:text=")" />
+            android:text="ACOS" />
+        <Button
+            android:id="@+id/Atan_Key"
+            style="@style/func2LButton_calculator"
+            android:text="ATAN" />
+        <Button
+            android:id="@+id/Sqrt_Key"
+            style="@style/func2LButton_calculator"
+            android:text="SQRT" />
+        <Button
+            android:id="@+id/Square_Key"
+            style="@style/func2LButton_calculator"
+            android:text="x^2" />
+        <Button
+            android:id="@+id/OneOver_Key"
+            style="@style/func2LButton_calculator"
+            android:text="1/X" />
+        <Button
+            android:id="@+id/NaturalLog_Key"
+            style="@style/func2LButton_calculator"
+            android:text="LN" />
+        <Button
+            android:id="@+id/Log_Key"
+            style="@style/func2LButton_calculator"
+            android:text="e^x" />
+        <Button
+            android:id="@+id/Factorial_Key"
+            style="@style/func2LButton_calculator"
+            android:text="x!" />
     </android.support.v7.widget.GridLayout>
     <android.support.v7.widget.GridLayout
         android:layout_width="match_parent"
@@ -123,9 +121,9 @@
             style="@style/funcLButton_calculator"
             android:text="%" />
         <Button
-            android:id="@+id/Power_Key"
+            android:id="@+id/Round_Key"
             style="@style/funcLButton_calculator"
-            android:text="Y^x" />
+            android:text="ROUND" />
         <Button
             android:id="@+id/Four_Key"
             style="@style/numLButton_calculator"

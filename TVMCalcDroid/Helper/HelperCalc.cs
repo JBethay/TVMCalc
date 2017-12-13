@@ -15,7 +15,7 @@ namespace TVMCalcDroid.Helper
 {
     public class HelperCalc
     {
-        bool Check_Error = false; 
+        bool Check_Error = false;
 
         public bool IsNum(char c)
         {
@@ -40,6 +40,20 @@ namespace TVMCalcDroid.Helper
             RoundCompute(num, format);
             return num.ToString();
         }
+
+        public double StringToNum(string s)
+        {
+            return double.Parse(s);
+        }
+
+       /* public bool IsOperation(Button b)
+        {
+
+            
+            
+        } */
+
+            
 
 
     }
