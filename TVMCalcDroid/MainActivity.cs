@@ -19,7 +19,7 @@ namespace TVMCalcDroid
         Button BtnNpr, BtnNcr, BtnSin, BtnCos, BtnTan, BtnAsin, BtnAcos, BtnAtan;
         Button BtnSqrt, BtnSquare, BtnOneOver, BtnLn, BtnLog, BtnRound, BtnFactorial;
 
-        TextView CalcDispaly; //This one
+        TextView CalcDispaly;
 
         public List<Button> Operation_Keys = new List<Button> {};
         public List<Button> Num_Keys = new List<Button> {};
@@ -30,6 +30,7 @@ namespace TVMCalcDroid
 
             // Set the view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+
             //View rootInLandscapeLayout = this.LayoutInflater.Inflate(Resource.Layout.MainL, null);
             //View rootIn2NDLayout = this.LayoutInflater.Inflate(Resource.Layout.dialog_2nd, null);
 
@@ -57,8 +58,9 @@ namespace TVMCalcDroid
             BtnDot = FindViewById<Button>(Resource.Id.Dot_Key);
             BtnEquals = FindViewById<Button>(Resource.Id.Equals_Key);
             #endregion
-            
 
+            //These buttons currently throw a null reference exception because they cannot access the view with the resources. Need to fix.
+            /*
             #region Landscape View Keys
             BtnCpt = FindViewById<Button>(Resource.Id.CPT_Key);
             BtnEnter = FindViewById<Button>(Resource.Id.ENTER_Key);
@@ -97,14 +99,10 @@ namespace TVMCalcDroid
             BtnRound = FindViewById<Button>(Resource.Id.Round_Key);
             BtnFactorial = FindViewById<Button>(Resource.Id.Factorial_Key);
             #endregion
-            /*   mButtonSecond = FindViewById<Button>(Resource.Id.Second_Key);
-
-               mButtonSecond.Click += MButtonSecond_Click; */
+            */
         }
 
-
-
-        private void MButtonSecond_Click(object sender, System.EventArgs e)
+        private void Btn2ND_Click(object sender, System.EventArgs e)
         {
             FragmentTransaction transaction = FragmentManager.BeginTransaction();
             Dialog_2nd createAccountDialog = new Dialog_2nd();

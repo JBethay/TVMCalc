@@ -50,5 +50,11 @@ namespace TVMCalc.Operations.Methods
         /// Takes a single value and returns the natural log of the value.
         /// </summary>
         public static double NaturalLogCompt (double x) => Math.Log(x);
+        /// <summary>
+        /// Returns the log to base -10;
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static double LogCompt(double x) => Math.Log10(x);
     }
 }
