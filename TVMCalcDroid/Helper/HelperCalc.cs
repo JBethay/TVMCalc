@@ -46,15 +46,5 @@ namespace TVMCalcDroid.Helper
             return double.Parse(s);
         }
 
-       /* public bool IsOperation(Button b)
-        {
-
-            
-            
-        } */
-
-            
-
-
     }
 }

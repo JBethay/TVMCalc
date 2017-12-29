@@ -7,7 +7,7 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".15">
+        android:layout_weight=".20">
         <TextView
             android:id="@+id/Calculator_text_view"
             android:layout_width="wrap_content"
@@ -17,10 +17,118 @@
             android:textSize="50sp"
             android:text="123" />
     </HorizontalScrollView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".20">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <android.support.v7.widget.GridLayout
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                app:orientation="horizontal"
+                app:columnCount="5">
+                <Button
+                    android:id="@+id/Blah1_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blah2_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blah3_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blah4_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blah5_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blah6_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blah7_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blah8_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blaha_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blahb_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+            </android.support.v7.widget.GridLayout>
+            <android.support.v7.widget.GridLayout
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                app:orientation="horizontal"
+                app:columnCount="5">
+                <Button
+                    android:id="@+id/Blah9_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blah10_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blah11_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blah12_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blah13_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blah14_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blah15_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blah16_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blah17_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+                <Button
+                    android:id="@+id/Blah18_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="Blah" />
+            </android.support.v7.widget.GridLayout>
+        </LinearLayout>
+    </ScrollView>
+<!--The below text view is used as a "space"-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="left"
+        android:layout_weight=".01" />
     <android.support.v7.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".85"
+        android:layout_weight=".59"
         app:orientation="horizontal"
         app:rowCount="5"
         app:columnCount="4">

@@ -33,7 +33,7 @@ namespace TVMCalcDroid
 
             //View rootInLandscapeLayout = this.LayoutInflater.Inflate(Resource.Layout.MainL, null);
             //View rootIn2NDLayout = this.LayoutInflater.Inflate(Resource.Layout.dialog_2nd, null);
-
+            /*
             CalcDispaly = FindViewById<TextView>(Resource.Id.Calculator_text_view);
 
             #region Portrait View Keys           
@@ -58,9 +58,7 @@ namespace TVMCalcDroid
             BtnDot = FindViewById<Button>(Resource.Id.Dot_Key);
             BtnEquals = FindViewById<Button>(Resource.Id.Equals_Key);
             #endregion
-
-            //These buttons currently throw a null reference exception because they cannot access the view with the resources. Need to fix.
-            /*
+            
             #region Landscape View Keys
             BtnCpt = FindViewById<Button>(Resource.Id.CPT_Key);
             BtnEnter = FindViewById<Button>(Resource.Id.ENTER_Key);
@@ -102,12 +100,14 @@ namespace TVMCalcDroid
             */
         }
 
+        /*
         private void Btn2ND_Click(object sender, System.EventArgs e)
         {
             FragmentTransaction transaction = FragmentManager.BeginTransaction();
             Dialog_2nd createAccountDialog = new Dialog_2nd();
             createAccountDialog.Show(transaction, "dialog Fragment");
         }
+        */
     }
 }
 
