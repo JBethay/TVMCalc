@@ -150,7 +150,7 @@ namespace TVMCalc.Operations.Methods
         /// <param name="n"></param>
         /// <param name="r"></param>
         /// <returns></returns>
-        public static double CprCompute(double n, double r)
+        public static double NcrCompute(double n, double r)
         {
             double z = 0;
             if (n - r == 0)

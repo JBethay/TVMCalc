@@ -7,7 +7,7 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".20">
+        android:layout_weight=".15">
         <TextView
             android:id="@+id/Calculator_text_view"
             android:layout_width="wrap_content"
@@ -17,59 +17,46 @@
             android:textSize="50sp"
             android:text="123" />
     </HorizontalScrollView>
+<!--The below text view is used as a "space"-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="left"
+        android:layout_weight=".01" />
+<!--The above text view is used as a "space"-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".20">
+        android:layout_weight=".24">
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical">
             <android.support.v7.widget.GridLayout
                 android:layout_width="fill_parent"
-                android:layout_height="100dp"
+                android:layout_height="70dp"
                 app:orientation="horizontal"
                 app:columnCount="5">
                 <Button
-                    android:id="@+id/Blah1_Key"
-                    style="@style/func2Button_calculator"
-                    android:text="Blah" />
+                    android:id="@+id/N_Key"
+                    style="@style/tvmButton_calculator"
+                    android:text="N" />
                 <Button
-                    android:id="@+id/Blah2_Key"
-                    style="@style/func2Button_calculator"
-                    android:text="Blah" />
+                    android:id="@+id/Iy_Key"
+                    style="@style/tvmButton_calculator"
+                    android:text="I/Y" />
                 <Button
-                    android:id="@+id/Blah3_Key"
-                    style="@style/func2Button_calculator"
-                    android:text="Blah" />
+                    android:id="@+id/Pv_Key"
+                    style="@style/tvmButton_calculator"
+                    android:text="PV" />
                 <Button
-                    android:id="@+id/Blah4_Key"
-                    style="@style/func2Button_calculator"
-                    android:text="Blah" />
+                    android:id="@+id/Pmt_Key"
+                    style="@style/tvmButton_calculator"
+                    android:text="PMT" />
                 <Button
-                    android:id="@+id/Blah5_Key"
-                    style="@style/func2Button_calculator"
-                    android:text="Blah" />
-                <Button
-                    android:id="@+id/Blah6_Key"
-                    style="@style/func2Button_calculator"
-                    android:text="Blah" />
-                <Button
-                    android:id="@+id/Blah7_Key"
-                    style="@style/func2Button_calculator"
-                    android:text="Blah" />
-                <Button
-                    android:id="@+id/Blah8_Key"
-                    style="@style/func2Button_calculator"
-                    android:text="Blah" />
-                <Button
-                    android:id="@+id/Blaha_Key"
-                    style="@style/func2Button_calculator"
-                    android:text="Blah" />
-                <Button
-                    android:id="@+id/Blahb_Key"
-                    style="@style/func2Button_calculator"
-                    android:text="Blah" />
+                    android:id="@+id/Fv_Key"
+                    style="@style/tvmButton_calculator"
+                    android:text="FV" />
             </android.support.v7.widget.GridLayout>
             <android.support.v7.widget.GridLayout
                 android:layout_width="fill_parent"
@@ -77,45 +64,110 @@
                 app:orientation="horizontal"
                 app:columnCount="5">
                 <Button
-                    android:id="@+id/Blah9_Key"
+                    android:id="@+id/Cf_Key"
                     style="@style/func2Button_calculator"
-                    android:text="Blah" />
+                    android:text="CF" />
                 <Button
-                    android:id="@+id/Blah10_Key"
+                    android:id="@+id/Npv_Key"
                     style="@style/func2Button_calculator"
-                    android:text="Blah" />
+                    android:text="NPV" />
                 <Button
-                    android:id="@+id/Blah11_Key"
+                    android:id="@+id/Irr_Key"
                     style="@style/func2Button_calculator"
-                    android:text="Blah" />
+                    android:text="IRR" />
                 <Button
-                    android:id="@+id/Blah12_Key"
+                    android:id="@+id/Amort_Key"
                     style="@style/func2Button_calculator"
-                    android:text="Blah" />
+                    android:text="AMORT" />
                 <Button
-                    android:id="@+id/Blah13_Key"
+                    android:id="@+id/PowerCompt_Key"
                     style="@style/func2Button_calculator"
-                    android:text="Blah" />
+                    android:text="y^x" />
                 <Button
-                    android:id="@+id/Blah14_Key"
+                    android:id="@+id/SqrtCompt_Key"
                     style="@style/func2Button_calculator"
-                    android:text="Blah" />
+                    android:text="SQRT" />
                 <Button
-                    android:id="@+id/Blah15_Key"
+                    android:id="@+id/SquareCompt_Key"
                     style="@style/func2Button_calculator"
-                    android:text="Blah" />
+                    android:text="x^2" />
                 <Button
-                    android:id="@+id/Blah16_Key"
+                    android:id="@+id/OneOver_Key"
                     style="@style/func2Button_calculator"
-                    android:text="Blah" />
+                    android:text="1/x" />
                 <Button
-                    android:id="@+id/Blah17_Key"
+                    android:id="@+id/RandCompt_Key"
                     style="@style/func2Button_calculator"
-                    android:text="Blah" />
+                    android:text="RAND" />
                 <Button
-                    android:id="@+id/Blah18_Key"
+                    android:id="@+id/NaturalLogCompt_Key"
                     style="@style/func2Button_calculator"
-                    android:text="Blah" />
+                    android:text="LN" />
+            </android.support.v7.widget.GridLayout>
+            <android.support.v7.widget.GridLayout
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                app:orientation="horizontal"
+                app:columnCount="5">
+                <Button
+                    android:id="@+id/LogCompt_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="LOG" />
+                <Button
+                    android:id="@+id/Npr_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="nPr" />
+                <Button
+                    android:id="@+id/Ncr_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="nCr" />
+                <Button
+                    android:id="@+id/Factorial_Recursion_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="X!" /> 
+                <Button
+                    android:id="@+id/SinCompt_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="SIN" />  
+                <Button
+                    android:id="@+id/CosCompt_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="COS" />
+                <Button
+                    android:id="@+id/TanCompt_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="TAN" />
+                <Button
+                    android:id="@+id/AsinCompt_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="ASIN" />
+                <Button
+                    android:id="@+id/AcosCompt_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="ACOS" />
+                <Button
+                    android:id="@+id/AtanCompt_Key"
+                    style="@style/func2Button_calculator"
+                    android:text="ATAN" />           
+            </android.support.v7.widget.GridLayout>
+            <android.support.v7.widget.GridLayout
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                app:orientation="horizontal"
+                app:columnCount="3">
+               <Button
+                    android:id="@+id/PercentCompt_Key"
+                    style="@style/func3Button_calculator"
+                    android:textSize="25dp"
+                    android:text="%" />
+               <Button
+                    android:id="@+id/Format_Key"
+                    style="@style/func3Button_calculator"
+                    android:text="FORMAT" />
+                <Button
+                    android:id="@+id/RoundCompt_Key"
+                    style="@style/func3Button_calculator"
+                    android:text="ROUND" />
             </android.support.v7.widget.GridLayout>
         </LinearLayout>
     </ScrollView>
@@ -125,6 +177,7 @@
         android:layout_height="0dp"
         android:layout_gravity="left"
         android:layout_weight=".01" />
+<!--The above text view is used as a "space"-->
     <android.support.v7.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -163,6 +216,7 @@
         <Button
             android:id="@+id/Multiply_Key"
             style="@style/funcButton_calculator"
+            android:textAllCaps="false"
             android:text="x" />
         <Button
             android:id="@+id/Four_Key"

@@ -891,7 +891,7 @@ namespace TVMCalcUnitTest
                 double x = 5;
                 double y = 3;
                 //Act,
-                var result = CprCompute(x, y);
+                var result = NcrCompute(x, y);
 
                 //Assert
                 Assert.AreEqual(10.0000, result);

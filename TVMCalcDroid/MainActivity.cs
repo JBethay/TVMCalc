@@ -5,10 +5,12 @@ using Android.Views;
 using System;
 using Android.Support.V7.App;
 using System.Collections.Generic;
+using Android.Content.PM;
 
 namespace TVMCalcDroid
 {
-    [Activity(Label = "TVMCalcDroid", MainLauncher = true)]
+    [Activity(Label = "TVMCalcDroid", MainLauncher = true,ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
+    ScreenOrientation = ScreenOrientation.Portrait)] // Locking screen orientaiton to Portrait.
     public class MainActivity : Activity
     {
         Button BtnOpen, BtnClose, BtnPlusMinus, BtnDevide, Btn7, Btn8, Btn9, BtnMultiply;
