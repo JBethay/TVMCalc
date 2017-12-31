@@ -46,5 +46,18 @@ namespace TVMCalcDroid.Helper
             return double.Parse(s);
         }
 
+        /// <summary>
+        /// Formats a returns string to a selected number of decimal places
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="format"></param>
+        /// <returns></returns>
+        public static string StringToFormatedString(string num, int format)
+        {
+            return NumToString(StringToNum(num), format);
+        }
+
+
+
     }
 }

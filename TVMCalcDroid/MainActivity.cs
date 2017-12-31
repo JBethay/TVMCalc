@@ -95,7 +95,7 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Num_Button_Click(object sender, EventArgs e)
         {
-            if (IsNewInput == false)
+            if (IsNewInput == false && CalcDispaly.Text != "")
             {
                 if ((IsOppPreformed == true) || (StringToNum(CalcDispaly.Text) == 0))
                 {
@@ -108,13 +108,20 @@ namespace TVMCalcDroid
             {
                 if (!CalcDispaly.Text.Contains("."))
                 {
-                    CalcDispaly.Text = CalcDispaly.Text + button.Text;
-                    Input1 = StringToNum(CalcDispaly.Text);
+                    if (CalcDispaly.Text == "")
+                    {
+                        CalcDispaly.Text = NumToString(0.00,Format); // plus formated number of zeros. 
+                    }
+                    else
+                    {
+                        CalcDispaly.Text = StringToFormatedString($"{CalcDispaly.Text}{button.Text}",Format);
+                        Input1 = StringToNum(CalcDispaly.Text);
+                    }
                 }
             }
             else
             {
-                CalcDispaly.Text = CalcDispaly.Text + button.Text;
+                CalcDispaly.Text = StringToFormatedString($"{CalcDispaly.Text}{button.Text}", Format);
                 Input1 = StringToNum(CalcDispaly.Text);
             }
         }
@@ -195,7 +202,7 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void CE_Click(object sender, EventArgs e)
         {
-            CalcDispaly.Text = $"0";
+            CalcDispaly.Text = NumToString(0,Format);
             ResultTrue = 0;
             Result = 0;
             Input1 = 0;
