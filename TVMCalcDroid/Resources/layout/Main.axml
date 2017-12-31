@@ -15,7 +15,7 @@
             android:layout_gravity="right"
             android:padding="10dp"
             android:textSize="50sp"
-            android:text="123" />
+            android:text="0.00" />
     </HorizontalScrollView>
 <!--The below text view is used as a "space"-->
     <TextView
@@ -124,11 +124,11 @@
                 <Button
                     android:id="@+id/Factorial_Recursion_Key"
                     style="@style/func2Button_calculator"
-                    android:text="X!" /> 
+                    android:text="X!" />
                 <Button
                     android:id="@+id/SinCompt_Key"
                     style="@style/func2Button_calculator"
-                    android:text="SIN" />  
+                    android:text="SIN" />
                 <Button
                     android:id="@+id/CosCompt_Key"
                     style="@style/func2Button_calculator"
@@ -148,19 +148,19 @@
                 <Button
                     android:id="@+id/AtanCompt_Key"
                     style="@style/func2Button_calculator"
-                    android:text="ATAN" />           
+                    android:text="ATAN" />
             </android.support.v7.widget.GridLayout>
             <android.support.v7.widget.GridLayout
                 android:layout_width="fill_parent"
                 android:layout_height="60dp"
                 app:orientation="horizontal"
-                app:columnCount="3">
-               <Button
+                app:columnCount="4">
+                <Button
                     android:id="@+id/PercentCompt_Key"
                     style="@style/func3Button_calculator"
                     android:textSize="25dp"
                     android:text="%" />
-               <Button
+                <Button
                     android:id="@+id/Format_Key"
                     style="@style/func3Button_calculator"
                     android:text="FORMAT" />
@@ -168,6 +168,10 @@
                     android:id="@+id/RoundCompt_Key"
                     style="@style/func3Button_calculator"
                     android:text="ROUND" />
+                <Button
+                    android:id="@+id/Plus_Minus_Key"
+                    style="@style/func3Button_calculator"
+                    android:text="+|-" />             
             </android.support.v7.widget.GridLayout>
         </LinearLayout>
     </ScrollView>
@@ -194,40 +198,46 @@
             style="@style/func2Button_calculator"
             android:text=")" />
         <Button
-            android:id="@+id/Plus_Minus_Key"
+            android:id="@+id/Back_Key"
             style="@style/func2Button_calculator"
-            android:text="+|-" />
+            android:text="←"/>
         <Button
             android:id="@+id/Devide_Key"
             style="@style/funcButton_calculator"
             android:text="÷" />
         <Button
             android:id="@+id/Seven_Key"
+            android:onClick="Num_Button_Click"
             style="@style/numButton_calculator"
             android:text="7" />
         <Button
             android:id="@+id/Eight_Key"
+            android:onClick="Num_Button_Click"
             style="@style/numButton_calculator"
             android:text="8" />
         <Button
             android:id="@+id/Nine_Key"
+            android:onClick="Num_Button_Click"
             style="@style/numButton_calculator"
             android:text="9" />
         <Button
             android:id="@+id/Multiply_Key"
             style="@style/funcButton_calculator"
             android:textAllCaps="false"
-            android:text="x" />
+            android:text="×" />
         <Button
             android:id="@+id/Four_Key"
+            android:onClick="Num_Button_Click"
             style="@style/numButton_calculator"
             android:text="4" />
         <Button
             android:id="@+id/Five_Key"
+            android:onClick="Num_Button_Click"
             style="@style/numButton_calculator"
             android:text="5" />
         <Button
             android:id="@+id/Six_Key"
+            android:onClick="Num_Button_Click"
             style="@style/numButton_calculator"
             android:text="6" />
         <Button
@@ -236,14 +246,17 @@
             android:text="-" />
         <Button
             android:id="@+id/One_Key"
+            android:onClick="Num_Button_Click"
             style="@style/numButton_calculator"
             android:text="1" />
         <Button
             android:id="@+id/Two_Key"
+            android:onClick="Num_Button_Click"
             style="@style/numButton_calculator"
             android:text="2" />
         <Button
             android:id="@+id/Three_Key"
+            android:onClick="Num_Button_Click"
             style="@style/numButton_calculator"
             android:text="3" />
         <Button
@@ -256,10 +269,12 @@
             android:text="CE|C" />
         <Button
             android:id="@+id/Zero_Key"
+            android:onClick="Num_Button_Click"
             style="@style/numButton_calculator"
             android:text="0" />
         <Button
             android:id="@+id/Dot_Key"
+            android:onClick="Num_Button_Click"
             style="@style/func2Button_calculator"
             android:text="." />
         <Button

@@ -6,42 +6,43 @@ using System;
 using Android.Support.V7.App;
 using System.Collections.Generic;
 using Android.Content.PM;
+using static TVMCalcDroid.Helper.HelperCalc;
+using static TVMCalc.Operations.Methods.PrimaryOppsMethods;
+using System.Linq;
 
 namespace TVMCalcDroid
 {
-    [Activity(Label = "TVMCalcDroid", MainLauncher = true,ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
-    ScreenOrientation = ScreenOrientation.Portrait)] // Locking screen orientaiton to Portrait.
+    [Activity(Label = "TVMCalcDroid", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
+    ScreenOrientation = ScreenOrientation.Portrait)] // Locking screen orientation to Portrait.
     public class MainActivity : Activity
     {
-        Button BtnOpen, BtnClose, BtnPlusMinus, BtnDevide, Btn7, Btn8, Btn9, BtnMultiply;
+        Button BtnOpen, BtnClose, BtnBack, BtnDevide, Btn7, Btn8, Btn9, BtnMultiply;
         Button Btn4, Btn5, Btn6, BtnMinus, Btn1, Btn2, Btn3, BtnPlus, BtnCEC, Btn0, BtnDot, BtnEquals;
-        Button BtnCpt, BtnEnter, BtnUp, BtnDown, BtnBegEnd, Btn2ND;
-        Button BtnN, BtnIY, BtnPv, BtnPmt, BtnFv, BtnClrTvm;
-        Button BtnAmort, BtnNpv, BtnIrr, BtnCf, BtnPercent, BtnPower;
-        Button BtnNpr, BtnNcr, BtnSin, BtnCos, BtnTan, BtnAsin, BtnAcos, BtnAtan;
-        Button BtnSqrt, BtnSquare, BtnOneOver, BtnLn, BtnLog, BtnRound, BtnFactorial;
-
+        Button BtnClr;
         TextView CalcDispaly;
 
-        public List<Button> Operation_Keys = new List<Button> {};
-        public List<Button> Num_Keys = new List<Button> {};
+        private bool IsOppPreformed { get; set; }
+        private bool IsNewInput { get; set; }
+        private int Format = 2;
+        private double Input1 { get; set; }
+        private double Input2 { get; set; }
+        private double Result = 0;
+        private double ResultTrue = 0;
+        private string OppPreformed { get; set; }
 
-        protected override void OnCreate(Bundle savedInstanceState)
+    protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             // Set the view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-            //View rootInLandscapeLayout = this.LayoutInflater.Inflate(Resource.Layout.MainL, null);
-            //View rootIn2NDLayout = this.LayoutInflater.Inflate(Resource.Layout.dialog_2nd, null);
-            /*
             CalcDispaly = FindViewById<TextView>(Resource.Id.Calculator_text_view);
 
-            #region Portrait View Keys           
+            #region Keys           
             BtnOpen = FindViewById<Button>(Resource.Id.Parenthesie_Open_Key);
             BtnClose = FindViewById<Button>(Resource.Id.Parenthesie_Closed_Key);
-            BtnPlusMinus = FindViewById<Button>(Resource.Id.Plus_Minus_Key);
+            BtnBack = FindViewById<Button>(Resource.Id.Back_Key);
             BtnDevide = FindViewById<Button>(Resource.Id.Devide_Key);
             Btn7 = FindViewById<Button>(Resource.Id.Seven_Key);
             Btn8 = FindViewById<Button>(Resource.Id.Eight_Key);
@@ -59,47 +60,162 @@ namespace TVMCalcDroid
             Btn0 = FindViewById<Button>(Resource.Id.Zero_Key);
             BtnDot = FindViewById<Button>(Resource.Id.Dot_Key);
             BtnEquals = FindViewById<Button>(Resource.Id.Equals_Key);
-            #endregion
-            
-            #region Landscape View Keys
-            BtnCpt = FindViewById<Button>(Resource.Id.CPT_Key);
-            BtnEnter = FindViewById<Button>(Resource.Id.ENTER_Key);
-            BtnUp = FindViewById<Button>(Resource.Id.Up_Key);
-            BtnDown = FindViewById<Button>(Resource.Id.Down_Key);
-            BtnBegEnd = FindViewById<Button>(Resource.Id.BGN_Key);
-            Btn2ND = FindViewById<Button>(Resource.Id.Second_Key);
-            BtnN = FindViewById<Button>(Resource.Id.N_Key);
-            BtnIY = FindViewById<Button>(Resource.Id.IY_Key);
-            BtnPv = FindViewById<Button>(Resource.Id.PV_Key);
-            BtnPmt = FindViewById<Button>(Resource.Id.PMT_Key);
-            BtnFv = FindViewById<Button>(Resource.Id.FV_Key);
-            BtnClrTvm = FindViewById<Button>(Resource.Id.ClrTvm_Key);
-            BtnAmort = FindViewById<Button>(Resource.Id.Amort_Key);
-            BtnNpv = FindViewById<Button>(Resource.Id.NPR_Key);
-            BtnIrr = FindViewById<Button>(Resource.Id.IRR_Key);
-            BtnCf = FindViewById<Button>(Resource.Id.CF_Key);
-            BtnPercent = FindViewById<Button>(Resource.Id.Percent_Key);
-            BtnPower = FindViewById<Button>(Resource.Id.Power_Key);
+            BtnClr = FindViewById<Button>(Resource.Id.Clear_Key);
+
             #endregion
 
-            #region 2nd view Keys
-            BtnNpr = FindViewById<Button>(Resource.Id.NPR_Key);
-            BtnNcr = FindViewById<Button>(Resource.Id.NCR_Key);
-            BtnSin = FindViewById<Button>(Resource.Id.Sin_Key);
-            BtnCos = FindViewById<Button>(Resource.Id.Cos_Key);
-            BtnTan = FindViewById<Button>(Resource.Id.Tan_Key);
-            BtnAsin = FindViewById<Button>(Resource.Id.Asin_Key);
-            BtnAcos = FindViewById<Button>(Resource.Id.Acos_Key);
-            BtnAtan = FindViewById<Button>(Resource.Id.Atan_Key);
-            BtnSqrt = FindViewById<Button>(Resource.Id.Sqrt_Key);
-            BtnSquare = FindViewById<Button>(Resource.Id.Square_Key);
-            BtnOneOver = FindViewById<Button>(Resource.Id.OneOver_Key);
-            BtnLn = FindViewById<Button>(Resource.Id.NaturalLog_Key);
-            BtnLog = FindViewById<Button>(Resource.Id.Log_Key);
-            BtnRound = FindViewById<Button>(Resource.Id.Round_Key);
-            BtnFactorial = FindViewById<Button>(Resource.Id.Factorial_Key);
+            #region Button_Clicks
+            BtnDot.Click += Num_Button_Click;
+            Btn0.Click += Num_Button_Click;
+            Btn1.Click += Num_Button_Click;
+            Btn2.Click += Num_Button_Click;
+            Btn3.Click += Num_Button_Click;
+            Btn4.Click += Num_Button_Click;
+            Btn5.Click += Num_Button_Click;
+            Btn6.Click += Num_Button_Click;
+            Btn7.Click += Num_Button_Click;
+            Btn8.Click += Num_Button_Click;
+            Btn9.Click += Num_Button_Click;
+
+            BtnPlus.Click += Operator_Click;
+            BtnMinus.Click += Operator_Click;
+            BtnDevide.Click += Operator_Click;
+            BtnMultiply.Click += Operator_Click;
+            BtnEquals.Click += Equals_Click;
+            BtnClr.Click += CE_Click;
+            BtnBack.Click += Back_Click;
             #endregion
-            */
+
+        }
+
+        /// <summary>
+        /// Number Key Clicks, restricts the number of decimal clicks to 1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Num_Button_Click(object sender, EventArgs e)
+        {
+            if (IsNewInput == false)
+            {
+                if ((IsOppPreformed == true) || (StringToNum(CalcDispaly.Text) == 0))
+                {
+                    CalcDispaly.Text = "";
+                }
+            }
+            Button button = (Button)sender;
+            IsNewInput = true;
+            if (button.Text == ".")
+            {
+                if (!CalcDispaly.Text.Contains("."))
+                {
+                    CalcDispaly.Text = CalcDispaly.Text + button.Text;
+                    Input1 = StringToNum(CalcDispaly.Text);
+                }
+            }
+            else
+            {
+                CalcDispaly.Text = CalcDispaly.Text + button.Text;
+                Input1 = StringToNum(CalcDispaly.Text);
+            }
+        }
+
+        /// <summary>
+        /// Equals Key click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Equals_Click(object sender, EventArgs e)
+        {
+            if (IsOppPreformed == true && IsNewInput == true)
+            {
+                Input2 = Input1;
+                switch (OppPreformed)
+                {
+                    case "+":
+                        ResultTrue = AddCompt(ResultTrue, Input2);
+                        Result = ResultTrue;
+                        CalcDispaly.Text = NumToString(Result, Format);
+                        break;
+                    case "-":
+                        ResultTrue = SubtractCompt(ResultTrue, Input2);
+                        Result = ResultTrue;
+                        CalcDispaly.Text = NumToString(Result, Format);
+                        break;
+                    case "×":
+                        ResultTrue = MultiplyCompt(ResultTrue, Input2);
+                        Result = ResultTrue;
+                        CalcDispaly.Text = NumToString(Result, Format);
+                        break;
+                    case "÷":
+                        ResultTrue = DevideCompt(ResultTrue, Input2);
+                        Result = ResultTrue;
+                        CalcDispaly.Text = NumToString(Result, Format);
+                        break;
+                    default:
+                        ResultTrue = Input2;
+                        break;
+                }
+                Input2 = StringToNum(CalcDispaly.Text);
+                Result = ResultTrue;
+                IsOppPreformed = false;
+                IsNewInput = false;
+            }
+            else
+            {
+                Input2 = StringToNum(CalcDispaly.Text);
+                ResultTrue = Input2;
+                IsNewInput = false;
+                IsOppPreformed = false;
+            }
+        }
+
+        /// <summary>
+        /// Operator Key Clicks, such as +-*÷
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Operator_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+
+            if (IsOppPreformed == false)
+            {
+                BtnEquals.PerformClick();
+                OppPreformed = button.Text;
+                IsOppPreformed = true;
+                //HOW TO SHOW WHAT OPP IS BEING USED?
+            }
+            //else do nothing....
+        }
+
+        /// <summary>
+        /// Clear key, clears all mathematical values in the Calculator 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CE_Click(object sender, EventArgs e)
+        {
+            CalcDispaly.Text = $"0";
+            ResultTrue = 0;
+            Result = 0;
+            Input1 = 0;
+            Input2 = 0;
+            IsOppPreformed = false;
+            IsNewInput = false;
+        }
+
+        /// <summary>
+        /// Back Key Click, removes the string at the end of the text view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Back_Click(object sender, EventArgs e) //back click
+        {
+            if (CalcDispaly.Text.Length != 0)
+            {
+                CalcDispaly.Text = (CalcDispaly.Text.Substring(0, CalcDispaly.Text.Length - 1));
+            }
+
         }
 
         /*

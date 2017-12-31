@@ -13,11 +13,11 @@ using static TVMCalc.Operations.Methods.SecondaryOppsMethods;
 
 namespace TVMCalcDroid.Helper
 {
-    public class HelperCalc
+    public static  class HelperCalc
     {
-        bool Check_Error = false;
+        //bool Check_Error = false;
 
-        public bool IsNum(char c)
+        public static bool IsNum(char c)
         {
             if (Char.IsDigit(c))
             {
@@ -35,13 +35,13 @@ namespace TVMCalcDroid.Helper
         /// <param name="num"></param>
         /// <param name="format"></param>
         /// <returns></returns>
-        public string NumToString(double num, int format)
+        public static string NumToString(double num, int format)
         {
             RoundCompute(num, format);
             return num.ToString();
         }
 
-        public double StringToNum(string s)
+        public static double StringToNum(string s)
         {
             return double.Parse(s);
         }
