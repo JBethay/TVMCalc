@@ -5,29 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <HorizontalScrollView
+        android:layout_width="fill_parent"
+        style="@style/oppsView_calculator"
+        android:layout_height="0dp"
+        android:layout_weight=".07"
+        android:layout_marginBottom="3dp">
+        <TextView
+            android:id="@+id/Calculator_textOpps_view"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:gravity="center_vertical|right"
+            android:padding="5dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:text="Greetings Program" />
+    </HorizontalScrollView>
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".15">
+        android:layout_weight=".13"
+        android:layout_marginBottom="3dp">
         <TextView
             android:id="@+id/Calculator_text_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:padding="10dp"
-            android:textSize="50sp"
+            android:gravity="center_vertical|right"
+            android:padding="8dp"
+            android:textSize="45sp"
             android:text="0.00" />
     </HorizontalScrollView>
-<!--The below text view is used as a "space"-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="left"
-        android:layout_weight=".01" />
-<!--The above text view is used as a "space"-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".24">
+        android:layout_weight=".22"
+        android:layout_margin="1.5dp">
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -171,21 +185,15 @@
                 <Button
                     android:id="@+id/Plus_Minus_Key"
                     style="@style/func3Button_calculator"
-                    android:text="+|-" />             
+                    android:text="+|-" />
             </android.support.v7.widget.GridLayout>
         </LinearLayout>
     </ScrollView>
-<!--The below text view is used as a "space"-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="left"
-        android:layout_weight=".01" />
-<!--The above text view is used as a "space"-->
     <android.support.v7.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".59"
+        android:layout_weight=".58"
+        android:layout_margin="1.5dp"
         app:orientation="horizontal"
         app:rowCount="5"
         app:columnCount="4">
@@ -200,7 +208,7 @@
         <Button
             android:id="@+id/Back_Key"
             style="@style/func2Button_calculator"
-            android:text="←"/>
+            android:text="←" />
         <Button
             android:id="@+id/Devide_Key"
             style="@style/funcButton_calculator"

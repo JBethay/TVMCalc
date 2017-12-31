@@ -66,62 +66,68 @@ namespace TVMCalc.Operations.Methods
 
         /// <summary>
         /// This method computes the Sine or the ratio of the length of the side that is opposite that angle to the length of the longest side of the triangle (the hypotenuse).
+        /// This is in Degrees NOT Radian, .Net Framework uses radians by default.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static double SinCompute(double x)
         {
-            x = Math.Sin(x);
+            x = Math.Sin(x * Math.PI/180);
             return x;
         }
         /// <summary>
         /// This method computes the Cosine or the ratio of the side adjacent to an acute angle (in a right-angled triangle) to the hypotenuse. 
+        /// This is in Degrees NOT Radian, .Net Framework uses radians by default.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static double CosCompute(double x)
         {
-            x = Math.Cos(x);
+            x = Math.Cos(x * Math.PI / 180);
             return x;
         }
         /// <summary>
         /// This method computes the Tangent or the opposite side to the adjacent side.
+        /// This is in Degrees NOT Radian, .Net Framework uses radians by default.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static double TanCompute(double x)
         {
-            x = Math.Tan(x);
+            x = Math.Tan(x * Math.PI / 180);
             return x;
         }
         /// <summary>
         /// This method returns the angle whose sine is the parameter.
+        /// This is in Degrees NOT Radian, .Net Framework uses radians by default.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static double AsinCompute(double x)
         {
-            x = Math.Asin(x);
+            x = Math.Asin(x) * 180 / Math.PI;
             return x;
         }
         /// <summary>
         /// This method returns the angle whose cosine is the parameter.
+        /// This is in Degrees NOT Radian, .Net Framework uses radians by default.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static double AcosCompute(double x)
         {
-            x = Math.Acos(x);
+            x = Math.Acos(x) * 180 / Math.PI;
             return x;
         }
         /// <summary>
         /// This method returns the angle whose tangent is the parameter.
+        /// This is in Degrees NOT Radian, .Net Framework uses radians by default.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static double AtanCompute(double x)
         {
-            x = Math.Atan(x);
+            x = Math.Atan(x) * 180 / Math.PI;
             return x;
         }
 

@@ -907,7 +907,7 @@ namespace TVMCalcUnitTest
                 var result = SinCompute(x);
 
                 //Assert
-                Assert.AreEqual(-0.1324, Math.Round(result, 4));
+                Assert.AreEqual(0.4226, Math.Round(result, 4));
             }
             [TestMethod]
             public void Cos_Compute()
@@ -918,7 +918,7 @@ namespace TVMCalcUnitTest
                 var result = CosCompute(x);
 
                 //Assert
-                Assert.AreEqual(0.9912, Math.Round(result, 4));
+                Assert.AreEqual(0.9063, Math.Round(result, 4));
             }
             [TestMethod]
             public void Tan_Compute()
@@ -929,7 +929,7 @@ namespace TVMCalcUnitTest
                 var result = TanCompute(x);
 
                 //Assert
-                Assert.AreEqual(-0.1335, Math.Round(result, 4));
+                Assert.AreEqual(0.4663, Math.Round(result, 4));
             }
             [TestMethod]
             public void Asin_Compute()
@@ -940,7 +940,7 @@ namespace TVMCalcUnitTest
                 var result = AsinCompute(x);
 
                 //Assert
-                Assert.AreEqual(0.3047, Math.Round(result, 4));
+                Assert.AreEqual(17.4576, Math.Round(result, 4));
             }
             [TestMethod]
             public void Acos_Compute()
@@ -951,7 +951,7 @@ namespace TVMCalcUnitTest
                 var result = AcosCompute(x);
 
                 //Assert
-                Assert.AreEqual(1.2661, Math.Round(result, 4));
+                Assert.AreEqual(72.5424, Math.Round(result, 4));
             }
             [TestMethod]
             public void Atan_Compute()
@@ -962,7 +962,7 @@ namespace TVMCalcUnitTest
                 var result = AtanCompute(x);
 
                 //Assert
-                Assert.AreEqual(0.2915, Math.Round(result, 4));
+                Assert.AreEqual(16.6992, Math.Round(result, 4));
             }
             #endregion
             #endregion

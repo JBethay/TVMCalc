@@ -10,16 +10,26 @@ namespace System
     public static class ExtensionMethods
     {
         /// <summary>
-        /// This method generates Factorial of the Number using recursion. 
+        /// This method generates Factorial of the Number using recursion. Note this method does NOT use the Gamma function
+        /// if a decimal place is added the method will simply round up or down to the nearest whole number.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static double Factorial_Recursion(this double x)
         {
-            if (x == 1)
-                return 1;
-            else
-                return x * Factorial_Recursion(x - 1);
+            x = Math.Round(x, 0);
+            if (x != 0)
+            {
+                if (x == 1)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return x * Factorial_Recursion(x - 1);
+                }
+            }
+            else return x;
         }
         /// <summary>
         /// This method provides the inverse of the parameter.
