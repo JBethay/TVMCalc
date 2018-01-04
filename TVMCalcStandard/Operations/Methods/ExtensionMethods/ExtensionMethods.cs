@@ -18,7 +18,7 @@ namespace System
         public static double Factorial_Recursion(this double x)
         {
             x = Math.Round(x, 0);
-            if (x != 0)
+            if (x != 0 && x > 0 && x < 170)
             {
                 if (x == 1)
                 {

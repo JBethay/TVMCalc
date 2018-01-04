@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <android.support.v7.widget.GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:orientation="horizontal"
+        app:columnCount="2">
+        <TextView
+            android:id="@+id/Compute_Mode_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|left"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="60dp"
+            android:padding="5dp"
+            android:textSize="15sp"
+            android:text="Regular Annuity"
+            android:textStyle="bold"
+            android:textAllCaps="false" />
+        <Switch
+            android:id="@+id/ComputeMode"
+            android:gravity="center_vertical|right"
+            android:layout_gravity="clip_horizontal|right"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="20dp" />
+    </android.support.v7.widget.GridLayout>
+    <EditText
+        android:id="@+id/txt_n_IY"
+        style="@style/editText_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="25dp"
+        android:inputType="numberDecimal|numberSigned"
+        android:hint="I/Y" />
+    <EditText
+        android:id="@+id/txt_n_PV"
+        style="@style/editText_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:inputType="numberDecimal|numberSigned"
+        android:hint="PV" />
+    <EditText
+        android:id="@+id/txt_n_PMT"
+        style="@style/editText_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:inputType="numberDecimal|numberSigned"
+        android:hint="PMT" />
+    <EditText
+        android:id="@+id/txt_n_FV"
+        style="@style/editText_dialog"
+        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:inputType="numberDecimal|numberSigned"
+        android:hint="FV" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+        <Button
+            android:id="@+id/btnNCompute"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Compute N"
+            android:height="70dp"
+            style="@style/cptButton_calculator" />
+    </RelativeLayout>
+</LinearLayout>

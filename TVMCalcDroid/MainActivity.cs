@@ -10,6 +10,7 @@ using static TVMCalcDroid.Helper.HelperCalc;
 using static TVMCalc.Operations.Methods.PrimaryOppsMethods;
 using static TVMCalc.Operations.Methods.SecondaryOppsMethods;
 using System.Linq;
+using TVMCalcDroid.Dialogs;
 
 namespace TVMCalcDroid
 {
@@ -20,18 +21,19 @@ namespace TVMCalcDroid
         #region UI Buttons & TextViews
         Button BtnOpen, BtnClose, BtnBack, BtnDevide, Btn7, Btn8, Btn9, BtnMultiply;
         Button Btn4, Btn5, Btn6, BtnMinus, Btn1, Btn2, Btn3, BtnPlus, BtnCEC, Btn0, BtnDot, BtnEquals;
-        Button BtnClr, BtnFormat, BtnRound, BtnPercent, BtnPlusMinus;
+        Button BtnClr, BtnFormat, BtnRound, BtnRand, BtnPercent, BtnPlusMinus;
         Button BtnN, BtnIy, BtnPv, BtnPmt, BtnFv, BtnCf, BtnNpv, BtnIrr, BtnAmort;
-        Button BtnPower, BtnSqrt, BtnSquared, BtnOneOver, BtnRand, BtnLn;
+        Button BtnPower, BtnSqrt, BtnSquared, BtnOneOver, BtnE, BtnLn;
         Button BtnLog, BtnNpr, BtnNcr, BtnFactorial, BtnSin, BtnCos, BtnTan;
         Button BtnAsin, BtnAcos, BtnAtan;
-        TextView CalcDispaly, CalcOppsDisplay;
+        TextView CalcDisplay, CalcOppsDisplay;
 
         #endregion
 
         #region Properties Used for Button Clicks
         private bool IsOppPreformed { get; set; }
         private bool IsNewInput { get; set; }
+        private bool IsOppRepeated { get; set; }
         private int Format = 2;
         private double Input1 { get; set; }
         private double Input2 { get; set; }
@@ -51,7 +53,7 @@ namespace TVMCalcDroid
             ActionBar.Hide(); // Hides the action Bar
 
             #region Keys & Text Views
-            CalcDispaly = FindViewById<TextView>(Resource.Id.Calculator_text_view);
+            CalcDisplay = FindViewById<TextView>(Resource.Id.Calculator_text_view);
             CalcOppsDisplay = FindViewById<TextView>(Resource.Id.Calculator_textOpps_view);
             BtnOpen = FindViewById<Button>(Resource.Id.Parenthesie_Open_Key);
             BtnClose = FindViewById<Button>(Resource.Id.Parenthesie_Closed_Key);
@@ -76,6 +78,7 @@ namespace TVMCalcDroid
             BtnClr = FindViewById<Button>(Resource.Id.Clear_Key);
             BtnFormat = FindViewById<Button>(Resource.Id.Format_Key);
             BtnRound = FindViewById<Button>(Resource.Id.RoundCompt_Key);
+            BtnRand = FindViewById<Button>(Resource.Id.RandCompt_Key);
             BtnPercent = FindViewById<Button>(Resource.Id.PercentCompt_Key);
             BtnPlusMinus = FindViewById<Button>(Resource.Id.Plus_Minus_Key);
             BtnN = FindViewById<Button>(Resource.Id.N_Key);
@@ -91,7 +94,7 @@ namespace TVMCalcDroid
             BtnSqrt = FindViewById<Button>(Resource.Id.SqrtCompt_Key);
             BtnSquared = FindViewById<Button>(Resource.Id.SquareCompt_Key);
             BtnOneOver = FindViewById<Button>(Resource.Id.OneOver_Key);
-            BtnRand = FindViewById<Button>(Resource.Id.RandCompt_Key);
+            BtnE = FindViewById<Button>(Resource.Id.ECompt_Key);
             BtnLn = FindViewById<Button>(Resource.Id.NaturalLogCompt_Key);
             BtnLog = FindViewById<Button>(Resource.Id.LogCompt_Key);
             BtnNpr = FindViewById<Button>(Resource.Id.Npr_Key);
@@ -103,6 +106,8 @@ namespace TVMCalcDroid
             BtnAsin = FindViewById<Button>(Resource.Id.AsinCompt_Key);
             BtnAcos = FindViewById<Button>(Resource.Id.AcosCompt_Key);
             BtnAtan = FindViewById<Button>(Resource.Id.AtanCompt_Key);
+            BtnN = FindViewById<Button>(Resource.Id.N_Key);
+
             #endregion
 
             #region Primary & Formating Button_Clicks
@@ -132,6 +137,7 @@ namespace TVMCalcDroid
             BtnFormat.Click += Format_Click;
             BtnRound.Click += Round_Click;
             BtnPercent.Click += Percent_Click;
+            BtnRand.Click += Rand_Button_Click;
             BtnPlusMinus.Click += PlusMinus_Click;
             #endregion
 
@@ -150,7 +156,7 @@ namespace TVMCalcDroid
             BtnSqrt.Click += Sqrt_Button_Click;
             BtnSquared.Click += Squared_Button_Click;
             BtnOneOver.Click += OneOver_Button_Click;
-            BtnRand.Click += Rand_Button_Click;
+            BtnE.Click += E_Button_Click;
             BtnLn.Click += Ln_Button_Click;
             BtnLog.Click += Log_Button_Click;
             BtnNpr.Click += Npr_Button_Click;
@@ -174,34 +180,42 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Num_Button_Click(object sender, EventArgs e)
         {
-            if (IsNewInput == false && CalcDispaly.Text != "")
+            if (IsNewInput == false && CalcDisplay.Text != "") 
             {
-                if ((IsOppPreformed == true) || (StringToNum(CalcDispaly.Text) == 0))
+                if ((IsOppPreformed == true) || (StringToNum(CalcDisplay.Text) == 0))
                 {
-                    CalcDispaly.Text = "";
+                    CalcDisplay.Text = "";
                 }
             }
+
             Button button = (Button)sender;
             IsNewInput = true;
+            //CalcOppsDisplay.Text = "";
+
             if (button.Text == ".")
             {
-                if (!CalcDispaly.Text.Contains("."))
+                if (!CalcDisplay.Text.Contains("."))
                 {
-                    if (CalcDispaly.Text == "")
+                    if (CalcDisplay.Text == "")
                     {
-                        CalcDispaly.Text = "0.";
+                        CalcDisplay.Text = "0.";
+                        Input1 = StringToNum(CalcDisplay.Text);
                     }
                     else
                     {
-                        CalcDispaly.Text = $"{CalcDispaly.Text}{button.Text}";
-                        Input1 = StringToNum(CalcDispaly.Text);
+                        CalcDisplay.Text = $"{CalcDisplay.Text}{button.Text}";
+                        Input1 = StringToNum(CalcDisplay.Text);
                     }
+                }
+                else
+                {
+                    Input1 = StringToNum(CalcDisplay.Text);
                 }
             }
             else
             {
-                CalcDispaly.Text = $"{CalcDispaly.Text}{button.Text}";
-                Input1 = StringToNum(CalcDispaly.Text);
+                CalcDisplay.Text = $"{CalcDisplay.Text}{button.Text}";
+                Input1 = StringToNum(CalcDisplay.Text);
             }
         }
 
@@ -214,42 +228,42 @@ namespace TVMCalcDroid
         {
             if (IsOppPreformed == true && IsNewInput == true)
             {
+                CalcOppsDisplay.Text = "";
                 Input2 = Input1;
                 switch (OppPreformed)
                 {
                     case "+":
                         ResultTrue = AddCompt(ResultTrue, Input2);
                         Result = ResultTrue;
-                        CalcDispaly.Text = NumToStringFormated(Result, Format);
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
                         break;
                     case "-":
                         ResultTrue = SubtractCompt(ResultTrue, Input2);
                         Result = ResultTrue;
-                        CalcDispaly.Text = NumToStringFormated(Result, Format);
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
                         break;
                     case "×":
                         ResultTrue = MultiplyCompt(ResultTrue, Input2);
                         Result = ResultTrue;
-                        CalcDispaly.Text = NumToStringFormated(Result, Format);
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
                         break;
                     case "÷":
                         ResultTrue = DevideCompt(ResultTrue, Input2);
                         Result = ResultTrue;
-                        CalcDispaly.Text = NumToStringFormated(Result, Format);
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
                         break;
                     default:
                         ResultTrue = Input2;
                         break;
                 }
-                //Input2 = StringToNum(CalcDispaly.Text);
-                //Result = ResultTrue;
                 IsOppPreformed = false;
                 IsNewInput = false;
+                IsOppRepeated = false;
             }
             else
             {
-                Input2 = StringToNum(CalcDispaly.Text);
-                CalcDispaly.Text = NumToStringFormated(Input2, Format);
+                Input2 = StringToNum(CalcDisplay.Text);
+                CalcDisplay.Text = NumToStringFormated(Input2, Format);
                 ResultTrue = Input2;
                 IsNewInput = false;
                 IsOppPreformed = false;
@@ -264,16 +278,21 @@ namespace TVMCalcDroid
         private void Operator_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
+            BtnEquals.PerformClick();
 
-            if (IsOppPreformed == false)
+            if (CalcDisplay.Text != "" && IsOppRepeated == false)
             {
-                if (CalcDispaly.Text != "")
-                { 
-                BtnEquals.PerformClick();
                 OppPreformed = button.Text;
                 IsOppPreformed = true;
-                //HOW TO SHOW WHAT OPP IS BEING USED?
-                }
+                IsOppRepeated = true; 
+                CalcOppsDisplay.Text = button.Text;
+            }
+            if(CalcDisplay.Text != "" && IsOppRepeated == true)
+            {
+                OppPreformed = button.Text;
+                IsOppPreformed = true;
+                IsOppRepeated = true;
+                CalcOppsDisplay.Text = button.Text;
             }
             //else do nothing....
         }
@@ -285,7 +304,8 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void CE_Click(object sender, EventArgs e)
         {
-            CalcDispaly.Text = NumToStringFormated(0, Format);
+            CalcDisplay.Text = NumToStringFormated(0, Format);
+            CalcOppsDisplay.Text = BtnCEC.Text;
             ResultTrue = 0;
             Result = 0;
             Input1 = 0;
@@ -301,15 +321,16 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Back_Click(object sender, EventArgs e)
         {
-            if (CalcDispaly.Text.Length != 0)
+            CalcOppsDisplay.Text = BtnBack.Text;
+            if (CalcDisplay.Text.Length != 0)
             {
-                if (CalcDispaly.Text.Length == 1)
+                if (CalcDisplay.Text.Length == 1)
                 {
-                    CalcDispaly.Text = "0";
+                    CalcDisplay.Text = "0";
                 }
                 else
                 {
-                    CalcDispaly.Text = (CalcDispaly.Text.Substring(0, CalcDispaly.Text.Length - 1));
+                    CalcDisplay.Text = (CalcDisplay.Text.Substring(0, CalcDisplay.Text.Length - 1));
                 }
             }
         }
@@ -339,14 +360,28 @@ namespace TVMCalcDroid
         }
 
         /// <summary>
+        /// Generates a Random Percentage Value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Rand_Button_Click(object sender, EventArgs e)
+        {
+            Input2 = RandCompute();
+            CalcDisplay.Text = NumToStringFormated(Input2, Format);
+            CalcOppsDisplay.Text = BtnRand.Text;
+            BtnEquals.PerformClick();
+        }
+
+        /// <summary>
         /// Converts the String Input to a percentage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Percent_Click(object sender, EventArgs e)
         {
-            Input2 = PercentCompt(StringToNum(CalcDispaly.Text));
-            CalcDispaly.Text = NumToStringFormated(Input2, Format);
+            Input2 = PercentCompt(StringToNum(CalcDisplay.Text));
+            CalcDisplay.Text = NumToStringFormated(Input2, Format);
+            CalcOppsDisplay.Text = BtnPercent.Text;
             BtnEquals.PerformClick();
         }
 
@@ -358,17 +393,39 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void PlusMinus_Click(object sender, EventArgs e)
         {
-            Input2 = (StringToNum(CalcDispaly.Text)).Plus_Minus();
-            CalcDispaly.Text = NumToStringFormated(Input2, Format);
+            Input2 = (StringToNum(CalcDisplay.Text)).Plus_Minus();
+            CalcDisplay.Text = NumToStringFormated(Input2, Format);
+            CalcOppsDisplay.Text = BtnPlusMinus.Text;
             BtnEquals.PerformClick();
         }
         #endregion
 
         #region TVM and Secondary Operations
-        //TODO
+        
+        /// <summary>
+        /// Computes N or the time in a time value of money equation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void N_Button_Click(object sender, EventArgs e)
         {
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            Dialog_N nDialog = new Dialog_N();
+            nDialog.Show(transaction, "dialog Fragment");
 
+            nDialog.mOnNComptComplete += nDialog_mOnNComptComplete;
+        }
+        /// <summary>
+        /// N Compute Button Click On Complete Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void nDialog_mOnNComptComplete(object sender, OnNComputeEventArgs e)
+        {
+            Input2 = e.ComputedN;
+            CalcDisplay.Text = NumToStringFormated(e.ComputedN, Format);
+            CalcOppsDisplay.Text = BtnN.Text;
+            BtnEquals.PerformClick();
         }
 
         //TODO
@@ -432,8 +489,10 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Sqrt_Button_Click(object sender, EventArgs e)
         {
-            Input2 = SqrtCompt(StringToNum(CalcDispaly.Text));
-            CalcDispaly.Text = NumToStringFormated(Input2, Format);
+            Input2 = SqrtCompt(StringToNum(CalcDisplay.Text));
+            CalcDisplay.Text = NumToStringFormated(Input2, Format);
+            CalcOppsDisplay.Text = BtnSqrt.Text;
+            BtnEquals.PerformClick();
         }
 
         /// <summary>
@@ -443,8 +502,10 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Squared_Button_Click(object sender, EventArgs e)
         {
-            Input2 = SquareCompt(StringToNum(CalcDispaly.Text));
-            CalcDispaly.Text = NumToStringFormated(Input2, Format);
+            Input2 = SquareCompt(StringToNum(CalcDisplay.Text));
+            CalcDisplay.Text = NumToStringFormated(Input2, Format);
+            CalcOppsDisplay.Text = BtnSquared.Text;
+            BtnEquals.PerformClick();
         }
 
         /// <summary>
@@ -454,20 +515,23 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void OneOver_Button_Click(object sender, EventArgs e)
         {
-            Input2 = OneOverCompt(StringToNum(CalcDispaly.Text));
-            CalcDispaly.Text = NumToStringFormated(Input2, Format);
-
+            Input2 = OneOverCompt(StringToNum(CalcDisplay.Text));
+            CalcDisplay.Text = NumToStringFormated(Input2, Format);
+            CalcOppsDisplay.Text = BtnOneOver.Text;
+            BtnEquals.PerformClick();
         }
 
         /// <summary>
-        /// Generates a Random Percentage Value
+        /// Calculates Euler's Number raised to a specified power
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Rand_Button_Click(object sender, EventArgs e)
+        private void E_Button_Click(object sender, EventArgs e)
         {
-            Input2 = RandCompute();
-            CalcDispaly.Text = NumToStringFormated(Input2,Format);
+            Input2 = ECompute(StringToNum(CalcDisplay.Text));
+            CalcDisplay.Text = NumToStringFormated(Input2, Format);
+            CalcOppsDisplay.Text = BtnE.Text;
+            BtnEquals.PerformClick();
         }
 
         /// <summary>
@@ -477,8 +541,10 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Ln_Button_Click(object sender, EventArgs e)
         {
-            Input2 = NaturalLogCompt(StringToNum(CalcDispaly.Text));
-            CalcDispaly.Text = NumToStringFormated(Input2, Format);
+            Input2 = NaturalLogCompt(StringToNum(CalcDisplay.Text));
+            CalcDisplay.Text = NumToStringFormated(Input2, Format);
+            CalcOppsDisplay.Text = BtnLn.Text;
+            BtnEquals.PerformClick();
         }
 
         /// <summary>
@@ -488,8 +554,10 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Log_Button_Click(object sender, EventArgs e)
         {
-            Input2 = LogCompt(StringToNum(CalcDispaly.Text));
-            CalcDispaly.Text = NumToStringFormated(Input2, Format);
+            Input2 = LogCompt(StringToNum(CalcDisplay.Text));
+            CalcDisplay.Text = NumToStringFormated(Input2, Format);
+            CalcOppsDisplay.Text = BtnLog.Text;
+            BtnEquals.PerformClick();
         }
 
         //TODO
@@ -512,8 +580,10 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Factorial_Button_Click(object sender, EventArgs e)
         {
-            Input2 = StringToNum(CalcDispaly.Text).Factorial_Recursion();
-            CalcDispaly.Text = NumToStringFormated(Input2, Format);
+            Input2 = StringToNum(CalcDisplay.Text).Factorial_Recursion();
+            CalcDisplay.Text = NumToStringFormated(Input2, Format);
+            CalcOppsDisplay.Text = BtnFactorial.Text;
+            BtnEquals.PerformClick();
         }
 
         /// <summary>
@@ -523,8 +593,10 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Sin_Button_Click(object sender, EventArgs e)
         {
-            Input2 = SinCompute(StringToNum(CalcDispaly.Text));
-            CalcDispaly.Text = NumToStringFormated(Input2, Format);
+            Input2 = SinCompute(StringToNum(CalcDisplay.Text));
+            CalcDisplay.Text = NumToStringFormated(Input2, Format);
+            CalcOppsDisplay.Text = BtnSin.Text;
+            BtnEquals.PerformClick();
         }
 
         /// <summary>
@@ -534,8 +606,10 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Cos_Button_Click(object sender, EventArgs e)
         {
-            Input2 = CosCompute(StringToNum(CalcDispaly.Text));
-            CalcDispaly.Text = NumToStringFormated(Input2, Format);
+            Input2 = CosCompute(StringToNum(CalcDisplay.Text));
+            CalcDisplay.Text = NumToStringFormated(Input2, Format);
+            CalcOppsDisplay.Text = BtnCos.Text;
+            BtnEquals.PerformClick();
         }
 
         /// <summary>
@@ -545,8 +619,10 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Tan_Button_Click(object sender, EventArgs e)
         {
-            Input2 = TanCompute(StringToNum(CalcDispaly.Text));
-            CalcDispaly.Text = NumToStringFormated(Input2, Format);
+            Input2 = TanCompute(StringToNum(CalcDisplay.Text));
+            CalcDisplay.Text = NumToStringFormated(Input2, Format);
+            CalcOppsDisplay.Text = BtnTan.Text;
+            BtnEquals.PerformClick();
         }
 
         /// <summary>
@@ -556,8 +632,10 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Asin_Button_Click(object sender, EventArgs e)
         {
-            Input2 = AsinCompute(StringToNum(CalcDispaly.Text));
-            CalcDispaly.Text = NumToStringFormated(Input2, Format);
+            Input2 = AsinCompute(StringToNum(CalcDisplay.Text));
+            CalcDisplay.Text = NumToStringFormated(Input2, Format);
+            CalcOppsDisplay.Text = BtnAsin.Text;
+            BtnEquals.PerformClick();
         }
 
         /// <summary>
@@ -567,8 +645,10 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Acos_Button_Click(object sender, EventArgs e)
         {
-            Input2 = AcosCompute(StringToNum(CalcDispaly.Text));
-            CalcDispaly.Text = NumToStringFormated(Input2, Format);
+            Input2 = AcosCompute(StringToNum(CalcDisplay.Text));
+            CalcDisplay.Text = NumToStringFormated(Input2, Format);
+            CalcOppsDisplay.Text = BtnAcos.Text;
+            BtnEquals.PerformClick();
         }
 
         /// <summary>
@@ -578,11 +658,12 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Atan_Button_Click(object sender, EventArgs e)
         {
-            Input2 = AtanCompute(StringToNum(CalcDispaly.Text));
-            CalcDispaly.Text = NumToStringFormated(Input2, Format);
+            Input2 = AtanCompute(StringToNum(CalcDisplay.Text));
+            CalcDisplay.Text = NumToStringFormated(Input2, Format);
+            CalcOppsDisplay.Text = BtnAtan.Text;
+            BtnEquals.PerformClick();
         }
         #endregion
-
 
         /*
         private void Btn2ND_Click(object sender, System.EventArgs e)

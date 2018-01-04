@@ -22,9 +22,17 @@ namespace TVMCalc.Operations.Methods
             var pmt = obj.Pmt;
             var fv = obj.Fv;
 
-            i = i / 100;
-            n = Math.Log((((fv * -1) * (i)) + pmt) / ((i * pv) + pmt)) / (Math.Log(1 + i));
-            return n;
+            try
+            {
+                i = i / 100;
+                n = Math.Log((((fv * -1) * (i)) + pmt) / ((i * pv) + pmt)) / (Math.Log(1 + i));
+                return n;
+            }
+            catch
+            {
+                throw new System.ArgumentException();
+            }
+
         }
         /// <summary>
         /// Computes the interest rate in a TVM equation, note that this method utilizes Newton's Method

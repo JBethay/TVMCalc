@@ -47,7 +47,17 @@ namespace TVMCalcDroid.Helper
         /// <returns></returns>
         public static double StringToNum(string s)
         {
-            return double.Parse(s);
+            double result =0;
+
+            if (double.TryParse(s, out double r) == true)
+            {
+                result = double.Parse(s);
+
+                if (s == "∞" || s == "-∞" || s == "Infinity" || s == "-Infinity" || s == "NaN" || s == "NAN")
+                    return 0;
+                else return result;
+            }
+            else return 0;
         }
     }
 }

@@ -19,8 +19,7 @@
             android:padding="5dp"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:textAllCaps="false"
-            android:text="Greetings Program" />
+            android:textAllCaps="false" />
     </HorizontalScrollView>
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -110,9 +109,9 @@
                     style="@style/func2Button_calculator"
                     android:text="1/x" />
                 <Button
-                    android:id="@+id/RandCompt_Key"
+                    android:id="@+id/ECompt_Key"
                     style="@style/func2Button_calculator"
-                    android:text="RAND" />
+                    android:text="e^x" />
                 <Button
                     android:id="@+id/NaturalLogCompt_Key"
                     style="@style/func2Button_calculator"
@@ -168,7 +167,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="60dp"
                 app:orientation="horizontal"
-                app:columnCount="4">
+                app:columnCount="5">
                 <Button
                     android:id="@+id/PercentCompt_Key"
                     style="@style/func3Button_calculator"
@@ -182,6 +181,10 @@
                     android:id="@+id/RoundCompt_Key"
                     style="@style/func3Button_calculator"
                     android:text="ROUND" />
+                <Button
+                    android:id="@+id/RandCompt_Key"
+                    style="@style/func3Button_calculator"
+                    android:text="RAND" />
                 <Button
                     android:id="@+id/Plus_Minus_Key"
                     style="@style/func3Button_calculator"

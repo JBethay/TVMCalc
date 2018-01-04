@@ -51,10 +51,18 @@ namespace TVMCalc.Operations.Methods
         /// </summary>
         public static double NaturalLogCompt (double x) => Math.Log(x);
         /// <summary>
+        /// Uses Euler's Number to determine e^x
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static double ECompute(double x) => Math.Pow(2.71828183, x);
+        /// <summary>
         /// Returns the log to base -10;
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public static double LogCompt(double x) => Math.Log10(x);
+
+
     }
 }

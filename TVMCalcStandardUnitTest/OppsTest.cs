@@ -129,6 +129,17 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(3.2189, result);
             }
+
+            [TestMethod]
+            public void ECompt()
+            {
+                //Arrange, 
+                double x = 5;
+                //Act,
+                var result = Math.Round(ECompute(x), 4);
+                //Assert
+                Assert.AreEqual(148.4132, result);
+            }
             #endregion
 
             #region TVM Methods regular annuity Methods
