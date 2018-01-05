@@ -14,7 +14,7 @@
         app:orientation="horizontal"
         app:columnCount="3">
         <TextView
-            android:id="@+id/Compute_Modetext_nview"
+            android:id="@+id/Compute_Modetext_pmtview"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
@@ -27,7 +27,7 @@
             android:textStyle="bold"
             android:textAllCaps="false" />
         <TextView
-            android:id="@+id/Compute_Mode_nview"
+            android:id="@+id/Compute_Mode_pmtview"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
@@ -40,36 +40,36 @@
             android:textStyle="bold"
             android:textAllCaps="false" />
         <Switch
-            android:id="@+id/ComputeModeN"
+            android:id="@+id/ComputeModePmt"
             android:gravity="center_vertical|left"
             android:layout_gravity="left"
             android:layout_marginLeft="0dp"
             android:layout_marginRight="20dp" />
     </android.support.v7.widget.GridLayout>
     <EditText
-        android:id="@+id/txt_n_IY"
+        android:id="@+id/txt_pmt_N"
         style="@style/editText_dialog"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="20dp"
         android:inputType="numberDecimal|numberSigned"
+        android:hint="N" />
+    <EditText
+        android:id="@+id/txt_pmt_I"
+        style="@style/editText_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:inputType="numberDecimal|numberSigned"
         android:hint="I/Y" />
     <EditText
-        android:id="@+id/txt_n_PV"
+        android:id="@+id/txt_pmt_PV"
         style="@style/editText_dialog"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:inputType="numberDecimal|numberSigned"
         android:hint="PV" />
     <EditText
-        android:id="@+id/txt_n_PMT"
-        style="@style/editText_dialog"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:inputType="numberDecimal|numberSigned"
-        android:hint="PMT" />
-    <EditText
-        android:id="@+id/txt_n_FV"
+        android:id="@+id/txt_pmt_FV"
         style="@style/editText_dialog"
         android:layout_height="45dp"
         android:layout_width="match_parent"
@@ -80,10 +80,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp">
         <Button
-            android:id="@+id/btnNCompute"
+            android:id="@+id/btnPMTCompute"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Compute N"
+            android:text="Compute PMT"
             android:height="70dp"
             style="@style/cptButton_calculator" />
     </RelativeLayout>

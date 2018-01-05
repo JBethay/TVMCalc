@@ -37,7 +37,6 @@ namespace TVMCalcDroid
         private int Format = 2;
         private double Input1 { get; set; }
         private double Input2 { get; set; }
-        //public string Input3 { get; set; }
         private double Result = 0;
         private double ResultTrue = 0;
         private string OppPreformed { get; set; }
@@ -428,28 +427,113 @@ namespace TVMCalcDroid
             BtnEquals.PerformClick();
         }
 
-        //TODO
+        /// <summary>
+        /// Computes I/Y or the interest in a time value of money equation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Iy_Button_Click(object sender, EventArgs e)
         {
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            Dialog_I iDialog = new Dialog_I();
+            iDialog.Show(transaction, "dialog Fragment");
 
+            iDialog.mOnIComptComplete += iDialog_mOnIComptComplete;
         }
 
-        //TODO
+        /// <summary>
+        /// I Compute Button Click On Complete Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void iDialog_mOnIComptComplete(object sender, OnIComputeEventArgs e)
+        {
+            Input2 = e.ComputedI;
+            CalcDisplay.Text = NumToStringFormated(e.ComputedI, Format);
+            CalcOppsDisplay.Text = BtnN.Text;
+            BtnEquals.PerformClick();
+        }
+
+        /// <summary>
+        /// Computes PV or the Present Value in a time value of money equation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Pv_Button_Click(object sender, EventArgs e)
         {
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            Dialog_PV pVDialog = new Dialog_PV();
+            pVDialog.Show(transaction, "dialog Fragment");
+
+            pVDialog.mOnPvComptComplete += pVDialog_mOnPvComptComplete;
 
         }
 
-        //TODO
+        /// <summary>
+        /// PV Compute Button Click On Complete Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pVDialog_mOnPvComptComplete(object sender, OnPvComputeEventArgs e)
+        {
+            Input2 = e.ComputedPV;
+            CalcDisplay.Text = NumToStringFormated(e.ComputedPV, Format);
+            CalcOppsDisplay.Text = BtnN.Text;
+            BtnEquals.PerformClick();
+        }
+
+        /// <summary>
+        /// Computes PMT or the Payment in a time value of money equation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Pmt_Button_Click(object sender, EventArgs e)
         {
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            Dialog_PMT pMTDialog = new Dialog_PMT();
+            pMTDialog.Show(transaction, "dialog Fragment");
 
+            pMTDialog.mOnPmtComptComplete += pMTDialog_mOnPmtComptComplete;
         }
 
-        //TODO
+        /// <summary>
+        /// PMT Compute Button Click On Complete Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pMTDialog_mOnPmtComptComplete(object sender, OnPmtComputeEventArgs e)
+        {
+            Input2 = e.ComputedPMT;
+            CalcDisplay.Text = NumToStringFormated(e.ComputedPMT, Format);
+            CalcOppsDisplay.Text = BtnN.Text;
+            BtnEquals.PerformClick();
+        }
+
+        /// <summary>
+        /// Computes FV or the Future Value in a time value of money equation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Fv_Button_Click(object sender, EventArgs e)
         {
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            Dialog_FV fVDialog = new Dialog_FV();
+            fVDialog.Show(transaction, "dialog Fragment");
 
+            fVDialog.mOnFvComptComplete += fVDialog_mOnFvComptComplete;
+        }
+
+        /// <summary>
+        /// FV Compute Button Click On Complete Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void fVDialog_mOnFvComptComplete(object sender, OnFvComputeEventArgs e)
+        {
+            Input2 = e.ComputedFV;
+            CalcDisplay.Text = NumToStringFormated(e.ComputedFV, Format);
+            CalcOppsDisplay.Text = BtnN.Text;
+            BtnEquals.PerformClick();
         }
 
         //TODO
@@ -665,14 +749,6 @@ namespace TVMCalcDroid
         }
         #endregion
 
-        /*
-        private void Btn2ND_Click(object sender, System.EventArgs e)
-        {
-            FragmentTransaction transaction = FragmentManager.BeginTransaction();
-            Dialog_2nd createAccountDialog = new Dialog_2nd();
-            createAccountDialog.Show(transaction, "dialog Fragment");
-        }
-        */
     }
 }
 

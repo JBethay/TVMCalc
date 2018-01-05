@@ -56,29 +56,14 @@ namespace TVMCalc.Operations.Methods
             // Set the max number of iterations
             var itrMax = 10;
 
-            // Newton's method
-            double y, y0, y1, x0, x1 = 0;
-            double f = 0;
-            double z = 0;
-            i = estimate;
-            if (Math.Abs(i) < epsMax)
+            try
             {
-                y = pv * (1 + n * i) + pmt * (1 + i * t) * n + fv;
-            }
-            else
-            {
-                f = Math.Exp(n * Math.Log(1 + i));
-                y = pv * f + pmt * (1 / i + t) * (f - 1) + fv;
-            }
-            y0 = pv + pmt * n + fv;
-            y1 = pv * f + pmt * (1 / i + t) * (f - 1) + fv;
-            z = x0 = 0;
-            x1 = i;
-            while ((Math.Abs(y0 - y1) > epsMax) && (z < itrMax))
-            {
-                i = (y1 * x0 - y0 * x1) / (y1 - y0);
-                x0 = x1;
-                x1 = i;
+
+                // Newton's method
+                double y, y0, y1, x0, x1 = 0;
+                double f = 0;
+                double z = 0;
+                i = estimate;
                 if (Math.Abs(i) < epsMax)
                 {
                     y = pv * (1 + n * i) + pmt * (1 + i * t) * n + fv;
@@ -88,12 +73,36 @@ namespace TVMCalc.Operations.Methods
                     f = Math.Exp(n * Math.Log(1 + i));
                     y = pv * f + pmt * (1 / i + t) * (f - 1) + fv;
                 }
-                y0 = y1;
-                y1 = y;
-                ++z;
+                y0 = pv + pmt * n + fv;
+                y1 = pv * f + pmt * (1 / i + t) * (f - 1) + fv;
+                z = x0 = 0;
+                x1 = i;
+                while ((Math.Abs(y0 - y1) > epsMax) && (z < itrMax))
+                {
+                    i = (y1 * x0 - y0 * x1) / (y1 - y0);
+                    x0 = x1;
+                    x1 = i;
+                    if (Math.Abs(i) < epsMax)
+                    {
+                        y = pv * (1 + n * i) + pmt * (1 + i * t) * n + fv;
+                    }
+                    else
+                    {
+                        f = Math.Exp(n * Math.Log(1 + i));
+                        y = pv * f + pmt * (1 / i + t) * (f - 1) + fv;
+                    }
+                    y0 = y1;
+                    y1 = y;
+                    ++z;
+                }
+                i = i * 100;
+                return i;
             }
-            i = i * 100;
-            return i;
+            catch
+            {
+                throw new System.ArgumentException();
+            }
+
         }
         /// <summary>
         /// Computes the present value in a TVM equation. Regular Annuity or payment at end of the period.
@@ -106,9 +115,16 @@ namespace TVMCalc.Operations.Methods
             var pmt = obj.Pmt;
             var fv = obj.Fv;
 
-            i = i / 100;
-            pv = (1 / i) * (Math.Pow((1 + i), (n * -1))) * (((-1 * fv) * i) - ((pmt * (Math.Pow((1 + i), n)))) + pmt);
-            return pv;
+            try
+            {
+                i = i / 100;
+                pv = (1 / i) * (Math.Pow((1 + i), (n * -1))) * (((-1 * fv) * i) - ((pmt * (Math.Pow((1 + i), n)))) + pmt);
+                return pv;
+            }
+            catch
+            {
+                throw new System.ArgumentException();
+            }
         }
         /// <summary>
         /// Computes the payment in a TVM equation. Regular Annuity or payment at end of the period.
@@ -121,9 +137,17 @@ namespace TVMCalc.Operations.Methods
             double pmt = 0;
             var fv = obj.Fv;
 
-            i = i / 100;
-            pmt = -1 * ((i * (fv + (pv * (Math.Pow((1 + i), n))))) / (Math.Pow((1 + i), n) - 1));
-            return pmt;
+            try
+            {
+
+                i = i / 100;
+                pmt = -1 * ((i * (fv + (pv * (Math.Pow((1 + i), n))))) / (Math.Pow((1 + i), n) - 1));
+                return pmt;
+            }
+            catch
+            {
+                throw new System.ArgumentException();
+            }
         }
         /// <summary>
         /// Computes the future value in a TVM equation. Regular Annuity or payment at end of the period.
@@ -136,9 +160,16 @@ namespace TVMCalc.Operations.Methods
             var pmt = obj.Pmt;
             double fv = 0;
 
-            i = i / 100;
-            fv = (1 / i) * (((i * -1) * (pv * (Math.Pow((1 + i), n)))) - (pmt * (Math.Pow((1 + i), n))) + pmt);
-            return fv;
+            try
+            {
+                i = i / 100;
+                fv = (1 / i) * (((i * -1) * (pv * (Math.Pow((1 + i), n)))) - (pmt * (Math.Pow((1 + i), n))) + pmt);
+                return fv;
+            }
+            catch
+            {
+                throw new System.ArgumentException();
+            }
         }
 
         //TVM *annuity due* calculations *BEG MODE*
@@ -153,9 +184,16 @@ namespace TVMCalc.Operations.Methods
             var pmt = obj.Pmt;
             var fv = obj.Fv;
 
-            i = i / 100;
-            n = Math.Log((((fv * -1) * (i)) + (i * pmt) + pmt) / ((i * pv) + (i * pmt) + pmt)) / (Math.Log(1 + i));
-            return n;
+            try
+            {
+                i = i / 100;
+                n = Math.Log((((fv * -1) * (i)) + (i * pmt) + pmt) / ((i * pv) + (i * pmt) + pmt)) / (Math.Log(1 + i));
+                return n;
+            }
+            catch
+            {
+                throw new System.ArgumentException();
+            }
         }
         /// <summary>
         /// Computes the interest rate in a TVM equation, note that this method utilizes Newton's Method
@@ -179,29 +217,13 @@ namespace TVMCalc.Operations.Methods
             // Set the max number of iterations
             var itrMax = 10;
 
-            // Newton's method
-            double y, y0, y1, x0, x1 = 0;
-            double f = 0;
-            double z = 0;
-            i = estimate;
-            if (Math.Abs(i) < epsMax)
+            try
             {
-                y = pv * (1 + n * i) + pmt * (1 + i * t) * n + fv;
-            }
-            else
-            {
-                f = Math.Exp(n * Math.Log(1 + i));
-                y = pv * f + pmt * (1 / i + t) * (f - 1) + fv;
-            }
-            y0 = pv + pmt * n + fv;
-            y1 = pv * f + pmt * (1 / i + t) * (f - 1) + fv;
-            z = x0 = 0;
-            x1 = i;
-            while ((Math.Abs(y0 - y1) > epsMax) && (z < itrMax))
-            {
-                i = (y1 * x0 - y0 * x1) / (y1 - y0);
-                x0 = x1;
-                x1 = i;
+                // Newton's method
+                double y, y0, y1, x0, x1 = 0;
+                double f = 0;
+                double z = 0;
+                i = estimate;
                 if (Math.Abs(i) < epsMax)
                 {
                     y = pv * (1 + n * i) + pmt * (1 + i * t) * n + fv;
@@ -211,12 +233,35 @@ namespace TVMCalc.Operations.Methods
                     f = Math.Exp(n * Math.Log(1 + i));
                     y = pv * f + pmt * (1 / i + t) * (f - 1) + fv;
                 }
-                y0 = y1;
-                y1 = y;
-                ++z;
+                y0 = pv + pmt * n + fv;
+                y1 = pv * f + pmt * (1 / i + t) * (f - 1) + fv;
+                z = x0 = 0;
+                x1 = i;
+                while ((Math.Abs(y0 - y1) > epsMax) && (z < itrMax))
+                {
+                    i = (y1 * x0 - y0 * x1) / (y1 - y0);
+                    x0 = x1;
+                    x1 = i;
+                    if (Math.Abs(i) < epsMax)
+                    {
+                        y = pv * (1 + n * i) + pmt * (1 + i * t) * n + fv;
+                    }
+                    else
+                    {
+                        f = Math.Exp(n * Math.Log(1 + i));
+                        y = pv * f + pmt * (1 / i + t) * (f - 1) + fv;
+                    }
+                    y0 = y1;
+                    y1 = y;
+                    ++z;
+                }
+                i = i * 100;
+                return i;
             }
-            i = i * 100;
-            return i;
+            catch
+            {
+                throw new System.ArgumentException();
+            }
         }
         /// <summary>
         /// Computes the present value in a TVM equation. Annuity Due or payment at the beginning of the period.
@@ -229,9 +274,16 @@ namespace TVMCalc.Operations.Methods
             var pmt = obj.Pmt;
             var fv = obj.Fv;
 
-            i = i / 100;
-            pv = (-1 * fv) * Math.Pow((i + 1), (n * -1)) - pmt + pmt * Math.Pow((i + 1), (n * -1)) - (pmt / i) + (pmt / i) * Math.Pow((i + 1), (n * -1));
-            return pv;
+            try
+            {
+                i = i / 100;
+                pv = (-1 * fv) * Math.Pow((i + 1), (n * -1)) - pmt + pmt * Math.Pow((i + 1), (n * -1)) - (pmt / i) + (pmt / i) * Math.Pow((i + 1), (n * -1));
+                return pv;
+            }
+            catch
+            {
+                throw new System.ArgumentException();
+            }
         }
         /// <summary>
         /// Computes the payment in a TVM equation. Annuity Due or payment at the beginning of the period.
@@ -244,9 +296,16 @@ namespace TVMCalc.Operations.Methods
             double pmt = 0;
             var fv = obj.Fv;
 
-            i = i / 100;
-            pmt = -1 * ((i * (fv + pv * Math.Pow((i + 1), n))) / (i * Math.Pow((i + 1), n) - i + Math.Pow((i + 1), n) - 1));
-            return pmt;
+            try
+            {
+                i = i / 100;
+                pmt = -1 * ((i * (fv + pv * Math.Pow((i + 1), n))) / (i * Math.Pow((i + 1), n) - i + Math.Pow((i + 1), n) - 1));
+                return pmt;
+            }
+            catch
+            {
+                throw new System.ArgumentException();
+            }
         }
         /// <summary>
         /// Computes the future value in a TVM equation. Annuity Due or payment at the beginning of the period.
@@ -259,9 +318,16 @@ namespace TVMCalc.Operations.Methods
             var pmt = obj.Pmt;
             double fv = 0;
 
-            i = i / 100;
-            fv = (1 / i) * ((i * -1) * (pmt * Math.Pow((i + 1), n) - pmt + pv * Math.Pow((i + 1), n)) - pmt * Math.Pow((i + 1), n) + pmt);
-            return fv;
+            try
+            {
+                i = i / 100;
+                fv = (1 / i) * ((i * -1) * (pmt * Math.Pow((i + 1), n) - pmt + pv * Math.Pow((i + 1), n)) - pmt * Math.Pow((i + 1), n) + pmt);
+                return fv;
+            }
+            catch
+            {
+                throw new System.ArgumentException();
+            }
         }
     }
 }

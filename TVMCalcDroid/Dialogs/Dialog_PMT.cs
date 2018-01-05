@@ -15,58 +15,58 @@ using static TVMCalc.Operations.Methods.TVMMethods;
 namespace TVMCalcDroid.Dialogs
 {
     /// <summary>
-    /// Compute N Click Event
+    /// Compute PMT Click Event
     /// </summary>
-    public class OnNComputeEventArgs : EventArgs
+    public class OnPmtComputeEventArgs : EventArgs
     {
-        private double mComputedN;
+        private double mComputedPMT;
 
-        public double ComputedN
+        public double ComputedPMT
         {
-            get { return mComputedN; }
-            set { mComputedN = value; }
+            get { return mComputedPMT; }
+            set { mComputedPMT = value; }
         }
 
-        public OnNComputeEventArgs(double computedN) : base()
+        public OnPmtComputeEventArgs(double computedPMT) : base()
         {
-            ComputedN = computedN;
+            ComputedPMT = computedPMT;
         }
     }
 
     /// <summary>
-    /// Inflates a view for Computing N;
+    /// Inflates a view for Computing PMT;
     /// </summary>
-    public class Dialog_N : DialogFragment
+    public class Dialog_PMT : DialogFragment
     {
+        private EditText mN;
         private EditText mIY;
         private EditText mPV;
-        private EditText mPMT;
         private EditText mFV;
         private TextView mComputeMode;
         private Switch mMode;
-        private Button mBtnNCompute;
+        private Button mBtnPMTCompute;
         private bool IsBegMode= false;
         private bool IsToggled = false;
 
-        public event EventHandler<OnNComputeEventArgs> mOnNComptComplete;
+        public event EventHandler<OnPmtComputeEventArgs> mOnPmtComptComplete;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
-            var view = inflater.Inflate(Resource.Layout.dialog_n, container, false);
+            var view = inflater.Inflate(Resource.Layout.dialog_pmt, container, false);
 
-            mIY = view.FindViewById<EditText>(Resource.Id.txt_n_IY);
-            mPV = view.FindViewById<EditText>(Resource.Id.txt_n_PV);
-            mPMT = view.FindViewById<EditText>(Resource.Id.txt_n_PMT);
-            mFV = view.FindViewById<EditText>(Resource.Id.txt_n_FV);
-            mMode = view.FindViewById<Switch>(Resource.Id.ComputeModeN);
-            mComputeMode = view.FindViewById<TextView>(Resource.Id.Compute_Mode_nview);
+            mN = view.FindViewById<EditText>(Resource.Id.txt_pmt_N);
+            mIY = view.FindViewById<EditText>(Resource.Id.txt_pmt_I);
+            mPV = view.FindViewById<EditText>(Resource.Id.txt_pmt_PV);
+            mFV = view.FindViewById<EditText>(Resource.Id.txt_pmt_FV);
+            mMode = view.FindViewById<Switch>(Resource.Id.ComputeModePmt);
+            mComputeMode = view.FindViewById<TextView>(Resource.Id.Compute_Mode_pmtview);
 
-            mBtnNCompute = view.FindViewById<Button>(Resource.Id.btnNCompute);
+            mBtnPMTCompute = view.FindViewById<Button>(Resource.Id.btnPMTCompute);
 
 
             mMode.CheckedChange += mMode_Toggled;
 
-            mBtnNCompute.Click += mBtnNCompute_Click;
+            mBtnPMTCompute.Click += mBtnPMTCompute_Click;
 
             return view;
         }
@@ -104,30 +104,30 @@ namespace TVMCalcDroid.Dialogs
         }
 
         /// <summary>
-        /// User has clicked the N compute Button
+        /// User has clicked the PMT compute Button
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mBtnNCompute_Click(object sender, EventArgs e)
+        private void mBtnPMTCompute_Click(object sender, EventArgs e)
         {
             TvmObject O = new TvmObject();
-            double N;
+            double Pmt;
             bool Valid = true;
 
             #region Verify Format
-            if ((double.TryParse(mIY.Text, out double w)) == false)
+            if ((double.TryParse(mN.Text, out double w)) == false)
+            {
+                mN.Text = "Invalid Input";
+                Valid = false;
+            }
+            if ((double.TryParse(mIY.Text, out double x)) == false)
             {
                 mIY.Text = "Invalid Input";
                 Valid = false;
             }
-            if ((double.TryParse(mPV.Text, out double x)) == false)
+            if ((double.TryParse(mPV.Text, out double y)) == false)
             {
                 mPV.Text = "Invalid Input";
-                Valid = false;
-            }
-            if ((double.TryParse(mPMT.Text, out double y)) == false)
-            {
-                mPMT.Text = "Invalid Input";
                 Valid = false;
             }
             if ((double.TryParse(mFV.Text, out double z)) == false)
@@ -139,21 +139,21 @@ namespace TVMCalcDroid.Dialogs
 
             if (Valid == true)
             {
+                O.N = double.Parse(mN.Text);
                 O.I = double.Parse(mIY.Text);
                 O.Pv = double.Parse(mPV.Text);
-                O.Pmt = double.Parse(mPMT.Text);
                 O.Fv = double.Parse(mFV.Text);
 
                 if (this.IsBegMode == true)
                 {
-                    N = NAdCompute(O);
+                    Pmt = PmtAdCompute(O);
                 }
                 else
                 {
-                    N = NCompute(O);
+                    Pmt = PmtCompute(O);
                 }
 
-                mOnNComptComplete.Invoke(this, new OnNComputeEventArgs(N));
+                mOnPmtComptComplete.Invoke(this, new OnPmtComputeEventArgs(Pmt));
                 this.Dismiss();
             }
         }

@@ -62,10 +62,16 @@ namespace TVMCalcDroid
 			public const int abc_slide_out_top = 2130968585;
 			
 			// aapt resource value: 0x7f04000a
-			public const int tooltip_enter = 2130968586;
+			public const int slide_right = 2130968586;
 			
 			// aapt resource value: 0x7f04000b
-			public const int tooltip_exit = 2130968587;
+			public const int slide_up = 2130968587;
+			
+			// aapt resource value: 0x7f04000c
+			public const int tooltip_enter = 2130968588;
+			
+			// aapt resource value: 0x7f04000d
+			public const int tooltip_exit = 2130968589;
 			
 			static Animation()
 			{
@@ -1870,149 +1876,188 @@ namespace TVMCalcDroid
 			// aapt resource value: 0x7f0a0035
 			public const int ALT = 2131361845;
 			
-			// aapt resource value: 0x7f0a0095
-			public const int AcosCompt_Key = 2131361941;
+			// aapt resource value: 0x7f0a00b6
+			public const int AcosCompt_Key = 2131361974;
 			
-			// aapt resource value: 0x7f0a0086
-			public const int Amort_Key = 2131361926;
+			// aapt resource value: 0x7f0a00a7
+			public const int Amort_Key = 2131361959;
 			
-			// aapt resource value: 0x7f0a0094
-			public const int AsinCompt_Key = 2131361940;
+			// aapt resource value: 0x7f0a00b5
+			public const int AsinCompt_Key = 2131361973;
 			
-			// aapt resource value: 0x7f0a0096
-			public const int AtanCompt_Key = 2131361942;
+			// aapt resource value: 0x7f0a00b7
+			public const int AtanCompt_Key = 2131361975;
 			
-			// aapt resource value: 0x7f0a009e
-			public const int Back_Key = 2131361950;
+			// aapt resource value: 0x7f0a00bf
+			public const int Back_Key = 2131361983;
 			
 			// aapt resource value: 0x7f0a0036
 			public const int CTRL = 2131361846;
 			
-			// aapt resource value: 0x7f0a007c
-			public const int Calculator_textOpps_view = 2131361916;
+			// aapt resource value: 0x7f0a009d
+			public const int Calculator_textOpps_view = 2131361949;
 			
-			// aapt resource value: 0x7f0a007d
-			public const int Calculator_text_view = 2131361917;
+			// aapt resource value: 0x7f0a009e
+			public const int Calculator_text_view = 2131361950;
 			
-			// aapt resource value: 0x7f0a0083
-			public const int Cf_Key = 2131361923;
+			// aapt resource value: 0x7f0a00a4
+			public const int Cf_Key = 2131361956;
 			
-			// aapt resource value: 0x7f0a00ac
-			public const int Clear_Key = 2131361964;
+			// aapt resource value: 0x7f0a00cd
+			public const int Clear_Key = 2131361997;
+			
+			// aapt resource value: 0x7f0a0077
+			public const int ComputeModeFv = 2131361911;
+			
+			// aapt resource value: 0x7f0a007f
+			public const int ComputeModeI = 2131361919;
+			
+			// aapt resource value: 0x7f0a0087
+			public const int ComputeModeN = 2131361927;
+			
+			// aapt resource value: 0x7f0a008f
+			public const int ComputeModePmt = 2131361935;
+			
+			// aapt resource value: 0x7f0a0097
+			public const int ComputeModePv = 2131361943;
 			
 			// aapt resource value: 0x7f0a0076
-			public const int ComputeMode = 2131361910;
+			public const int Compute_Mode_fvview = 2131361910;
+			
+			// aapt resource value: 0x7f0a007e
+			public const int Compute_Mode_iview = 2131361918;
+			
+			// aapt resource value: 0x7f0a0086
+			public const int Compute_Mode_nview = 2131361926;
+			
+			// aapt resource value: 0x7f0a008e
+			public const int Compute_Mode_pmtview = 2131361934;
+			
+			// aapt resource value: 0x7f0a0096
+			public const int Compute_Mode_pvview = 2131361942;
 			
 			// aapt resource value: 0x7f0a0075
-			public const int Compute_Mode_view = 2131361909;
+			public const int Compute_Modetext_fvview = 2131361909;
 			
-			// aapt resource value: 0x7f0a0092
-			public const int CosCompt_Key = 2131361938;
+			// aapt resource value: 0x7f0a007d
+			public const int Compute_Modetext_iview = 2131361917;
 			
-			// aapt resource value: 0x7f0a009f
-			public const int Devide_Key = 2131361951;
+			// aapt resource value: 0x7f0a0085
+			public const int Compute_Modetext_nview = 2131361925;
 			
-			// aapt resource value: 0x7f0a00ae
-			public const int Dot_Key = 2131361966;
+			// aapt resource value: 0x7f0a008d
+			public const int Compute_Modetext_pmtview = 2131361933;
 			
-			// aapt resource value: 0x7f0a008b
-			public const int ECompt_Key = 2131361931;
+			// aapt resource value: 0x7f0a0095
+			public const int Compute_Modetext_pvview = 2131361941;
 			
-			// aapt resource value: 0x7f0a00a1
-			public const int Eight_Key = 2131361953;
+			// aapt resource value: 0x7f0a00b3
+			public const int CosCompt_Key = 2131361971;
 			
-			// aapt resource value: 0x7f0a00af
-			public const int Equals_Key = 2131361967;
+			// aapt resource value: 0x7f0a00c0
+			public const int Devide_Key = 2131361984;
+			
+			// aapt resource value: 0x7f0a00cf
+			public const int Dot_Key = 2131361999;
+			
+			// aapt resource value: 0x7f0a00ac
+			public const int ECompt_Key = 2131361964;
+			
+			// aapt resource value: 0x7f0a00c2
+			public const int Eight_Key = 2131361986;
+			
+			// aapt resource value: 0x7f0a00d0
+			public const int Equals_Key = 2131362000;
 			
 			// aapt resource value: 0x7f0a0037
 			public const int FUNCTION = 2131361847;
 			
-			// aapt resource value: 0x7f0a0090
-			public const int Factorial_Recursion_Key = 2131361936;
+			// aapt resource value: 0x7f0a00b1
+			public const int Factorial_Recursion_Key = 2131361969;
 			
-			// aapt resource value: 0x7f0a00a5
-			public const int Five_Key = 2131361957;
+			// aapt resource value: 0x7f0a00c6
+			public const int Five_Key = 2131361990;
 			
-			// aapt resource value: 0x7f0a0098
-			public const int Format_Key = 2131361944;
+			// aapt resource value: 0x7f0a00b9
+			public const int Format_Key = 2131361977;
 			
-			// aapt resource value: 0x7f0a00a4
-			public const int Four_Key = 2131361956;
+			// aapt resource value: 0x7f0a00c5
+			public const int Four_Key = 2131361989;
 			
-			// aapt resource value: 0x7f0a0082
-			public const int Fv_Key = 2131361922;
+			// aapt resource value: 0x7f0a00a3
+			public const int Fv_Key = 2131361955;
 			
-			// aapt resource value: 0x7f0a0085
-			public const int Irr_Key = 2131361925;
+			// aapt resource value: 0x7f0a00a6
+			public const int Irr_Key = 2131361958;
 			
-			// aapt resource value: 0x7f0a007f
-			public const int Iy_Key = 2131361919;
+			// aapt resource value: 0x7f0a00a0
+			public const int Iy_Key = 2131361952;
 			
-			// aapt resource value: 0x7f0a008d
-			public const int LogCompt_Key = 2131361933;
+			// aapt resource value: 0x7f0a00ae
+			public const int LogCompt_Key = 2131361966;
 			
 			// aapt resource value: 0x7f0a0038
 			public const int META = 2131361848;
 			
-			// aapt resource value: 0x7f0a00a7
-			public const int Minus_Key = 2131361959;
+			// aapt resource value: 0x7f0a00c8
+			public const int Minus_Key = 2131361992;
 			
-			// aapt resource value: 0x7f0a00a3
-			public const int Multiply_Key = 2131361955;
+			// aapt resource value: 0x7f0a00c4
+			public const int Multiply_Key = 2131361988;
 			
-			// aapt resource value: 0x7f0a007e
-			public const int N_Key = 2131361918;
+			// aapt resource value: 0x7f0a009f
+			public const int N_Key = 2131361951;
 			
-			// aapt resource value: 0x7f0a008c
-			public const int NaturalLogCompt_Key = 2131361932;
+			// aapt resource value: 0x7f0a00ad
+			public const int NaturalLogCompt_Key = 2131361965;
 			
-			// aapt resource value: 0x7f0a008f
-			public const int Ncr_Key = 2131361935;
+			// aapt resource value: 0x7f0a00b0
+			public const int Ncr_Key = 2131361968;
 			
-			// aapt resource value: 0x7f0a00a2
-			public const int Nine_Key = 2131361954;
+			// aapt resource value: 0x7f0a00c3
+			public const int Nine_Key = 2131361987;
 			
-			// aapt resource value: 0x7f0a008e
-			public const int Npr_Key = 2131361934;
+			// aapt resource value: 0x7f0a00af
+			public const int Npr_Key = 2131361967;
 			
-			// aapt resource value: 0x7f0a0084
-			public const int Npv_Key = 2131361924;
-			
-			// aapt resource value: 0x7f0a008a
-			public const int OneOver_Key = 2131361930;
-			
-			// aapt resource value: 0x7f0a00a8
-			public const int One_Key = 2131361960;
-			
-			// aapt resource value: 0x7f0a009d
-			public const int Parenthesie_Closed_Key = 2131361949;
-			
-			// aapt resource value: 0x7f0a009c
-			public const int Parenthesie_Open_Key = 2131361948;
-			
-			// aapt resource value: 0x7f0a0097
-			public const int PercentCompt_Key = 2131361943;
+			// aapt resource value: 0x7f0a00a5
+			public const int Npv_Key = 2131361957;
 			
 			// aapt resource value: 0x7f0a00ab
-			public const int Plus_Key = 2131361963;
+			public const int OneOver_Key = 2131361963;
 			
-			// aapt resource value: 0x7f0a009b
-			public const int Plus_Minus_Key = 2131361947;
+			// aapt resource value: 0x7f0a00c9
+			public const int One_Key = 2131361993;
 			
-			// aapt resource value: 0x7f0a0081
-			public const int Pmt_Key = 2131361921;
+			// aapt resource value: 0x7f0a00be
+			public const int Parenthesie_Closed_Key = 2131361982;
 			
-			// aapt resource value: 0x7f0a0087
-			public const int PowerCompt_Key = 2131361927;
+			// aapt resource value: 0x7f0a00bd
+			public const int Parenthesie_Open_Key = 2131361981;
 			
-			// aapt resource value: 0x7f0a0080
-			public const int Pv_Key = 2131361920;
+			// aapt resource value: 0x7f0a00b8
+			public const int PercentCompt_Key = 2131361976;
 			
-			// aapt resource value: 0x7f0a009a
-			public const int RandCompt_Key = 2131361946;
+			// aapt resource value: 0x7f0a00cc
+			public const int Plus_Key = 2131361996;
 			
-			// aapt resource value: 0x7f0a0099
-			public const int RoundCompt_Key = 2131361945;
+			// aapt resource value: 0x7f0a00bc
+			public const int Plus_Minus_Key = 2131361980;
+			
+			// aapt resource value: 0x7f0a00a2
+			public const int Pmt_Key = 2131361954;
+			
+			// aapt resource value: 0x7f0a00a8
+			public const int PowerCompt_Key = 2131361960;
+			
+			// aapt resource value: 0x7f0a00a1
+			public const int Pv_Key = 2131361953;
+			
+			// aapt resource value: 0x7f0a00bb
+			public const int RandCompt_Key = 2131361979;
+			
+			// aapt resource value: 0x7f0a00ba
+			public const int RoundCompt_Key = 2131361978;
 			
 			// aapt resource value: 0x7f0a0039
 			public const int SHIFT = 2131361849;
@@ -2020,35 +2065,35 @@ namespace TVMCalcDroid
 			// aapt resource value: 0x7f0a003a
 			public const int SYM = 2131361850;
 			
-			// aapt resource value: 0x7f0a00a0
-			public const int Seven_Key = 2131361952;
+			// aapt resource value: 0x7f0a00c1
+			public const int Seven_Key = 2131361985;
 			
-			// aapt resource value: 0x7f0a0091
-			public const int SinCompt_Key = 2131361937;
+			// aapt resource value: 0x7f0a00b2
+			public const int SinCompt_Key = 2131361970;
 			
-			// aapt resource value: 0x7f0a00a6
-			public const int Six_Key = 2131361958;
-			
-			// aapt resource value: 0x7f0a0088
-			public const int SqrtCompt_Key = 2131361928;
-			
-			// aapt resource value: 0x7f0a0089
-			public const int SquareCompt_Key = 2131361929;
-			
-			// aapt resource value: 0x7f0a0093
-			public const int TanCompt_Key = 2131361939;
-			
-			// aapt resource value: 0x7f0a00aa
-			public const int Three_Key = 2131361962;
+			// aapt resource value: 0x7f0a00c7
+			public const int Six_Key = 2131361991;
 			
 			// aapt resource value: 0x7f0a00a9
-			public const int Two_Key = 2131361961;
+			public const int SqrtCompt_Key = 2131361961;
 			
-			// aapt resource value: 0x7f0a00ad
-			public const int Zero_Key = 2131361965;
+			// aapt resource value: 0x7f0a00aa
+			public const int SquareCompt_Key = 2131361962;
 			
-			// aapt resource value: 0x7f0a00b3
-			public const int action0 = 2131361971;
+			// aapt resource value: 0x7f0a00b4
+			public const int TanCompt_Key = 2131361972;
+			
+			// aapt resource value: 0x7f0a00cb
+			public const int Three_Key = 2131361995;
+			
+			// aapt resource value: 0x7f0a00ca
+			public const int Two_Key = 2131361994;
+			
+			// aapt resource value: 0x7f0a00ce
+			public const int Zero_Key = 2131361998;
+			
+			// aapt resource value: 0x7f0a00d4
+			public const int action0 = 2131362004;
 			
 			// aapt resource value: 0x7f0a0066
 			public const int action_bar = 2131361894;
@@ -2071,17 +2116,17 @@ namespace TVMCalcDroid
 			// aapt resource value: 0x7f0a0044
 			public const int action_bar_title = 2131361860;
 			
-			// aapt resource value: 0x7f0a00b0
-			public const int action_container = 2131361968;
+			// aapt resource value: 0x7f0a00d1
+			public const int action_container = 2131362001;
 			
 			// aapt resource value: 0x7f0a0067
 			public const int action_context_bar = 2131361895;
 			
-			// aapt resource value: 0x7f0a00b7
-			public const int action_divider = 2131361975;
+			// aapt resource value: 0x7f0a00d8
+			public const int action_divider = 2131362008;
 			
-			// aapt resource value: 0x7f0a00b1
-			public const int action_image = 2131361969;
+			// aapt resource value: 0x7f0a00d2
+			public const int action_image = 2131362002;
 			
 			// aapt resource value: 0x7f0a0002
 			public const int action_menu_divider = 2131361794;
@@ -2098,11 +2143,11 @@ namespace TVMCalcDroid
 			// aapt resource value: 0x7f0a0046
 			public const int action_mode_close_button = 2131361862;
 			
-			// aapt resource value: 0x7f0a00b2
-			public const int action_text = 2131361970;
+			// aapt resource value: 0x7f0a00d3
+			public const int action_text = 2131362003;
 			
-			// aapt resource value: 0x7f0a00c0
-			public const int actions = 2131361984;
+			// aapt resource value: 0x7f0a00e1
+			public const int actions = 2131362017;
 			
 			// aapt resource value: 0x7f0a0047
 			public const int activity_chooser_view_content = 2131361863;
@@ -2134,8 +2179,20 @@ namespace TVMCalcDroid
 			// aapt resource value: 0x7f0a0013
 			public const int bottom = 2131361811;
 			
-			// aapt resource value: 0x7f0a007b
-			public const int btnNCompute = 2131361915;
+			// aapt resource value: 0x7f0a007c
+			public const int btnFVCompute = 2131361916;
+			
+			// aapt resource value: 0x7f0a0084
+			public const int btnICompute = 2131361924;
+			
+			// aapt resource value: 0x7f0a008c
+			public const int btnNCompute = 2131361932;
+			
+			// aapt resource value: 0x7f0a0094
+			public const int btnPMTCompute = 2131361940;
+			
+			// aapt resource value: 0x7f0a009c
+			public const int btnPVCompute = 2131361948;
 			
 			// aapt resource value: 0x7f0a004d
 			public const int buttonPanel = 2131361869;
@@ -2143,8 +2200,8 @@ namespace TVMCalcDroid
 			// aapt resource value: 0x7f0a000e
 			public const int calligraphy_tag_id = 2131361806;
 			
-			// aapt resource value: 0x7f0a00b4
-			public const int cancel_action = 2131361972;
+			// aapt resource value: 0x7f0a00d5
+			public const int cancel_action = 2131362005;
 			
 			// aapt resource value: 0x7f0a0014
 			public const int center = 2131361812;
@@ -2158,8 +2215,8 @@ namespace TVMCalcDroid
 			// aapt resource value: 0x7f0a005d
 			public const int checkbox = 2131361885;
 			
-			// aapt resource value: 0x7f0a00bc
-			public const int chronometer = 2131361980;
+			// aapt resource value: 0x7f0a00dd
+			public const int chronometer = 2131362013;
 			
 			// aapt resource value: 0x7f0a0017
 			public const int clip_horizontal = 2131361815;
@@ -2194,8 +2251,8 @@ namespace TVMCalcDroid
 			// aapt resource value: 0x7f0a0019
 			public const int end = 2131361817;
 			
-			// aapt resource value: 0x7f0a00c2
-			public const int end_padder = 2131361986;
+			// aapt resource value: 0x7f0a00e3
+			public const int end_padder = 2131362019;
 			
 			// aapt resource value: 0x7f0a0048
 			public const int expand_activities_button = 2131361864;
@@ -2227,8 +2284,8 @@ namespace TVMCalcDroid
 			// aapt resource value: 0x7f0a004c
 			public const int icon = 2131361868;
 			
-			// aapt resource value: 0x7f0a00c1
-			public const int icon_group = 2131361985;
+			// aapt resource value: 0x7f0a00e2
+			public const int icon_group = 2131362018;
 			
 			// aapt resource value: 0x7f0a003d
 			public const int ifRoom = 2131361853;
@@ -2236,8 +2293,8 @@ namespace TVMCalcDroid
 			// aapt resource value: 0x7f0a0049
 			public const int image = 2131361865;
 			
-			// aapt resource value: 0x7f0a00bd
-			public const int info = 2131361981;
+			// aapt resource value: 0x7f0a00de
+			public const int info = 2131362014;
 			
 			// aapt resource value: 0x7f0a0043
 			public const int italic = 2131361859;
@@ -2257,11 +2314,11 @@ namespace TVMCalcDroid
 			// aapt resource value: 0x7f0a004b
 			public const int list_item = 2131361867;
 			
-			// aapt resource value: 0x7f0a00b6
-			public const int media_actions = 2131361974;
+			// aapt resource value: 0x7f0a00d7
+			public const int media_actions = 2131362007;
 			
-			// aapt resource value: 0x7f0a00c3
-			public const int message = 2131361987;
+			// aapt resource value: 0x7f0a00e4
+			public const int message = 2131362020;
 			
 			// aapt resource value: 0x7f0a0034
 			public const int middle = 2131361844;
@@ -2278,14 +2335,14 @@ namespace TVMCalcDroid
 			// aapt resource value: 0x7f0a0022
 			public const int normal = 2131361826;
 			
-			// aapt resource value: 0x7f0a00bf
-			public const int notification_background = 2131361983;
+			// aapt resource value: 0x7f0a00e0
+			public const int notification_background = 2131362016;
 			
-			// aapt resource value: 0x7f0a00b9
-			public const int notification_main_column = 2131361977;
+			// aapt resource value: 0x7f0a00da
+			public const int notification_main_column = 2131362010;
 			
-			// aapt resource value: 0x7f0a00b8
-			public const int notification_main_column_container = 2131361976;
+			// aapt resource value: 0x7f0a00d9
+			public const int notification_main_column_container = 2131362009;
 			
 			// aapt resource value: 0x7f0a004f
 			public const int parentPanel = 2131361871;
@@ -2302,11 +2359,11 @@ namespace TVMCalcDroid
 			// aapt resource value: 0x7f0a001e
 			public const int right = 2131361822;
 			
-			// aapt resource value: 0x7f0a00be
-			public const int right_icon = 2131361982;
+			// aapt resource value: 0x7f0a00df
+			public const int right_icon = 2131362015;
 			
-			// aapt resource value: 0x7f0a00ba
-			public const int right_side = 2131361978;
+			// aapt resource value: 0x7f0a00db
+			public const int right_side = 2131362011;
 			
 			// aapt resource value: 0x7f0a002c
 			public const int screen = 2131361836;
@@ -2383,8 +2440,8 @@ namespace TVMCalcDroid
 			// aapt resource value: 0x7f0a001f
 			public const int start = 2131361823;
 			
-			// aapt resource value: 0x7f0a00b5
-			public const int status_bar_latest_event_content = 2131361973;
+			// aapt resource value: 0x7f0a00d6
+			public const int status_bar_latest_event_content = 2131362006;
 			
 			// aapt resource value: 0x7f0a0060
 			public const int submenuarrow = 2131361888;
@@ -2407,8 +2464,8 @@ namespace TVMCalcDroid
 			// aapt resource value: 0x7f0a0053
 			public const int textSpacerNoTitle = 2131361875;
 			
-			// aapt resource value: 0x7f0a00bb
-			public const int time = 2131361979;
+			// aapt resource value: 0x7f0a00dc
+			public const int time = 2131362012;
 			
 			// aapt resource value: 0x7f0a000d
 			public const int title = 2131361805;
@@ -2425,17 +2482,65 @@ namespace TVMCalcDroid
 			// aapt resource value: 0x7f0a0058
 			public const int topPanel = 2131361880;
 			
-			// aapt resource value: 0x7f0a007a
-			public const int txt_n_FV = 2131361914;
-			
-			// aapt resource value: 0x7f0a0077
-			public const int txt_n_IY = 2131361911;
-			
 			// aapt resource value: 0x7f0a0079
-			public const int txt_n_PMT = 2131361913;
+			public const int txt_fv_I = 2131361913;
 			
 			// aapt resource value: 0x7f0a0078
-			public const int txt_n_PV = 2131361912;
+			public const int txt_fv_N = 2131361912;
+			
+			// aapt resource value: 0x7f0a007b
+			public const int txt_fv_PMT = 2131361915;
+			
+			// aapt resource value: 0x7f0a007a
+			public const int txt_fv_PV = 2131361914;
+			
+			// aapt resource value: 0x7f0a0083
+			public const int txt_i_FV = 2131361923;
+			
+			// aapt resource value: 0x7f0a0080
+			public const int txt_i_N = 2131361920;
+			
+			// aapt resource value: 0x7f0a0082
+			public const int txt_i_PMT = 2131361922;
+			
+			// aapt resource value: 0x7f0a0081
+			public const int txt_i_PV = 2131361921;
+			
+			// aapt resource value: 0x7f0a008b
+			public const int txt_n_FV = 2131361931;
+			
+			// aapt resource value: 0x7f0a0088
+			public const int txt_n_IY = 2131361928;
+			
+			// aapt resource value: 0x7f0a008a
+			public const int txt_n_PMT = 2131361930;
+			
+			// aapt resource value: 0x7f0a0089
+			public const int txt_n_PV = 2131361929;
+			
+			// aapt resource value: 0x7f0a0093
+			public const int txt_pmt_FV = 2131361939;
+			
+			// aapt resource value: 0x7f0a0091
+			public const int txt_pmt_I = 2131361937;
+			
+			// aapt resource value: 0x7f0a0090
+			public const int txt_pmt_N = 2131361936;
+			
+			// aapt resource value: 0x7f0a0092
+			public const int txt_pmt_PV = 2131361938;
+			
+			// aapt resource value: 0x7f0a009b
+			public const int txt_pv_FV = 2131361947;
+			
+			// aapt resource value: 0x7f0a0099
+			public const int txt_pv_I = 2131361945;
+			
+			// aapt resource value: 0x7f0a0098
+			public const int txt_pv_N = 2131361944;
+			
+			// aapt resource value: 0x7f0a009a
+			public const int txt_pv_PMT = 2131361946;
 			
 			// aapt resource value: 0x7f0a0031
 			public const int uniform = 2131361841;
@@ -2578,70 +2683,82 @@ namespace TVMCalcDroid
 			public const int abc_select_dialog_material = 2130903066;
 			
 			// aapt resource value: 0x7f03001b
-			public const int dialog_n = 2130903067;
+			public const int dialog_fv = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public const int Main = 2130903068;
+			public const int dialog_i = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int notification_action = 2130903069;
+			public const int dialog_n = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int notification_action_tombstone = 2130903070;
+			public const int dialog_pmt = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int notification_media_action = 2130903071;
+			public const int dialog_pv = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int notification_media_cancel_action = 2130903072;
+			public const int Main = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int notification_template_big_media = 2130903073;
+			public const int notification_action = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int notification_template_big_media_custom = 2130903074;
+			public const int notification_action_tombstone = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int notification_template_big_media_narrow = 2130903075;
+			public const int notification_media_action = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int notification_template_big_media_narrow_custom = 2130903076;
+			public const int notification_media_cancel_action = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int notification_template_custom_big = 2130903077;
+			public const int notification_template_big_media = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int notification_template_icon_group = 2130903078;
+			public const int notification_template_big_media_custom = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public const int notification_template_lines_media = 2130903079;
+			public const int notification_template_big_media_narrow = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public const int notification_template_media = 2130903080;
+			public const int notification_template_big_media_narrow_custom = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int notification_template_media_custom = 2130903081;
+			public const int notification_template_custom_big = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int notification_template_part_chronometer = 2130903082;
+			public const int notification_template_icon_group = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int notification_template_part_time = 2130903083;
+			public const int notification_template_lines_media = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int select_dialog_item_material = 2130903084;
+			public const int notification_template_media = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int select_dialog_multichoice_material = 2130903085;
+			public const int notification_template_media_custom = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int select_dialog_singlechoice_material = 2130903086;
+			public const int notification_template_part_chronometer = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int support_simple_spinner_dropdown_item = 2130903087;
+			public const int notification_template_part_time = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int tooltip = 2130903088;
+			public const int select_dialog_item_material = 2130903088;
+			
+			// aapt resource value: 0x7f030031
+			public const int select_dialog_multichoice_material = 2130903089;
+			
+			// aapt resource value: 0x7f030032
+			public const int select_dialog_singlechoice_material = 2130903090;
+			
+			// aapt resource value: 0x7f030033
+			public const int support_simple_spinner_dropdown_item = 2130903091;
+			
+			// aapt resource value: 0x7f030034
+			public const int tooltip = 2130903092;
 			
 			static Layout()
 			{
@@ -3865,6 +3982,9 @@ namespace TVMCalcDroid
 			
 			// aapt resource value: 0x7f070173
 			public const int cptButton_calculator = 2131165555;
+			
+			// aapt resource value: 0x7f070174
+			public const int dialog_anim = 2131165556;
 			
 			// aapt resource value: 0x7f070172
 			public const int editText_dialog = 2131165554;
