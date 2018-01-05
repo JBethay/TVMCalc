@@ -102,8 +102,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\Dialog_CF.cs" />
+    <Compile Include="Dialogs\Dialog_NCR.cs" />
+    <Compile Include="Dialogs\Dialog_NPR.cs" />
+    <Compile Include="Dialogs\Dialog_NPV.cs" />
+    <Compile Include="Dialogs\Dialog_Round.cs" />
     <Compile Include="Dialogs\Dialog_PMT.cs" />
     <Compile Include="Dialogs\Dialog_FV.cs" />
+    <Compile Include="Dialogs\Dialog_Format.cs" />
     <Compile Include="Dialogs\Dialog_PV.cs" />
     <Compile Include="Dialogs\Dialog_N.cs" />
     <Compile Include="Dialogs\Dialog_I.cs" />
@@ -130,6 +136,24 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\dialog_fv.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\dialog_format.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\dialog_round.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\dialog_npr.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\dialog_ncr.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\dialog_cf.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\dialog_npv.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

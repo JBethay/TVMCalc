@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <android.support.v7.widget.GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        app:orientation="horizontal"
+        app:columnCount="3">
+        <TextView
+            android:id="@+id/Format_Modetext_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="0dp"
+            android:padding="5dp"
+            android:textSize="15sp"
+            android:text="Desired Number of Decimal Places:"
+            android:textStyle="bold"
+            android:textAllCaps="false" />
+    </android.support.v7.widget.GridLayout>
+    <EditText
+        android:id="@+id/txt_format"
+        style="@style/editText_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:inputType="number"
+        android:hint="Enter Whole Number" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+        <Button
+            android:id="@+id/btnFormatCompute"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Format"
+            android:height="70dp"
+            style="@style/cptButton_calculator" />
+    </RelativeLayout>
+</LinearLayout>

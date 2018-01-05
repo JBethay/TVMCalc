@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <android.support.v7.widget.GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        app:orientation="horizontal"
+        app:columnCount="2">
+        <TextView
+            android:id="@+id/Compute_Modetext_cfview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
+            android:padding="5dp"
+            android:textSize="15sp"
+            android:text="Input Cash Flows:"
+            android:textStyle="bold"
+            android:textAllCaps="false" />
+        <TextView
+            android:id="@+id/Compute_Mode_cfview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_gravity="left"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="5dp"
+            android:padding="5dp"
+            android:textSize="15sp"
+            android:text="CF1"
+            android:textStyle="bold"
+            android:textAllCaps="false" />
+    </android.support.v7.widget.GridLayout>
+    <EditText
+        android:id="@+id/txt_cf_CF0"
+        style="@style/editText_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:inputType="numberDecimal|numberSigned"
+        android:hint="CF0, Only Enter Once" />
+    <EditText
+        android:id="@+id/txt_cf_CF"
+        style="@style/editText_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:inputType="numberDecimal|numberSigned"
+        android:hint="Cash Flow" />
+    <EditText
+        android:id="@+id/txt_cf_FREQ"
+        style="@style/editText_dialog"
+        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:inputType="number"
+        android:hint="Frequency" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <android.support.v7.widget.GridLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            app:orientation="horizontal"
+            app:columnCount="1">
+            <Button
+                android:id="@+id/btnCFAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Cash Flow"
+                android:height="60dp"
+                style="@style/cptButton_calculator" />
+            <Button
+                android:id="@+id/btnCFDone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Done"
+                android:height="60dp"
+                android:layout_marginBottom="10dp"
+                style="@style/cptButton_calculator" />
+        </android.support.v7.widget.GridLayout>
+    </RelativeLayout>
+</LinearLayout>

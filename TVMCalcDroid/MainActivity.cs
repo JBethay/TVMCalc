@@ -9,8 +9,11 @@ using Android.Content.PM;
 using static TVMCalcDroid.Helper.HelperCalc;
 using static TVMCalc.Operations.Methods.PrimaryOppsMethods;
 using static TVMCalc.Operations.Methods.SecondaryOppsMethods;
+using static TVMCalc.Operations.Methods.TVMCfMethods;
+using TVMCalc.Operations.ObjctTemps;
 using System.Linq;
 using TVMCalcDroid.Dialogs;
+
 
 namespace TVMCalcDroid
 {
@@ -34,12 +37,15 @@ namespace TVMCalcDroid
         private bool IsOppPreformed { get; set; }
         private bool IsNewInput { get; set; }
         private bool IsOppRepeated { get; set; }
+        private bool IsSingleInput { get; set; }
+        private bool IsCfValid { get; set; }
         private int Format = 2;
         private double Input1 { get; set; }
         private double Input2 { get; set; }
         private double Result = 0;
         private double ResultTrue = 0;
         private string OppPreformed { get; set; }
+        private CfObject Cfobjt = new CfObject();        
         #endregion
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -106,7 +112,6 @@ namespace TVMCalcDroid
             BtnAcos = FindViewById<Button>(Resource.Id.AcosCompt_Key);
             BtnAtan = FindViewById<Button>(Resource.Id.AtanCompt_Key);
             BtnN = FindViewById<Button>(Resource.Id.N_Key);
-
             #endregion
 
             #region Primary & Formating Button_Clicks
@@ -129,6 +134,7 @@ namespace TVMCalcDroid
             BtnMinus.Click += Operator_Click;
             BtnDevide.Click += Operator_Click;
             BtnMultiply.Click += Operator_Click;
+            BtnPower.Click += Operator_Click;
             BtnEquals.Click += Equals_Click;
             BtnClr.Click += CE_Click;
             BtnBack.Click += Back_Click;
@@ -151,7 +157,6 @@ namespace TVMCalcDroid
             BtnIrr.Click += Irr_Button_Click;
             BtnAmort.Click += Amort_Button_Click;
 
-            BtnPower.Click += Power_Button_Click;
             BtnSqrt.Click += Sqrt_Button_Click;
             BtnSquared.Click += Squared_Button_Click;
             BtnOneOver.Click += OneOver_Button_Click;
@@ -225,7 +230,8 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Equals_Click(object sender, EventArgs e)
         {
-            if (IsOppPreformed == true && IsNewInput == true)
+            #region Double Input Opps Calcs
+            if (IsOppPreformed == true && IsNewInput == true && IsSingleInput == false)
             {
                 CalcOppsDisplay.Text = "";
                 Input2 = Input1;
@@ -251,6 +257,94 @@ namespace TVMCalcDroid
                         Result = ResultTrue;
                         CalcDisplay.Text = NumToStringFormated(Result, Format);
                         break;
+
+                    case "y^x":
+                        ResultTrue = PowerCompt(ResultTrue, Input2);
+                        Result = ResultTrue;
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
+                        break;
+                    default:
+                        ResultTrue = Input2;
+                        break;
+                }
+                IsOppPreformed = false;
+                IsNewInput = false;
+                IsOppRepeated = false;
+                IsSingleInput = false;
+            }
+            #endregion
+            #region Single Input Opps Calcs
+            else if (IsOppPreformed == true && IsNewInput == true && IsSingleInput == true)
+            {
+                CalcOppsDisplay.Text = "";
+                Input2 = StringToNum(CalcDisplay.Text);
+                switch (OppPreformed)
+                {
+                    case "SQRT":
+                        ResultTrue = SqrtCompt(Input2);
+                        Result = ResultTrue;
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
+                        break;
+                    case "x^2":
+                        ResultTrue = SquareCompt(Input2);
+                        Result = ResultTrue;
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
+                        break;
+                    case "1/x":
+                        ResultTrue = OneOverCompt(Input2);
+                        Result = ResultTrue;
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
+                        break;
+                    case "e^x":
+                        ResultTrue = ECompute(Input2);
+                        Result = ResultTrue;
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
+                        break;
+                    case "LN":
+                        ResultTrue = NaturalLogCompt(Input2);
+                        Result = ResultTrue;
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
+                        break;
+                    case "LOG":
+                        ResultTrue = LogCompt(Input2);
+                        Result = ResultTrue;
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
+                        break;
+                    case "X!":
+                        ResultTrue = (Input2.Factorial_Recursion());
+                        Result = ResultTrue;
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
+                        break;
+                    case "SIN":
+                        ResultTrue = SinCompute(Input2);
+                        Result = ResultTrue;
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
+                        break;
+                    case "COS":
+                        ResultTrue = CosCompute(Input2);
+                        Result = ResultTrue;
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
+                        break;
+                    case "TAN":
+                        ResultTrue = TanCompute(Input2);
+                        Result = ResultTrue;
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
+                        break;
+                    case "ASIN":
+                        ResultTrue = AsinCompute(Input2);
+                        Result = ResultTrue;
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
+                        break;
+                    case "ACOS":
+                        ResultTrue = AcosCompute(Input2);
+                        Result = ResultTrue;
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
+                        break;
+                    case "ATAN":
+                        ResultTrue = AtanCompute(Input2);
+                        Result = ResultTrue;
+                        CalcDisplay.Text = NumToStringFormated(Result, Format);
+                        break;
                     default:
                         ResultTrue = Input2;
                         break;
@@ -259,6 +353,7 @@ namespace TVMCalcDroid
                 IsNewInput = false;
                 IsOppRepeated = false;
             }
+            #endregion
             else
             {
                 Input2 = StringToNum(CalcDisplay.Text);
@@ -266,6 +361,7 @@ namespace TVMCalcDroid
                 ResultTrue = Input2;
                 IsNewInput = false;
                 IsOppPreformed = false;
+                IsSingleInput = false;
             }
         }
 
@@ -279,18 +375,27 @@ namespace TVMCalcDroid
             Button button = (Button)sender;
             BtnEquals.PerformClick();
 
-            if (CalcDisplay.Text != "" && IsOppRepeated == false)
-            {
-                OppPreformed = button.Text;
-                IsOppPreformed = true;
-                IsOppRepeated = true; 
-                CalcOppsDisplay.Text = button.Text;
-            }
-            if(CalcDisplay.Text != "" && IsOppRepeated == true)
+            if (CalcDisplay.Text != "" && IsOppRepeated == true)
             {
                 OppPreformed = button.Text;
                 IsOppPreformed = true;
                 IsOppRepeated = true;
+                IsSingleInput = false;
+                CalcOppsDisplay.Text = button.Text;
+            }
+            if (CalcDisplay.Text != "" && IsOppRepeated == false && IsSingleInput == false)
+            {
+                OppPreformed = button.Text;
+                IsOppPreformed = true;
+                IsOppRepeated = true;
+                IsSingleInput = false;
+                CalcOppsDisplay.Text = button.Text;
+            }
+            if (CalcDisplay.Text != "" && IsOppRepeated == false && IsSingleInput == true)
+            {
+                IsOppPreformed = false;
+                IsOppRepeated = false;
+                IsSingleInput = false;
                 CalcOppsDisplay.Text = button.Text;
             }
             //else do nothing....
@@ -311,6 +416,19 @@ namespace TVMCalcDroid
             Input2 = 0;
             IsOppPreformed = false;
             IsNewInput = false;
+            Cfobjt.CF0 = 0;
+            Cfobjt.I = 0;
+            Cfobjt.IRR = 0;
+            Cfobjt.NPV = 0;
+
+            if (Cfobjt.CashFlows != null)
+            {
+                Cfobjt.CashFlows.Clear();
+            }
+            if (Cfobjt.Frequency != null)
+            {
+                Cfobjt.Frequency.Clear();
+            }                    
         }
 
         /// <summary>
@@ -346,16 +464,67 @@ namespace TVMCalcDroid
 
         }
 
-        // TODO
+        /// <summary>
+        /// Allows user to input the desired number of displayed decimal places
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Format_Click(object sender, EventArgs e)
         {
-            // Fragment Transaction.
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            Dialog_Format fDialog = new Dialog_Format();
+            fDialog.Show(transaction, "dialog Fragment");
+
+            fDialog.mOnFormatComplete += fDialog_mOnFormatComplete;
         }
 
-        // TODO
+        /// <summary>
+        /// Format Button Click On Complete Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void fDialog_mOnFormatComplete(object sender, OnFormatEventArgs e)
+        {
+            Format = e.ComputedFormat;
+            CalcOppsDisplay.Text = BtnFormat.Text;
+            BtnEquals.PerformClick();
+        }
+
+        /// <summary>
+        /// Allows user to input & round to the desired number of decimal places
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Round_Click(object sender, EventArgs e)
         {
-            // Fragment Transaction.
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            Dialog_Round rDialog = new Dialog_Round();
+            rDialog.Show(transaction, "dialog Fragment");
+
+            rDialog.mOnRoundComplete += rDialog_mOnRoundComplete;
+        }
+
+        /// <summary>
+        /// Round Button Click On Complete Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rDialog_mOnRoundComplete(object sender, OnRoundEventArgs e)
+        {
+            int Round = e.ComputedRound;
+            double result = RoundCompute(StringToNum(CalcDisplay.Text),Round);
+            if (ResultTrue != 0)
+            {
+                ResultTrue = RoundCompute(ResultTrue, Round);
+            }
+            if (Result != 0)
+            {
+                Result = RoundCompute(Result, Round);
+            }
+            CalcDisplay.Text = NumToStringFormated(result, Format);
+
+            CalcOppsDisplay.Text = BtnRound.Text;
+            BtnEquals.PerformClick();
         }
 
         /// <summary>
@@ -400,7 +569,7 @@ namespace TVMCalcDroid
         #endregion
 
         #region TVM and Secondary Operations
-        
+        #region TVM
         /// <summary>
         /// Computes N or the time in a time value of money equation
         /// </summary>
@@ -535,33 +704,109 @@ namespace TVMCalcDroid
             CalcOppsDisplay.Text = BtnN.Text;
             BtnEquals.PerformClick();
         }
+        #endregion
 
-        //TODO
+        /// <summary>
+        /// Allows user to input and set values for a Cash Flow Object
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Cf_Button_Click(object sender, EventArgs e)
         {
+            Cfobjt.CF0 = 0;
+            Cfobjt.I = 0;
+            Cfobjt.IRR = 0;
+            Cfobjt.NPV = 0;
 
+            if (Cfobjt.CashFlows == null)
+            {
+                Cfobjt.CashFlows = new List<double>();
+            }
+            if (Cfobjt.Frequency == null)
+            {
+                Cfobjt.Frequency = new List<double>();
+            }
+
+            Cfobjt.CashFlows.Clear();
+            Cfobjt.Frequency.Clear();
+
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            Dialog_CF cFDialog = new Dialog_CF();
+            cFDialog.Show(transaction, "dialog Fragment");
+
+            cFDialog.mOnCFAddComplete += cFDialog_mOnCFAddComplete;
         }
 
-        //TODO
+        /// <summary>
+        /// CF Button Click On Complete Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cFDialog_mOnCFAddComplete(object sender, OnCFAddEventArgs e)
+        {
+            Cfobjt.CF0 = e.CF0;
+            Cfobjt.I = 0;
+            Cfobjt.IRR = 0;
+            Cfobjt.NPV = 0;
+            Cfobjt.CashFlows.Add(e.CF);
+            Cfobjt.Frequency.Add(e.FREQ);
+            CalcOppsDisplay.Text = BtnCf.Text;
+            BtnEquals.PerformClick();
+        }
+
+        /// <summary>
+        /// Computes the Net Present Value of a set of Cash Flows
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Npv_Button_Click(object sender, EventArgs e)
         {
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            Dialog_NPV nPvDialog = new Dialog_NPV();
+            nPvDialog.Show(transaction, "dialog Fragment");
 
+            nPvDialog.mOnNPVComputeComplete += nPvDialog_mOnNPVComputeComplete;
         }
 
-        //TODO
+        /// <summary>
+        /// NPV Compute Button Click On Complete Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void nPvDialog_mOnNPVComputeComplete(object sender, OnNPVComputeEventArgs e)
+        {
+            Input2 = e.I;
+            Cfobjt.I = Input2;
+
+            if (Cfobjt.Frequency != null || Cfobjt.CashFlows != null)
+            {
+                Input2 = CfNPVMethod(Cfobjt);
+                CalcDisplay.Text = NumToStringFormated(Input2, Format);
+                CalcOppsDisplay.Text = BtnNpv.Text;
+                BtnEquals.PerformClick();
+            }
+            // else do nothing.
+        }
+
+        /// <summary>
+        /// Computes the Internal Rate of Return of a set of Cash Flows
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Irr_Button_Click(object sender, EventArgs e)
         {
-
+            if (Cfobjt.Frequency != null || Cfobjt.CashFlows != null)
+            {
+                Input2 = CfIRRMethod(Cfobjt);
+                CalcDisplay.Text = NumToStringFormated(Input2, Format);
+                CalcOppsDisplay.Text = BtnIrr.Text;
+                BtnEquals.PerformClick();
+            }
+            // else do nothing.
         }
 
         //TODO
         private void Amort_Button_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        //TODO
-        private void Power_Button_Click(object sender, EventArgs e)
         {
 
         }
@@ -573,10 +818,19 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Sqrt_Button_Click(object sender, EventArgs e)
         {
+            Button button = (Button)sender;
+            IsSingleInput = true;
+            IsOppPreformed = true;
+            IsOppRepeated = false;
+            IsNewInput = true;
+            OppPreformed = button.Text;
+            Operator_Click(sender, e);
+
+            /*
             Input2 = SqrtCompt(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnSqrt.Text;
-            BtnEquals.PerformClick();
+            BtnEquals.PerformClick(); */
         }
 
         /// <summary>
@@ -586,10 +840,17 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Squared_Button_Click(object sender, EventArgs e)
         {
-            Input2 = SquareCompt(StringToNum(CalcDisplay.Text));
+            Button button = (Button)sender;
+            IsSingleInput = true;
+            IsOppPreformed = true;
+            IsOppRepeated = false;
+            IsNewInput = true;
+            OppPreformed = button.Text;
+            Operator_Click(sender, e);
+            /*Input2 = SquareCompt(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnSquared.Text;
-            BtnEquals.PerformClick();
+            BtnEquals.PerformClick(); */
         }
 
         /// <summary>
@@ -599,10 +860,17 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void OneOver_Button_Click(object sender, EventArgs e)
         {
-            Input2 = OneOverCompt(StringToNum(CalcDisplay.Text));
+            Button button = (Button)sender;
+            IsSingleInput = true;
+            IsOppPreformed = true;
+            IsOppRepeated = false;
+            IsNewInput = true;
+            OppPreformed = button.Text;
+            Operator_Click(sender, e);
+            /*Input2 = OneOverCompt(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnOneOver.Text;
-            BtnEquals.PerformClick();
+            BtnEquals.PerformClick();*/
         }
 
         /// <summary>
@@ -612,10 +880,17 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void E_Button_Click(object sender, EventArgs e)
         {
-            Input2 = ECompute(StringToNum(CalcDisplay.Text));
+            Button button = (Button)sender;
+            IsSingleInput = true;
+            IsOppPreformed = true;
+            IsOppRepeated = false;
+            IsNewInput = true;
+            OppPreformed = button.Text;
+            Operator_Click(sender, e);
+            /*Input2 = ECompute(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnE.Text;
-            BtnEquals.PerformClick();
+            BtnEquals.PerformClick();*/
         }
 
         /// <summary>
@@ -625,10 +900,17 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Ln_Button_Click(object sender, EventArgs e)
         {
-            Input2 = NaturalLogCompt(StringToNum(CalcDisplay.Text));
+            Button button = (Button)sender;
+            IsSingleInput = true;
+            IsOppPreformed = true;
+            IsOppRepeated = false;
+            IsNewInput = true;
+            OppPreformed = button.Text;
+            Operator_Click(sender, e);
+            /*Input2 = NaturalLogCompt(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnLn.Text;
-            BtnEquals.PerformClick();
+            BtnEquals.PerformClick();*/
         }
 
         /// <summary>
@@ -638,22 +920,71 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Log_Button_Click(object sender, EventArgs e)
         {
-            Input2 = LogCompt(StringToNum(CalcDisplay.Text));
+            Button button = (Button)sender;
+            IsSingleInput = true;
+            IsOppPreformed = true;
+            IsOppRepeated = false;
+            IsNewInput = true;
+            OppPreformed = button.Text;
+            Operator_Click(sender, e);
+            /*Input2 = LogCompt(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnLog.Text;
+            BtnEquals.PerformClick();*/
+        }
+
+        /// <summary>
+        /// Computes a permutation of two inputs 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Npr_Button_Click(object sender, EventArgs e)
+        {
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            Dialog_NPR nPrDialog = new Dialog_NPR();
+            nPrDialog.Show(transaction, "dialog Fragment");
+
+            nPrDialog.mOnNPRComptComplete += nPrDialog_mOnNPRComptComplete;
+        }
+
+        /// <summary>
+        /// nPr Compute Button Click On Complete Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void nPrDialog_mOnNPRComptComplete(object sender, OnNPRComputeEventArgs e)
+        {
+            Input2 = e.ComputedNPR;
+            CalcDisplay.Text = NumToStringFormated(e.ComputedNPR, Format);
+            CalcOppsDisplay.Text = BtnNpr.Text;
             BtnEquals.PerformClick();
         }
 
-        //TODO
-        private void Npr_Button_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        //TODO
+        /// <summary>
+        /// Computes a combination of two inputs
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Ncr_Button_Click(object sender, EventArgs e)
         {
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            Dialog_NCR nCrDialog = new Dialog_NCR();
+            nCrDialog.Show(transaction, "dialog Fragment");
 
+            nCrDialog.mOnNCRComptComplete += nCrDialog_mOnNCRComptComplete;
+        }
+
+        /// <summary>
+        /// nCPr Compute Button Click On Complete Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void nCrDialog_mOnNCRComptComplete(object sender, OnNCRComputeEventArgs e)
+        {
+            Input2 = e.ComputedNCR;
+            CalcDisplay.Text = NumToStringFormated(e.ComputedNCR, Format);
+            CalcOppsDisplay.Text = BtnNcr.Text;
+            BtnEquals.PerformClick();
         }
 
         /// <summary>
@@ -664,10 +995,17 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Factorial_Button_Click(object sender, EventArgs e)
         {
-            Input2 = StringToNum(CalcDisplay.Text).Factorial_Recursion();
+            Button button = (Button)sender;
+            IsSingleInput = true;
+            IsOppPreformed = true;
+            IsOppRepeated = false;
+            IsNewInput = true;
+            OppPreformed = button.Text;
+            Operator_Click(sender, e);
+            /*Input2 = StringToNum(CalcDisplay.Text).Factorial_Recursion();
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnFactorial.Text;
-            BtnEquals.PerformClick();
+            BtnEquals.PerformClick();*/
         }
 
         /// <summary>
@@ -677,10 +1015,17 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Sin_Button_Click(object sender, EventArgs e)
         {
-            Input2 = SinCompute(StringToNum(CalcDisplay.Text));
+            Button button = (Button)sender;
+            IsSingleInput = true;
+            IsOppPreformed = true;
+            IsOppRepeated = false;
+            IsNewInput = true;
+            OppPreformed = button.Text;
+            Operator_Click(sender, e);
+            /*Input2 = SinCompute(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnSin.Text;
-            BtnEquals.PerformClick();
+            BtnEquals.PerformClick();*/
         }
 
         /// <summary>
@@ -690,10 +1035,17 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Cos_Button_Click(object sender, EventArgs e)
         {
-            Input2 = CosCompute(StringToNum(CalcDisplay.Text));
+            Button button = (Button)sender;
+            IsSingleInput = true;
+            IsOppPreformed = true;
+            IsOppRepeated = false;
+            IsNewInput = true;
+            OppPreformed = button.Text;
+            Operator_Click(sender, e);
+            /*Input2 = CosCompute(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnCos.Text;
-            BtnEquals.PerformClick();
+            BtnEquals.PerformClick();*/
         }
 
         /// <summary>
@@ -703,10 +1055,17 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Tan_Button_Click(object sender, EventArgs e)
         {
-            Input2 = TanCompute(StringToNum(CalcDisplay.Text));
+            Button button = (Button)sender;
+            IsSingleInput = true;
+            IsOppPreformed = true;
+            IsOppRepeated = false;
+            IsNewInput = true;
+            OppPreformed = button.Text;
+            Operator_Click(sender, e);
+            /*Input2 = TanCompute(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnTan.Text;
-            BtnEquals.PerformClick();
+            BtnEquals.PerformClick(); */
         }
 
         /// <summary>
@@ -716,10 +1075,17 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Asin_Button_Click(object sender, EventArgs e)
         {
-            Input2 = AsinCompute(StringToNum(CalcDisplay.Text));
+            Button button = (Button)sender;
+            IsSingleInput = true;
+            IsOppPreformed = true;
+            IsOppRepeated = false;
+            IsNewInput = true;
+            OppPreformed = button.Text;
+            Operator_Click(sender, e);
+            /*Input2 = AsinCompute(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnAsin.Text;
-            BtnEquals.PerformClick();
+            BtnEquals.PerformClick();*/
         }
 
         /// <summary>
@@ -729,10 +1095,17 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Acos_Button_Click(object sender, EventArgs e)
         {
-            Input2 = AcosCompute(StringToNum(CalcDisplay.Text));
+            Button button = (Button)sender;
+            IsSingleInput = true;
+            IsOppPreformed = true;
+            IsOppRepeated = false;
+            IsNewInput = true;
+            OppPreformed = button.Text;
+            Operator_Click(sender, e);
+            /*Input2 = AcosCompute(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnAcos.Text;
-            BtnEquals.PerformClick();
+            BtnEquals.PerformClick();*/
         }
 
         /// <summary>
@@ -742,10 +1115,17 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Atan_Button_Click(object sender, EventArgs e)
         {
-            Input2 = AtanCompute(StringToNum(CalcDisplay.Text));
+            Button button = (Button)sender;
+            IsSingleInput = true;
+            IsOppPreformed = true;
+            IsOppRepeated = false;
+            IsNewInput = true;
+            OppPreformed = button.Text;
+            Operator_Click(sender, e);
+            /*Input2 = AtanCompute(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnAtan.Text;
-            BtnEquals.PerformClick();
+            BtnEquals.PerformClick();*/
         }
         #endregion
 

@@ -140,7 +140,16 @@ namespace TVMCalc.Operations.Methods
         public static double NprCompute(double n, double r)
         {
             double z = 0;
-            if (n - r == 0)
+
+            if (n < 1)
+            {
+                n = 1;
+            }
+            if (r < 1)
+            {
+                r = 1;
+            }
+            if (n - r == 0 || n-r < 0)
             {
                 z = n.Factorial_Recursion() / 1;
             }
@@ -159,9 +168,19 @@ namespace TVMCalc.Operations.Methods
         public static double NcrCompute(double n, double r)
         {
             double z = 0;
-            if (n - r == 0)
+            if (n < 1)
             {
-                z = n.Factorial_Recursion() / 1;
+                n = 1;
+            }
+
+            if (r < 1)
+            {
+                r = 1;
+            }
+
+            if (n - r == 0 || n - r < 0)
+            {
+                z = n.Factorial_Recursion() / (r.Factorial_Recursion() * 1);
             }
             else
             {
