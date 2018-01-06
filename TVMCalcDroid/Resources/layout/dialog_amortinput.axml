@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <android.support.v7.widget.GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        app:orientation="horizontal"
+        app:columnCount="3">
+        <TextView
+            android:id="@+id/Compute_Modetext_amorttview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="0dp"
+            android:padding="5dp"
+            android:textSize="15sp"
+            android:text="Assumes Regular Annuity"
+            android:textStyle="bold"
+            android:textAllCaps="false" />
+    </android.support.v7.widget.GridLayout>
+    <ScrollView
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:id="@+id/txt_amort_N"
+                style="@style/editText_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="5dp"
+                android:inputType="numberDecimal|numberSigned"
+                android:hint="N" />
+            <EditText
+                android:id="@+id/txt_amort_I"
+                style="@style/editText_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:inputType="numberDecimal|numberSigned"
+                android:hint="I/Y" />
+            <EditText
+                android:id="@+id/txt_amort_PV"
+                style="@style/editText_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:inputType="numberDecimal|numberSigned"
+                android:hint="PV" />
+            <EditText
+                android:id="@+id/txt_amort_PMT"
+                style="@style/editText_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:inputType="numberDecimal|numberSigned"
+                android:hint="PMT (Compute If Needed)" />
+            <EditText
+                android:id="@+id/txt_amort_FV"
+                style="@style/editText_dialog"
+                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:inputType="numberDecimal|numberSigned"
+                android:hint="FV" />
+            <EditText
+                android:id="@+id/txt_amort_P1"
+                style="@style/editText_dialog"
+                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:inputType="number"
+                android:hint="P1" />
+            <EditText
+                android:id="@+id/txt_amort_P2"
+                style="@style/editText_dialog"
+                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:inputType="number"
+                android:hint="P2" />
+            <android.support.v7.widget.GridLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                app:orientation="horizontal"
+                app:columnCount="1">
+                <Button
+                    android:id="@+id/btnAmortPMTCompute"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Compute PMT"
+                    android:height="50dp"
+                    style="@style/cptButton_calculator"
+                    android:layout_margin="8dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"/>
+                <Button
+                    android:id="@+id/btnAmortCompute"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Compute Amort"
+                    android:height="50dp"
+                    style="@style/cptButton_calculator"
+                    android:layout_margin="8dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"/>
+            </android.support.v7.widget.GridLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

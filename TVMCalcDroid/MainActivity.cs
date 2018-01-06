@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
-using Android.Views;
 using System;
 using Android.Support.V7.App;
 using System.Collections.Generic;
@@ -11,7 +10,6 @@ using static TVMCalc.Operations.Methods.PrimaryOppsMethods;
 using static TVMCalc.Operations.Methods.SecondaryOppsMethods;
 using static TVMCalc.Operations.Methods.TVMCfMethods;
 using TVMCalc.Operations.ObjctTemps;
-using System.Linq;
 using TVMCalcDroid.Dialogs;
 
 
@@ -805,10 +803,30 @@ namespace TVMCalcDroid
             // else do nothing.
         }
 
-        //TODO
+        /// <summary>
+        /// Computes the Amortization of a Time Value of Money and Amort Object
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Amort_Button_Click(object sender, EventArgs e)
         {
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            Dialog_AMORT amortDialog = new Dialog_AMORT();
+            amortDialog.Show(transaction, "dialog Fragment");
 
+            amortDialog.mOnAmortComptComplete += AmortDialog_mOnAmortComptComplete;
+        }
+
+        /// <summary>
+        /// Amort Compute Button Click On Complete Event, Displays the Results of the Computation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AmortDialog_mOnAmortComptComplete(object sender, OnAmortComputeEventArgs e)
+        {
+            FragmentTransaction transaction = FragmentManager.BeginTransaction();
+            Dialog_AMORTOUTPUT amortOutDialog = new Dialog_AMORTOUTPUT(e.AmortObj);
+            amortOutDialog.Show(transaction, "dialog Fragment");
         }
 
         /// <summary>

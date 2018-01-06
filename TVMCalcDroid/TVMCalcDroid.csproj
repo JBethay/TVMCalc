@@ -102,10 +102,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\Dialog_AMORTOUTPUT.cs" />
     <Compile Include="Dialogs\Dialog_CF.cs" />
     <Compile Include="Dialogs\Dialog_NCR.cs" />
     <Compile Include="Dialogs\Dialog_NPR.cs" />
     <Compile Include="Dialogs\Dialog_NPV.cs" />
+    <Compile Include="Dialogs\Dialog_AMORT.cs" />
     <Compile Include="Dialogs\Dialog_Round.cs" />
     <Compile Include="Dialogs\Dialog_PMT.cs" />
     <Compile Include="Dialogs\Dialog_FV.cs" />
@@ -154,6 +156,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\dialog_npv.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\dialog_amortinput.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\dialog_amortoutput.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
