@@ -414,19 +414,38 @@ namespace TVMCalcDroid
             Input2 = 0;
             IsOppPreformed = false;
             IsNewInput = false;
-            Cfobjt.CF0 = 0;
-            Cfobjt.I = 0;
+            Cfobjt.CF0_Npv = 0;
+            Cfobjt.CF0_Irr = 0;
+            Cfobjt.CF0_Input = 0;
+            Cfobjt.I_Npv = 0;
+            Cfobjt.I_Input = 0;
             Cfobjt.IRR = 0;
             Cfobjt.NPV = 0;
 
-            if (Cfobjt.CashFlows != null)
+            if (Cfobjt.CashFlows_Npv != null)
             {
-                Cfobjt.CashFlows.Clear();
+                Cfobjt.CashFlows_Npv.Clear();
             }
-            if (Cfobjt.Frequency != null)
+            if (Cfobjt.Frequency_Npv != null)
             {
-                Cfobjt.Frequency.Clear();
-            }                    
+                Cfobjt.Frequency_Npv.Clear();
+            }
+            if (Cfobjt.CashFlows_Irr != null)
+            {
+                Cfobjt.CashFlows_Irr.Clear();
+            }
+            if (Cfobjt.Frequency_Irr != null)
+            {
+                Cfobjt.Frequency_Irr.Clear();
+            }
+            if (Cfobjt.Frequency_Input != null)
+            {
+                Cfobjt.Frequency_Input.Clear();
+            }
+            if (Cfobjt.CashFlows_Input != null)
+            {
+                Cfobjt.CashFlows_Input.Clear();
+            }
         }
 
         /// <summary>
@@ -711,22 +730,45 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Cf_Button_Click(object sender, EventArgs e)
         {
-            Cfobjt.CF0 = 0;
-            Cfobjt.I = 0;
+            Cfobjt.CF0_Npv = 0;
+            Cfobjt.CF0_Irr = 0;
+            Cfobjt.CF0_Input = 0;
+            Cfobjt.I_Npv = 0;
+            Cfobjt.I_Input = 0;
             Cfobjt.IRR = 0;
             Cfobjt.NPV = 0;
 
-            if (Cfobjt.CashFlows == null)
+            if (Cfobjt.CashFlows_Npv == null)
             {
-                Cfobjt.CashFlows = new List<double>();
+                Cfobjt.CashFlows_Npv = new List<double>();
             }
-            if (Cfobjt.Frequency == null)
+            if (Cfobjt.Frequency_Npv == null)
             {
-                Cfobjt.Frequency = new List<double>();
+                Cfobjt.Frequency_Npv = new List<double>();
+            }
+            if (Cfobjt.CashFlows_Irr == null)
+            {
+                Cfobjt.CashFlows_Irr = new List<double>();
+            }
+            if (Cfobjt.Frequency_Irr == null)
+            {
+                Cfobjt.Frequency_Irr = new List<double>();
+            }
+            if (Cfobjt.Frequency_Input == null)
+            {
+                Cfobjt.Frequency_Input = new List<double>();
+            }
+            if (Cfobjt.CashFlows_Input == null)
+            {
+                Cfobjt.CashFlows_Input = new List<double>();
             }
 
-            Cfobjt.CashFlows.Clear();
-            Cfobjt.Frequency.Clear();
+            Cfobjt.CashFlows_Npv.Clear();
+            Cfobjt.Frequency_Npv.Clear();
+            Cfobjt.CashFlows_Irr.Clear();
+            Cfobjt.Frequency_Irr.Clear();
+            Cfobjt.Frequency_Input.Clear();
+            Cfobjt.CashFlows_Input.Clear();
 
             FragmentTransaction transaction = FragmentManager.BeginTransaction();
             Dialog_CF cFDialog = new Dialog_CF();
@@ -742,12 +784,19 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void cFDialog_mOnCFAddComplete(object sender, OnCFAddEventArgs e)
         {
-            Cfobjt.CF0 = e.CF0;
-            Cfobjt.I = 0;
+            Cfobjt.CF0_Npv = e.CF0;
+            Cfobjt.CF0_Irr = e.CF0;
+            Cfobjt.CF0_Input = e.CF0;
+            Cfobjt.I_Npv = 0;
+            Cfobjt.I_Input = 0;
             Cfobjt.IRR = 0;
             Cfobjt.NPV = 0;
-            Cfobjt.CashFlows.Add(e.CF);
-            Cfobjt.Frequency.Add(e.FREQ);
+            Cfobjt.CashFlows_Npv.Add(e.CF);
+            Cfobjt.Frequency_Npv.Add(e.FREQ);
+            Cfobjt.CashFlows_Irr.Add(e.CF);
+            Cfobjt.Frequency_Irr.Add(e.FREQ);
+            Cfobjt.CashFlows_Input.Add(e.CF);
+            Cfobjt.Frequency_Input.Add(e.FREQ);
             CalcOppsDisplay.Text = BtnCf.Text;
             BtnEquals.PerformClick();
         }
@@ -774,14 +823,20 @@ namespace TVMCalcDroid
         private void nPvDialog_mOnNPVComputeComplete(object sender, OnNPVComputeEventArgs e)
         {
             Input2 = e.I;
-            Cfobjt.I = Input2;
+            Cfobjt.I_Npv = Input2;
 
-            if (Cfobjt.Frequency != null || Cfobjt.CashFlows != null)
+            if (Cfobjt.Frequency_Npv != null || Cfobjt.CashFlows_Npv != null)
             {
                 Input2 = CfNPVMethod(Cfobjt);
                 CalcDisplay.Text = NumToStringFormated(Input2, Format);
                 CalcOppsDisplay.Text = BtnNpv.Text;
                 BtnEquals.PerformClick();
+
+                Cfobjt.Frequency_Npv.Clear();
+                Cfobjt.CashFlows_Npv.Clear();
+                Cfobjt.Frequency_Npv.AddRange(Cfobjt.Frequency_Input); // Reset Inputs
+                Cfobjt.CashFlows_Npv.AddRange(Cfobjt.CashFlows_Input);
+                Cfobjt.CF0_Npv = Cfobjt.CF0_Input;
             }
             // else do nothing.
         }
@@ -793,12 +848,18 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Irr_Button_Click(object sender, EventArgs e)
         {
-            if (Cfobjt.Frequency != null || Cfobjt.CashFlows != null)
+            if (Cfobjt.Frequency_Irr != null || Cfobjt.CashFlows_Irr != null)
             {
                 Input2 = CfIRRMethod(Cfobjt);
                 CalcDisplay.Text = NumToStringFormated(Input2, Format);
                 CalcOppsDisplay.Text = BtnIrr.Text;
                 BtnEquals.PerformClick();
+
+                Cfobjt.Frequency_Irr.Clear();
+                Cfobjt.CashFlows_Irr.Clear();
+                Cfobjt.Frequency_Irr.AddRange(Cfobjt.Frequency_Input); // Reset Inputs
+                Cfobjt.CashFlows_Irr.AddRange(Cfobjt.CashFlows_Input);
+                Cfobjt.CF0_Irr = Cfobjt.CF0_Input;
             }
             // else do nothing.
         }

@@ -92,22 +92,22 @@ namespace TVMCalcDroid.Dialogs
             #region Verify Format
             if ((double.TryParse(mN.Text, out double w)) == false)
             {
-                mN.Text = "Invalid Input";
+                mN.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((double.TryParse(mIY.Text, out double x)) == false)
             {
-                mIY.Text = "Invalid Input";
+                mIY.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((double.TryParse(mPV.Text, out double y)) == false)
             {
-                mPV.Text = "Invalid Input";
+                mPV.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((double.TryParse(mFV.Text, out double z)) == false)
             {
-                mFV.Text = "Invalid Input";
+                mFV.Hint = "Invalid Input";
                 Valid = false;
             }
             #endregion
@@ -138,39 +138,39 @@ namespace TVMCalcDroid.Dialogs
             #region Verify Format
             if ((double.TryParse(mN.Text, out double t)) == false)
             {
-                mN.Text = "Invalid Input";
+                mN.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((double.TryParse(mIY.Text, out double u)) == false)
             {
-                mIY.Text = "Invalid Input";
+                mIY.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((double.TryParse(mPV.Text, out double v)) == false)
             {
-                mPV.Text = "Invalid Input";
+                mPV.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((double.TryParse(mPMT.Text, out double w)) == false)
             {
-                mPMT.Text = "Invalid Input";
+                mPMT.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((double.TryParse(mFV.Text, out double x)) == false)
             {
-                mFV.Text = "Invalid Input";
+                mFV.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((Int32.TryParse(mP1.Text, out int y)) == false)
             {                
-                mP1.Text = "Invalid Input";
+                mP1.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((Int32.TryParse(mP1.Text, out int y1)) == true)
             {
                 if (!(Int32.Parse(mP1.Text) >= 1))
                 {
-                    mP1.Text = "P1 Must Be At Least Equal To 1";
+                    mP1.Hint = "P1 Must Be At Least Equal To 1";
                     Valid = false;
                 }
             }
@@ -178,25 +178,25 @@ namespace TVMCalcDroid.Dialogs
             {
                 if (!(Int32.Parse(mP1.Text) <= Int32.Parse(mP2.Text)))
                 {
-                    mP1.Text = "P1 Must Be Less Than Or Equal To P2";
+                    mP1.Hint = "P1 Must Be Less Than Or Equal To P2";
                     Valid = false;
                 }
             }
             if ((Int32.TryParse(mP2.Text, out int z)) == false)
             {
-                mP2.Text = "Invalid Input";
+                mP2.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((((double.TryParse(mP1.Text, out double yz1)) == true) && (double.TryParse(mP2.Text, out double yz2)) == true) && (double.TryParse(mN.Text, out double yz3) == true))
             {
                 if(!(double.Parse(mP1.Text) <= double.Parse(mN.Text)))
                 {
-                    mP1.Text = "P1 Must Be Less Than Or Equal To N";
+                    mP1.Hint = "P1 Must Be Less Than Or Equal To N";
                     Valid = false;
                 }
                 if (!(double.Parse(mP2.Text) <= double.Parse(mN.Text)))
                 {
-                    mP2.Text = "P2 Must Be Less Than Or Equal To N";
+                    mP2.Hint = "P2 Must Be Less Than Or Equal To N";
                     Valid = false;
                 }
             }

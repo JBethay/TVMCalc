@@ -16,10 +16,10 @@ namespace TVMCalc.Operations.Methods
         /// <summary>
         /// Computes the Net Present Value or NPV of a list of provided cash flows at a set interest rate.
         /// </summary>
-        public static double CfNPVMethod (CfObject cfoObject)
+        public static double CfNPVMethod(CfObject cfoObject)
         {
-            var args_cf = cfoObject.CashFlows;
-            var args_f = cfoObject.Frequency;
+            var args_cf = cfoObject.CashFlows_Npv;
+            var args_f = cfoObject.Frequency_Npv;
             var count = args_cf.Count;
             var t = 0;
             var t2 = 0;
@@ -33,14 +33,14 @@ namespace TVMCalc.Operations.Methods
                 };
                 for (int y = 1; y < args_f[x]; y++)
                 {
-                    double cf = cfoObject.CashFlows[t2];
+                    double cf = cfoObject.CashFlows_Npv[t2];
                     args_cf.Insert(t2, cf);
                     t2++;
                 }
             };
 
             // Lookup rate
-            double rate = cfoObject.I / 100;
+            double rate = cfoObject.I_Npv / 100;
 
             // Initialize net present value
             double value = 0;
@@ -57,8 +57,8 @@ namespace TVMCalc.Operations.Methods
             }
 
             // Return net present value
-            cfoObject.NPV = value + cfoObject.CF0;
-            cfoObject.CashFlows = args_cf;
+            cfoObject.NPV = value + cfoObject.CF0_Npv;
+            //cfoObject.CashFlows = args_cf;
             return cfoObject.NPV;
         }
         /// <summary>
@@ -66,10 +66,10 @@ namespace TVMCalc.Operations.Methods
         /// </summary>
         /// <param name="cfObject"></param>
         /// <returns></returns>
-        public static double CfIRRMethod (CfObject cfObject)
+        public static double CfIRRMethod(CfObject cfObject)
         {
-            var args_cf = cfObject.CashFlows;
-            var args_f = cfObject.Frequency;
+            var args_cf = cfObject.CashFlows_Irr;
+            var args_f = cfObject.Frequency_Irr;
             var count = args_cf.Count;
             var t2 = 0;
 
@@ -80,26 +80,27 @@ namespace TVMCalc.Operations.Methods
                 {
                     t2++;
                 };
+
                 for (int y = 1; y < args_f[t]; y++)
                 {
-                    double cf = cfObject.CashFlows[t2];
+                    double cf = cfObject.CashFlows_Irr[t2];
                     args_cf.Insert(t2, cf);
                     t2++;
                 }
             };
 
-            if (cfObject.CF0 > 1e-10 || cfObject.CF0 <-1e-10)
+            if (cfObject.CF0_Irr > 1e-10 || cfObject.CF0_Irr < -1e-10)
             {
-                args_cf.Insert(0, cfObject.CF0);
+                args_cf.Insert(0, cfObject.CF0_Irr);
             }
-                
+
             int itrMax = 20;
             double espMax = 1e-5;
-            
+
             double x = -0.1; //need to start with a negative to allow for negative IRR return values.
             int iter = 0;
             while (iter++ < itrMax)
-            {           
+            {
                 double x1 = 1.0 + x;
                 double fx = 0.0;
                 double dfx = 0.0;
@@ -109,12 +110,12 @@ namespace TVMCalc.Operations.Methods
                     double x1_i = Math.Pow(x1, i);
                     fx += v / x1_i;
                     double x1_i1 = x1_i * x1;
-                    dfx += -i * v / x1_i1;                                           
+                    dfx += -i * v / x1_i1;
                 }
 
                 double new_x = x - fx / dfx;
                 double esp = Math.Abs(new_x - x);
-            
+
                 if (esp <= espMax)
                 {
                     if (x == 0.0 && Math.Abs(new_x) <= espMax)
@@ -129,6 +130,6 @@ namespace TVMCalc.Operations.Methods
                 x = new_x;
             }
             return x;
-        } 
+        }
     }
 }

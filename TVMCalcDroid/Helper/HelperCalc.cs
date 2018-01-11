@@ -25,7 +25,7 @@ namespace TVMCalcDroid.Helper
         public static string NumToStringFormated(double num, int format)
         {
             RoundCompute(num, format);
-            return num.ToString($"F{format}");
+            return num.ToString($"N{format}");
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace TVMCalcDroid.Helper
         public static string NumToString(double num, int format)
         {
             RoundCompute(num, format);
-            return num.ToString();
+            return num.ToString("N");
         }
 
         /// <summary>

@@ -117,22 +117,22 @@ namespace TVMCalcDroid.Dialogs
             #region Verify Format
             if ((double.TryParse(mN.Text, out double w)) == false)
             {
-                mN.Text = "Invalid Input";
+                mN.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((double.TryParse(mIY.Text, out double x)) == false)
             {
-                mIY.Text = "Invalid Input";
+                mIY.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((double.TryParse(mPMT.Text, out double y)) == false)
             {
-                mPMT.Text = "Invalid Input";
+                mPMT.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((double.TryParse(mPV.Text, out double z)) == false)
             {
-                mPV.Text = "Invalid Input";
+                mPV.Hint = "Invalid Input";
                 Valid = false;
             }
             #endregion

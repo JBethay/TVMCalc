@@ -9,10 +9,11 @@ using static TVMCalc.Operations.Methods.SecondaryOppsMethods;
 
 namespace TVMCalcUnitTest
 {
-        [TestClass]
-        public class OppsTest
-        {
-            #region Two Input methods 
+
+    [TestClass]
+    public class OppsTest
+    {                   
+        #region Two Input methods 
             [TestMethod]
             public void Add()
             {
@@ -74,7 +75,7 @@ namespace TVMCalcUnitTest
             }
             #endregion
 
-            #region One Input Methods  
+        #region One Input Methods  
             [TestMethod]
             public void Percentage()
             {
@@ -142,7 +143,7 @@ namespace TVMCalcUnitTest
             }
             #endregion
 
-            #region TVM Methods regular annuity Methods
+        #region TVM Methods regular annuity Methods
 
             [TestMethod]
             public void N_Compute()
@@ -329,7 +330,7 @@ namespace TVMCalcUnitTest
             }
             #endregion
 
-            #region TVM Methods annuity due Methods
+        #region TVM Methods annuity due Methods
             [TestMethod]
             public void NAd_Compute()
             {
@@ -516,67 +517,67 @@ namespace TVMCalcUnitTest
             }
             #endregion
 
-            #region CF Methods 
-            [TestMethod]
-            public void CFNPVCompute()
+        #region CF Methods 
+        [TestMethod]
+        public void CFNPVCompute()
             {
                 //Arrange, 
                 var obj = new CfObject();
-                obj.CF0 = -150;
-                obj.I = 10;
-                obj.CashFlows = new List<double>
-            {
-                10,20,5,3,250
-            };
+                obj.CF0_Npv = -150;
+                obj.I_Npv = 10;
+                obj.CashFlows_Npv = new List<double>
+                {
+                    10,20,5,3,250
+                };
 
-                obj.Frequency = new List<double>
-            {
-                5,2,3,5,1
-            };
+                obj.Frequency_Npv = new List<double>
+                {
+                    5,2,3,5,1
+                };
 
                 //Act,
                 var result = Math.Round(CfNPVMethod(obj), 4);
                 //Assert
                 Assert.AreEqual(-25.3669, result);
             }
-            [TestMethod]
-            public void CFNPV2Compute()
+        [TestMethod]
+        public void CFNPV2Compute()
             {
                 //Arrange, 
                 var obj = new CfObject();
-                obj.CF0 = 150;
-                obj.I = 8.04;
-                obj.CashFlows = new List<double>
-            {
-                10,15,-5,-33,50
-            };
+                obj.CF0_Npv = 150;
+                obj.I_Npv = 8.04;
+                obj.CashFlows_Npv = new List<double>
+                {
+                    10,15,-5,-33,50
+                };
 
-                obj.Frequency = new List<double>
-            {
-                5,2,3,5,1
-            };
+                obj.Frequency_Npv = new List<double>
+                {
+                    5,2,3,5,1
+                };
 
                 //Act,
                 var result = Math.Round(CfNPVMethod(obj), 4);
                 //Assert
                 Assert.AreEqual(154.3204, result);
             }
-            [TestMethod]
-            public void CFNPV3Compute()
+        [TestMethod]
+        public void CFNPV3Compute()
             {
                 //Arrange, 
                 var obj = new CfObject();
-                obj.CF0 = 0;
-                obj.I = 10;
-                obj.CashFlows = new List<double>
-            {
-                5,-10
-            };
+                obj.CF0_Npv = 0;
+                obj.I_Npv = 10;
+                obj.CashFlows_Npv = new List<double>
+                {
+                    5,-10
+                };
 
-                obj.Frequency = new List<double>
-            {
-                1,1
-            };
+                obj.Frequency_Npv = new List<double>
+                {
+                    1,1
+                };
 
                 //Act,
                 var result = Math.Round(CfNPVMethod(obj), 4);
@@ -584,90 +585,142 @@ namespace TVMCalcUnitTest
                 Assert.AreEqual(-3.7190, result);
             }
 
-            [TestMethod]
-            public void IRRCompute()
+        [TestMethod]
+        public void IRRCompute()
             {
                 //Arrange, 
                 var obj = new CfObject();
-                obj.CF0 = 0;
-                obj.I = 10;
-                obj.CashFlows = new List<double>
-            {
+                obj.CF0_Irr = 0;
+                obj.CashFlows_Irr = new List<double>
+                {
                 5555,-1000
-            };
-                obj.Frequency = new List<double>
-            {
+                };
+                obj.Frequency_Irr = new List<double>
+                {
                 2,15
-            };
+                };
 
                 //Act,
                 var result = Math.Round(CfIRRMethod(obj), 4);
                 //Assert
                 Assert.AreEqual(3.7465, result);
             }
-            [TestMethod]
-            public void IRR2Compute()
+        [TestMethod]
+        public void IRR2Compute()
             {
                 //Arrange, 
                 var obj = new CfObject();
-                obj.CF0 = 0;
-                obj.CashFlows = new List<double>
-            {
+                obj.CF0_Irr = 0;
+                obj.CashFlows_Irr = new List<double>
+                {
                 500,-100,-300
-            };
-                obj.Frequency = new List<double>
-            {
+                };
+                obj.Frequency_Irr = new List<double>
+                {
                 3,2,1
-            };
+                };
 
                 //Act,
                 var result = Math.Round(CfIRRMethod(obj), 4);
                 //Assert
                 Assert.AreEqual(-27.6896, result);
             }
-            [TestMethod]
-            public void IRR3Compute()
+        [TestMethod]
+        public void IRR3Compute()
             {
                 //Arrange, 
                 var obj = new CfObject();
-                obj.CF0 = -155;
-                obj.CashFlows = new List<double>
-            {
+                obj.CF0_Irr = -155;
+                obj.CashFlows_Irr = new List<double>
+                {
                 5,-10,5,1000
-            };
-                obj.Frequency = new List<double>
-            {
+                };
+                obj.Frequency_Irr = new List<double>
+                {
                 10,2,3,1
-            };
+                };
 
                 //Act,
                 var result = Math.Round(CfIRRMethod(obj), 4);
                 //Assert
                 Assert.AreEqual(13.5688, result);
             }
-            [TestMethod]
-            public void IRR4Compute()
+        [TestMethod]
+        public void IRR4Compute()
             {
                 //Arrange, 
                 var obj = new CfObject();
-                obj.CF0 = -3500;
-                obj.CashFlows = new List<double>
-            {
+                obj.CF0_Irr = -3500;
+                obj.CashFlows_Irr = new List<double>
+                {
                 5,-10,5,2000
-            };
-                obj.Frequency = new List<double>
-            {
+                };
+                obj.Frequency_Irr = new List<double>
+                {
                 10,2,3,1
-            };
+                };
 
                 //Act,
                 var result = Math.Round(CfIRRMethod(obj), 4);
                 //Assert
                 Assert.AreEqual(-3.3412, result);
             }
-            #endregion
+        [TestMethod]
+        public void IRR5Compute()
+            {
+                //Arrange, 
+                var obj = new CfObject();
+                obj.CF0_Irr = -5000;
+                obj.CashFlows_Irr = new List<double>
+                {
+                    1000
+                };
+                obj.Frequency_Irr = new List<double>
+                {
+                    3
+                };
 
-            #region Secondary Functions
+                //Act,
+                var result = Math.Round(CfIRRMethod(obj), 4);
+                
+                //Assert
+                Assert.AreEqual(-21.7627, result);
+            }
+        [TestMethod]
+        public void IRR6Compute()
+            {
+                //Arrange, 
+                var obj = new CfObject();
+                obj.CF0_Irr = -5000;
+                obj.CF0_Npv = -5000;
+                obj.I_Npv = 5;
+                obj.CashFlows_Irr = new List<double>
+                {
+                    1000
+                };
+                obj.Frequency_Irr = new List<double>
+                {
+                    3
+                };
+                obj.CashFlows_Npv = new List<double>
+                {
+                    1000
+                };
+                obj.Frequency_Npv = new List<double>
+                {
+                    3
+                };
+
+                //Act,
+                var result2 = CfNPVMethod(obj);
+                var result = Math.Round(CfIRRMethod(obj), 4);
+                
+                //Assert
+                Assert.AreEqual(-21.7627, result);
+            }
+        #endregion
+
+        #region Secondary Functions
             #region Amort
             [TestMethod]
             public void Amort()
@@ -977,5 +1030,5 @@ namespace TVMCalcUnitTest
             }
             #endregion
             #endregion
-        }
+    }
 }
