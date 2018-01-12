@@ -145,8 +145,8 @@ namespace TVMCalcUnitTest
 
         #region TVM Methods regular annuity Methods
 
-            [TestMethod]
-            public void N_Compute()
+        [TestMethod]
+        public void N_Compute()
             {
                 //Arrange, 
                 var obj = new TvmObject
@@ -162,8 +162,8 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(6.3487, result);
             }
-            [TestMethod]
-            public void N2_Compute()
+        [TestMethod]
+        public void N2_Compute()
             {
                 //Arrange, 
                 var obj = new TvmObject
@@ -181,8 +181,8 @@ namespace TVMCalcUnitTest
                 Assert.AreEqual(7.4516, result);
             }
 
-            [TestMethod]
-            public void I_Compute()
+        [TestMethod]
+        public void I_Compute()
             {
                 //Arrange,
                 var obj = new TvmObject
@@ -199,8 +199,8 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(21.7681, result);
             }
-            [TestMethod]
-            public void I2_Compute()
+        [TestMethod]
+        public void I2_Compute()
             {
                 //Arrange,
                 var obj = new TvmObject
@@ -218,8 +218,8 @@ namespace TVMCalcUnitTest
                 Assert.AreEqual(4.3512, result);
             }
 
-            [TestMethod]
-            public void PV_Compute()
+        [TestMethod]
+        public void PV_Compute()
             {
                 //Arrange, 
                 var obj = new TvmObject
@@ -236,8 +236,8 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(-86.2764, result);
             }
-            [TestMethod]
-            public void PV2_Compute()
+        [TestMethod]
+        public void PV2_Compute()
             {
                 //Arrange,
                 var obj = new TvmObject
@@ -255,8 +255,8 @@ namespace TVMCalcUnitTest
                 Assert.AreEqual(152.2652, result);
             }
 
-            [TestMethod]
-            public void PMT_Compute()
+        [TestMethod]
+        public void PMT_Compute()
             {
                 //Arrange, 
                 var obj = new TvmObject
@@ -273,8 +273,8 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(-8.7157, result);
             }
-            [TestMethod]
-            public void PMT2_Compute()
+        [TestMethod]
+        public void PMT2_Compute()
             {
                 //Arrange,
                 var obj = new TvmObject
@@ -292,8 +292,8 @@ namespace TVMCalcUnitTest
                 Assert.AreEqual(-8.6953, result);
             }
 
-            [TestMethod]
-            public void FV_Compute()
+        [TestMethod]
+        public void FV_Compute()
             {
                 //Arrange, 
                 var obj = new TvmObject
@@ -310,8 +310,8 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(69.1036, result);
             }
-            [TestMethod]
-            public void FV2_Compute()
+        [TestMethod]
+        public void FV2_Compute()
             {
                 //Arrange, 
                 var obj = new TvmObject
@@ -328,11 +328,11 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(703.8109, result);
             }
-            #endregion
+        #endregion
 
         #region TVM Methods annuity due Methods
-            [TestMethod]
-            public void NAd_Compute()
+        [TestMethod]
+        public void NAd_Compute()
             {
                 //Arrange, 
                 var obj = new TvmObject
@@ -349,8 +349,8 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(11.1882, result);
             }
-            [TestMethod]
-            public void NAd2_Compute()
+        [TestMethod]
+        public void NAd2_Compute()
             {
                 //Arrange, 
                 var obj = new TvmObject
@@ -368,8 +368,8 @@ namespace TVMCalcUnitTest
                 Assert.AreEqual(5.2394, result);
             }
 
-            [TestMethod]
-            public void IAd_Compute()
+        [TestMethod]
+        public void IAd_Compute()
             {
                 //Arrange, 
                 var obj = new TvmObject
@@ -386,8 +386,8 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(20.9629, result);
             }
-            [TestMethod]
-            public void IAd2_Compute()
+        [TestMethod]
+        public void IAd2_Compute()
             {
                 //Arrange, 
                 var obj = new TvmObject
@@ -405,8 +405,8 @@ namespace TVMCalcUnitTest
                 Assert.AreEqual(0.9519, result);
             }
 
-            [TestMethod]
-            public void PVAd_Compute()
+        [TestMethod]
+        public void PVAd_Compute()
             {
                 //Arrange, 
                 var obj = new TvmObject
@@ -423,8 +423,8 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(-82.4856, result);
             }
-            [TestMethod]
-            public void PVAd2_Compute()
+        [TestMethod]
+        public void PVAd2_Compute()
             {
                 //Arrange,
                 var obj = new TvmObject
@@ -442,8 +442,8 @@ namespace TVMCalcUnitTest
                 Assert.AreEqual(175.6238, result);
             }
 
-            [TestMethod]
-            public void PMTAd_Compute()
+        [TestMethod]
+        public void PMTAd_Compute()
             {
                 //Arrange, 
                 var obj = new TvmObject
@@ -460,8 +460,8 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(-3.4849, result);
             }
-            [TestMethod]
-            public void PMTAd2_Compute()
+        [TestMethod]
+        public void PMTAd2_Compute()
             {
                 //Arrange, 
                 var obj = new TvmObject
@@ -479,8 +479,8 @@ namespace TVMCalcUnitTest
                 Assert.AreEqual(11.3532, result);
             }
 
-            [TestMethod]
-            public void FVAd_Compute()
+        [TestMethod]
+        public void FVAd_Compute()
             {
                 //Arrange, 
                 var obj = new TvmObject
@@ -497,8 +497,8 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(75.2087, result);
             }
-            [TestMethod]
-            public void FVAd2_Compute()
+        [TestMethod]
+        public void FVAd2_Compute()
             {
                 //Arrange, 
                 var obj = new TvmObject
@@ -515,7 +515,7 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(-348282.6396, result);
             }
-            #endregion
+        #endregion
 
         #region CF Methods 
         [TestMethod]
@@ -721,7 +721,7 @@ namespace TVMCalcUnitTest
         #endregion
 
         #region Secondary Functions
-            #region Amort
+        #region Amort
             [TestMethod]
             public void Amort()
             {
@@ -892,8 +892,8 @@ namespace TVMCalcUnitTest
             }
             #endregion
 
-            [TestMethod]
-            public void Rand_Compute()
+        [TestMethod]
+        public void Rand_Compute()
             {
                 //Arrange, 
                 double x = 0;
@@ -904,8 +904,8 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreNotEqual(x, y);
             }
-            [TestMethod]
-            public void Round_Compute()
+        [TestMethod]
+        public void Round_Compute()
             {
                 //Arrange, 
                 double x = 61.4732156216;
@@ -915,8 +915,8 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(61.47, Math.Round(result, 2));
             }
-            [TestMethod]
-            public void Factorial_Compute() //This is an extension method
+        [TestMethod]
+        public void Factorial_Compute() //This is an extension method
             {
                 //Arrange, 
                 double x = 5;
@@ -925,8 +925,8 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(120.0000, Math.Round(result, 4));
             }
-            [TestMethod]
-            public void PlusMinus_Compute() //This is an extension method
+        [TestMethod]
+        public void PlusMinus_Compute() //This is an extension method
             {
                 //Arrange, 
                 double x = 5;
@@ -936,8 +936,8 @@ namespace TVMCalcUnitTest
                 Assert.AreEqual(-5.0000, Math.Round(result, 4));
             }
 
-            [TestMethod]
-            public void Npr_Compute()
+        [TestMethod]
+        public void Npr_Compute()
             {
                 //Arrange, 
                 double x = 5;
@@ -948,8 +948,8 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(120.0000, result);
             }
-            [TestMethod]
-            public void Cpr_Compute()
+        [TestMethod]
+        public void Cpr_Compute()
             {
                 //Arrange, 
                 double x = 5;
@@ -961,7 +961,7 @@ namespace TVMCalcUnitTest
                 Assert.AreEqual(10.0000, result);
             }
 
-            #region Sin Cos Tan
+        #region Sin Cos Tan
             [TestMethod]
             public void Sin_Compute()
             {
@@ -1029,6 +1029,6 @@ namespace TVMCalcUnitTest
                 Assert.AreEqual(16.6992, Math.Round(result, 4));
             }
             #endregion
-            #endregion
+        #endregion
     }
 }
