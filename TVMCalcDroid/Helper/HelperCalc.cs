@@ -13,9 +13,11 @@ using static TVMCalc.Operations.Methods.SecondaryOppsMethods;
 
 namespace TVMCalcDroid.Helper
 {
+    /// <summary>
+    /// Helper class with functions utilized by the calculator
+    /// </summary>
     public static  class HelperCalc
     {
-
         /// <summary>
         /// Rounds String for formating purposes. Note that a second variable will need to keep track of physical values....
         /// </summary>

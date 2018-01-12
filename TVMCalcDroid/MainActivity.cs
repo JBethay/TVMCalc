@@ -231,6 +231,25 @@ namespace TVMCalcDroid
         /// <param name="e"></param>
         private void Equals_Click(object sender, EventArgs e)
         {
+            Button button = (Button)sender;
+
+            if (ParenthesisOpen > 0)
+            {
+                while (ParenthesisOpen > 0)
+                {
+                    BtnClose.PerformClick();
+                }
+            }
+
+            Expression_Compute();
+            CalcOppsDisplay.Text = button.Text;
+        }
+
+        /// <summary>
+        /// Evaluates the Expressions provided by the Calculator
+        /// </summary>
+        private void Expression_Compute()
+        {
             #region Double Input Opps Calcs
             if (IsOppPerformed == true && IsNewInput == true && IsSingleInput == false)
             {
@@ -365,11 +384,6 @@ namespace TVMCalcDroid
             }
         }
 
-        private void Computation_Compute()
-        {
-
-        }
-
         /// <summary>
         /// Operator Key Clicks, such as +-*÷
         /// </summary>
@@ -378,7 +392,7 @@ namespace TVMCalcDroid
         private void Operator_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            BtnEquals.PerformClick();
+            Expression_Compute();
 
             if (CalcDisplay.Text != "" && IsOppRepeated == true)
             {
@@ -522,10 +536,11 @@ namespace TVMCalcDroid
             if (ParenthesisOpen > 0)
             {
                 Button button = (Button)sender;
+                ParenthesisOpen--;
 
                 if ((Operators.TryPeek(out string s) == false) || (Operands.TryPeek(out double r) == false))
                 {
-                    BtnEquals.PerformClick();
+                    Expression_Compute();
                     CalcOppsDisplay.Text = button.Text;
                 }
                 else if ((Operators.TryPeek(out string s1) == true) && (Operands.TryPeek(out double r1) == true))
@@ -539,7 +554,7 @@ namespace TVMCalcDroid
                     IsSingleInput = false;
 
                     Input1 = StringToNum(CalcDisplay.Text);
-                    BtnEquals.PerformClick();
+                    Expression_Compute();
                     CalcOppsDisplay.Text = button.Text;
                 }
             }
@@ -568,7 +583,7 @@ namespace TVMCalcDroid
         {
             Format = e.ComputedFormat;
             CalcOppsDisplay.Text = BtnFormat.Text;
-            BtnEquals.PerformClick();
+            Expression_Compute();
         }
 
         /// <summary>
@@ -605,7 +620,7 @@ namespace TVMCalcDroid
             CalcDisplay.Text = NumToStringFormated(result, Format);
 
             CalcOppsDisplay.Text = BtnRound.Text;
-            BtnEquals.PerformClick();
+            Expression_Compute();
         }
 
         /// <summary>
@@ -618,7 +633,7 @@ namespace TVMCalcDroid
             Input2 = RandCompute();
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnRand.Text;
-            BtnEquals.PerformClick();
+            Expression_Compute();
         }
 
         /// <summary>
@@ -631,7 +646,7 @@ namespace TVMCalcDroid
             Input2 = PercentCompt(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnPercent.Text;
-            BtnEquals.PerformClick();
+            Expression_Compute();
         }
 
         /// <summary>
@@ -645,7 +660,7 @@ namespace TVMCalcDroid
             Input2 = (StringToNum(CalcDisplay.Text)).Plus_Minus();
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnPlusMinus.Text;
-            BtnEquals.PerformClick();
+            Expression_Compute();
         }
         #endregion
 
@@ -674,7 +689,7 @@ namespace TVMCalcDroid
             Input2 = e.ComputedN;
             CalcDisplay.Text = NumToStringFormated(e.ComputedN, Format);
             CalcOppsDisplay.Text = BtnN.Text;
-            BtnEquals.PerformClick();
+            Expression_Compute();
         }
 
         /// <summary>
@@ -701,7 +716,7 @@ namespace TVMCalcDroid
             Input2 = e.ComputedI;
             CalcDisplay.Text = NumToStringFormated(e.ComputedI, Format);
             CalcOppsDisplay.Text = BtnN.Text;
-            BtnEquals.PerformClick();
+            Expression_Compute();
         }
 
         /// <summary>
@@ -729,7 +744,7 @@ namespace TVMCalcDroid
             Input2 = e.ComputedPV;
             CalcDisplay.Text = NumToStringFormated(e.ComputedPV, Format);
             CalcOppsDisplay.Text = BtnN.Text;
-            BtnEquals.PerformClick();
+            Expression_Compute();
         }
 
         /// <summary>
@@ -756,7 +771,7 @@ namespace TVMCalcDroid
             Input2 = e.ComputedPMT;
             CalcDisplay.Text = NumToStringFormated(e.ComputedPMT, Format);
             CalcOppsDisplay.Text = BtnN.Text;
-            BtnEquals.PerformClick();
+            Expression_Compute();
         }
 
         /// <summary>
@@ -783,7 +798,7 @@ namespace TVMCalcDroid
             Input2 = e.ComputedFV;
             CalcDisplay.Text = NumToStringFormated(e.ComputedFV, Format);
             CalcOppsDisplay.Text = BtnN.Text;
-            BtnEquals.PerformClick();
+            Expression_Compute();
         }
         #endregion
 
@@ -862,7 +877,7 @@ namespace TVMCalcDroid
             Cfobjt.CashFlows_Input.Add(e.CF);
             Cfobjt.Frequency_Input.Add(e.FREQ);
             CalcOppsDisplay.Text = BtnCf.Text;
-            BtnEquals.PerformClick();
+            Expression_Compute();
         }
 
         /// <summary>
@@ -894,7 +909,7 @@ namespace TVMCalcDroid
                 Input2 = CfNPVMethod(Cfobjt);
                 CalcDisplay.Text = NumToStringFormated(Input2, Format);
                 CalcOppsDisplay.Text = BtnNpv.Text;
-                BtnEquals.PerformClick();
+                Expression_Compute();
 
                 Cfobjt.Frequency_Npv.Clear();
                 Cfobjt.CashFlows_Npv.Clear();
@@ -917,7 +932,7 @@ namespace TVMCalcDroid
                 Input2 = CfIRRMethod(Cfobjt);
                 CalcDisplay.Text = NumToStringFormated(Input2, Format);
                 CalcOppsDisplay.Text = BtnIrr.Text;
-                BtnEquals.PerformClick();
+                Expression_Compute();
 
                 Cfobjt.Frequency_Irr.Clear();
                 Cfobjt.CashFlows_Irr.Clear();
@@ -973,7 +988,7 @@ namespace TVMCalcDroid
             Input2 = SqrtCompt(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnSqrt.Text;
-            BtnEquals.PerformClick(); */
+            Expression_Compute(); */
         }
 
         /// <summary>
@@ -993,7 +1008,7 @@ namespace TVMCalcDroid
             /*Input2 = SquareCompt(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnSquared.Text;
-            BtnEquals.PerformClick(); */
+            Expression_Compute(); */
         }
 
         /// <summary>
@@ -1013,7 +1028,7 @@ namespace TVMCalcDroid
             /*Input2 = OneOverCompt(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnOneOver.Text;
-            BtnEquals.PerformClick();*/
+            Expression_Compute();*/
         }
 
         /// <summary>
@@ -1033,7 +1048,7 @@ namespace TVMCalcDroid
             /*Input2 = ECompute(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnE.Text;
-            BtnEquals.PerformClick();*/
+            Expression_Compute();*/
         }
 
         /// <summary>
@@ -1053,7 +1068,7 @@ namespace TVMCalcDroid
             /*Input2 = NaturalLogCompt(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnLn.Text;
-            BtnEquals.PerformClick();*/
+            Expression_Compute();*/
         }
 
         /// <summary>
@@ -1073,7 +1088,7 @@ namespace TVMCalcDroid
             /*Input2 = LogCompt(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnLog.Text;
-            BtnEquals.PerformClick();*/
+            Expression_Compute();*/
         }
 
         /// <summary>
@@ -1100,7 +1115,7 @@ namespace TVMCalcDroid
             Input2 = e.ComputedNPR;
             CalcDisplay.Text = NumToStringFormated(e.ComputedNPR, Format);
             CalcOppsDisplay.Text = BtnNpr.Text;
-            BtnEquals.PerformClick();
+            Expression_Compute();
         }
 
         /// <summary>
@@ -1127,7 +1142,7 @@ namespace TVMCalcDroid
             Input2 = e.ComputedNCR;
             CalcDisplay.Text = NumToStringFormated(e.ComputedNCR, Format);
             CalcOppsDisplay.Text = BtnNcr.Text;
-            BtnEquals.PerformClick();
+            Expression_Compute();
         }
 
         /// <summary>
@@ -1148,7 +1163,7 @@ namespace TVMCalcDroid
             /*Input2 = StringToNum(CalcDisplay.Text).Factorial_Recursion();
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnFactorial.Text;
-            BtnEquals.PerformClick();*/
+            Expression_Compute();*/
         }
 
         /// <summary>
@@ -1168,7 +1183,7 @@ namespace TVMCalcDroid
             /*Input2 = SinCompute(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnSin.Text;
-            BtnEquals.PerformClick();*/
+            Expression_Compute();*/
         }
 
         /// <summary>
@@ -1188,7 +1203,7 @@ namespace TVMCalcDroid
             /*Input2 = CosCompute(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnCos.Text;
-            BtnEquals.PerformClick();*/
+            Expression_Compute();*/
         }
 
         /// <summary>
@@ -1208,7 +1223,7 @@ namespace TVMCalcDroid
             /*Input2 = TanCompute(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnTan.Text;
-            BtnEquals.PerformClick(); */
+            Expression_Compute(); */
         }
 
         /// <summary>
@@ -1228,7 +1243,7 @@ namespace TVMCalcDroid
             /*Input2 = AsinCompute(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnAsin.Text;
-            BtnEquals.PerformClick();*/
+            Expression_Compute();*/
         }
 
         /// <summary>
@@ -1248,7 +1263,7 @@ namespace TVMCalcDroid
             /*Input2 = AcosCompute(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnAcos.Text;
-            BtnEquals.PerformClick();*/
+            Expression_Compute();*/
         }
 
         /// <summary>
@@ -1268,7 +1283,7 @@ namespace TVMCalcDroid
             /*Input2 = AtanCompute(StringToNum(CalcDisplay.Text));
             CalcDisplay.Text = NumToStringFormated(Input2, Format);
             CalcOppsDisplay.Text = BtnAtan.Text;
-            BtnEquals.PerformClick();*/
+            Expression_Compute();*/
         }
         #endregion
 
