@@ -75,18 +75,20 @@ namespace TVMCalcDroid.Dialogs
         private void mBtnRoundSet_Click(object sender, EventArgs e)
         {
             int Round;
-            double Formated;
+            double Formated = 2;
             if (double.TryParse(mNumber.Text, out double result) == false)
-                Formated = 0;
+                mNumber.Hint = "Must Enter Value";
             else
+            {
                 Formated = double.Parse(mNumber.Text);
 
-            if (Formated < 0)
-                Formated = 0;
+                if (Formated < 0)
+                    Formated = 0;
 
                 Round = Convert.ToInt32((Math.Round(Formated, 0)));
                 mOnRoundComplete.Invoke(this, new OnRoundEventArgs(Round));
                 this.Dismiss();
+            }
         }
     }
 }
