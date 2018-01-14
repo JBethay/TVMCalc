@@ -705,7 +705,6 @@ namespace TVMCalcDroid
 
             iDialog.mOnIComptComplete += iDialog_mOnIComptComplete;
         }
-
         /// <summary>
         /// I Compute Button Click On Complete Event
         /// </summary>
@@ -715,7 +714,7 @@ namespace TVMCalcDroid
         {
             Input2 = e.ComputedI;
             CalcDisplay.Text = NumToStringFormated(e.ComputedI, Format);
-            CalcOppsDisplay.Text = BtnN.Text;
+            CalcOppsDisplay.Text = BtnIy.Text;
             Expression_Compute();
         }
 
@@ -733,7 +732,6 @@ namespace TVMCalcDroid
             pVDialog.mOnPvComptComplete += pVDialog_mOnPvComptComplete;
 
         }
-
         /// <summary>
         /// PV Compute Button Click On Complete Event
         /// </summary>
@@ -743,7 +741,7 @@ namespace TVMCalcDroid
         {
             Input2 = e.ComputedPV;
             CalcDisplay.Text = NumToStringFormated(e.ComputedPV, Format);
-            CalcOppsDisplay.Text = BtnN.Text;
+            CalcOppsDisplay.Text = BtnPv.Text;
             Expression_Compute();
         }
 
@@ -760,7 +758,6 @@ namespace TVMCalcDroid
 
             pMTDialog.mOnPmtComptComplete += pMTDialog_mOnPmtComptComplete;
         }
-
         /// <summary>
         /// PMT Compute Button Click On Complete Event
         /// </summary>
@@ -770,7 +767,7 @@ namespace TVMCalcDroid
         {
             Input2 = e.ComputedPMT;
             CalcDisplay.Text = NumToStringFormated(e.ComputedPMT, Format);
-            CalcOppsDisplay.Text = BtnN.Text;
+            CalcOppsDisplay.Text = BtnPmt.Text;
             Expression_Compute();
         }
 
@@ -787,7 +784,6 @@ namespace TVMCalcDroid
 
             fVDialog.mOnFvComptComplete += fVDialog_mOnFvComptComplete;
         }
-
         /// <summary>
         /// FV Compute Button Click On Complete Event
         /// </summary>
@@ -797,7 +793,7 @@ namespace TVMCalcDroid
         {
             Input2 = e.ComputedFV;
             CalcDisplay.Text = NumToStringFormated(e.ComputedFV, Format);
-            CalcOppsDisplay.Text = BtnN.Text;
+            CalcOppsDisplay.Text = BtnFv.Text;
             Expression_Compute();
         }
         #endregion
@@ -855,7 +851,6 @@ namespace TVMCalcDroid
 
             cFDialog.mOnCFAddComplete += cFDialog_mOnCFAddComplete;
         }
-
         /// <summary>
         /// CF Button Click On Complete Event
         /// </summary>
@@ -893,7 +888,6 @@ namespace TVMCalcDroid
 
             nPvDialog.mOnNPVComputeComplete += nPvDialog_mOnNPVComputeComplete;
         }
-
         /// <summary>
         /// NPV Compute Button Click On Complete Event
         /// </summary>
@@ -956,7 +950,6 @@ namespace TVMCalcDroid
 
             amortDialog.mOnAmortComptComplete += AmortDialog_mOnAmortComptComplete;
         }
-
         /// <summary>
         /// Amort Compute Button Click On Complete Event, Displays the Results of the Computation
         /// </summary>
@@ -967,6 +960,7 @@ namespace TVMCalcDroid
             FragmentTransaction transaction = FragmentManager.BeginTransaction();
             Dialog_AMORTOUTPUT amortOutDialog = new Dialog_AMORTOUTPUT(e.AmortObj);
             amortOutDialog.Show(transaction, "dialog Fragment");
+            CalcOppsDisplay.Text = BtnAmort.Text;
         }
 
         /// <summary>
@@ -1160,10 +1154,6 @@ namespace TVMCalcDroid
             IsNewInput = true;
             OppPerformed = button.Text;
             Operator_Click(sender, e);
-            /*Input2 = StringToNum(CalcDisplay.Text).Factorial_Recursion();
-            CalcDisplay.Text = NumToStringFormated(Input2, Format);
-            CalcOppsDisplay.Text = BtnFactorial.Text;
-            Expression_Compute();*/
         }
 
         /// <summary>

@@ -29,6 +29,11 @@ namespace System
                     return x * Factorial_Recursion(x - 1);
                 }
             }
+            else if (x <= 0)
+            {
+                x = 1;
+                return x;
+            }
             else return x;
         }
         /// <summary>

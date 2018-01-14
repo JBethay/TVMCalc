@@ -217,6 +217,24 @@ namespace TVMCalcUnitTest
                 //Assert
                 Assert.AreEqual(4.3512, result);
             }
+        [TestMethod]
+        public void I3_Compute()
+        {
+            //Arrange,
+            var obj = new TvmObject
+            {
+                N = 3,
+                I = 0,
+                Pv = -3,
+                Pmt = 3,
+                Fv = 3,
+            };
+            //Act,
+            var result = Math.Round(ICompute(obj), 4);
+
+            //Assert
+            Assert.AreEqual(100.0000, result);
+        }
 
         [TestMethod]
         public void PV_Compute()
@@ -938,31 +956,55 @@ namespace TVMCalcUnitTest
 
         [TestMethod]
         public void Npr_Compute()
-            {
-                //Arrange, 
-                double x = 5;
-                double y = 5;
-                //Act,
-                var result = NprCompute(x, y);
+        {
+            //Arrange, 
+            double x = 5;
+            double y = 5;
+            //Act,
+            var result = NprCompute(x, y);
 
-                //Assert
-                Assert.AreEqual(120.0000, result);
-            }
+            //Assert
+            Assert.AreEqual(120.0000, result);
+        }
+        [TestMethod]
+        public void Npr_Compute2()
+        {
+            //Arrange, 
+            double x = -5;
+            double y = -20;
+            //Act,
+            var result = NprCompute(x, y);
+
+            //Assert
+            Assert.AreEqual(0.0000, Math.Round(result,4));
+        }
         [TestMethod]
         public void Cpr_Compute()
-            {
-                //Arrange, 
-                double x = 5;
-                double y = 3;
-                //Act,
-                var result = NcrCompute(x, y);
+        {
+            //Arrange, 
+            double x = 5;
+            double y = 3;
+            //Act,
+            var result = NcrCompute(x, y);
 
-                //Assert
-                Assert.AreEqual(10.0000, result);
-            }
+            //Assert
+            Assert.AreEqual(10.0000, result);
+        }
+        [TestMethod]
+        public void Cpr_Compute2()
+        {
+            //Arrange, 
+            double x = -5;
+            double y = -20;
+            //Act,
+            var result = NcrCompute(x, y);
+
+            //Assert
+            Assert.AreEqual(0.0000, Math.Round(result,4));
+        }
 
         #region Sin Cos Tan
-            [TestMethod]
+        [TestMethod]
             public void Sin_Compute()
             {
                 //Arrange, 
