@@ -223,17 +223,71 @@ namespace TVMCalcUnitTest
             //Arrange,
             var obj = new TvmObject
             {
-                N = 3,
+                N = 5,
                 I = 0,
-                Pv = -3,
+                Pv = -10,
                 Pmt = 3,
-                Fv = 3,
+                Fv = 0,
             };
             //Act,
             var result = Math.Round(ICompute(obj), 4);
 
             //Assert
-            Assert.AreEqual(100.0000, result);
+            Assert.AreEqual(15.2382, result);
+        }
+        [TestMethod]
+        public void I4_Compute()
+        {
+            //Arrange,
+            var obj = new TvmObject
+            {
+                N = 2,
+                I = 0,
+                Pv = -10,
+                Pmt = 10,
+                Fv = 0,
+            };
+            //Act,
+            var result = Math.Round(ICompute(obj), 4);
+
+            //Assert
+            Assert.AreEqual(61.8034, result);
+        }
+        [TestMethod]
+        public void I5_Compute()
+        {
+            //Arrange,
+            var obj = new TvmObject
+            {
+                N = 5,
+                I = 0,
+                Pv = -10,
+                Pmt = 4,
+                Fv = 0,
+            };
+            //Act,
+            var result = Math.Round(ICompute(obj), 4);
+
+            //Assert
+            Assert.AreEqual(28.6493, result);
+        }
+        [TestMethod]
+        public void I6_Compute()
+        {
+            //Arrange,
+            var obj = new TvmObject
+            {
+                N = 5,
+                I = 0,
+                Pv = -10,
+                Pmt = 5,
+                Fv = 0,
+            };
+            //Act,
+            var result = Math.Round(ICompute(obj), 4);
+
+            //Assert
+            Assert.AreEqual(41.0415, result);
         }
 
         [TestMethod]
