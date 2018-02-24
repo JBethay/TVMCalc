@@ -15,7 +15,6 @@ using TVMCalcDroid.Dialogs;
 
 namespace TVMCalcDroid
 {
-    //Note Icon Currently only in one Folder. 
     [Activity(Icon = "@mipmap/icon", Label = "TvmCalc", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
     ScreenOrientation = ScreenOrientation.Portrait)] // Locking screen orientation to Portrait.
     public class MainActivity : Activity
