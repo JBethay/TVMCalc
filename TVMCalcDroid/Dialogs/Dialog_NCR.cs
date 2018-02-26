@@ -84,11 +84,13 @@ namespace TVMCalcDroid.Dialogs
             #region Verify Format
             if ((double.TryParse(mN.Text, out double w)) == false)
             {
+                mN.Text = "";
                 mN.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((double.TryParse(mR.Text, out double x)) == false)
             {
+                mR.Text = "";
                 mR.Hint = "Invalid Input";
                 Valid = false;
             }

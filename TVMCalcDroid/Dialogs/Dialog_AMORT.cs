@@ -138,31 +138,37 @@ namespace TVMCalcDroid.Dialogs
             #region Verify Format
             if ((double.TryParse(mN.Text, out double t)) == false)
             {
+                mN.Text = "";
                 mN.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((double.TryParse(mIY.Text, out double u)) == false)
             {
+                mIY.Text = "";
                 mIY.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((double.TryParse(mPV.Text, out double v)) == false)
             {
+                mPV.Text = "";
                 mPV.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((double.TryParse(mPMT.Text, out double w)) == false)
             {
+                mPMT.Text = "";
                 mPMT.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((double.TryParse(mFV.Text, out double x)) == false)
             {
+                mFV.Text = "";
                 mFV.Hint = "Invalid Input";
                 Valid = false;
             }
             if ((Int32.TryParse(mP1.Text, out int y)) == false)
-            {                
+            {
+                mP1.Text = "";
                 mP1.Hint = "Invalid Input";
                 Valid = false;
             }
@@ -170,6 +176,7 @@ namespace TVMCalcDroid.Dialogs
             {
                 if (!(Int32.Parse(mP1.Text) >= 1))
                 {
+                    mP1.Text = "";
                     mP1.Hint = "P1 Must Be At Least Equal To 1";
                     Valid = false;
                 }
@@ -178,12 +185,14 @@ namespace TVMCalcDroid.Dialogs
             {
                 if (!(Int32.Parse(mP1.Text) <= Int32.Parse(mP2.Text)))
                 {
+                    mP1.Text = "";
                     mP1.Hint = "P1 Must Be Less Than Or Equal To P2";
                     Valid = false;
                 }
             }
             if ((Int32.TryParse(mP2.Text, out int z)) == false)
             {
+                mP2.Text = "";
                 mP2.Hint = "Invalid Input";
                 Valid = false;
             }
@@ -191,11 +200,13 @@ namespace TVMCalcDroid.Dialogs
             {
                 if(!(double.Parse(mP1.Text) <= double.Parse(mN.Text)))
                 {
+                    mP1.Text = "";
                     mP1.Hint = "P1 Must Be Less Than Or Equal To N";
                     Valid = false;
                 }
                 if (!(double.Parse(mP2.Text) <= double.Parse(mN.Text)))
                 {
+                    mP2.Text = "";
                     mP2.Hint = "P2 Must Be Less Than Or Equal To N";
                     Valid = false;
                 }

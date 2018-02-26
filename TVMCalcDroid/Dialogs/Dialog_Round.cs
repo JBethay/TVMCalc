@@ -77,7 +77,10 @@ namespace TVMCalcDroid.Dialogs
             int Round;
             double Formated = 2;
             if (double.TryParse(mNumber.Text, out double result) == false)
+            {
+                mNumber.Text = "";
                 mNumber.Hint = "Must Enter Value";
+            }
             else
             {
                 Formated = double.Parse(mNumber.Text);
