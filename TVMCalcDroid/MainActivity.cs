@@ -286,6 +286,7 @@ namespace TVMCalcDroid
                         ResultTrue = Input2;
                         break;
                 }
+                OppPerformed = null;
                 IsOppPerformed = false;
                 IsNewInput = false;
                 IsOppRepeated = false;
@@ -368,6 +369,7 @@ namespace TVMCalcDroid
                         ResultTrue = Input2;
                         break;
                 }
+                OppPerformed = null;
                 IsOppPerformed = false;
                 IsNewInput = false;
                 IsOppRepeated = false;
@@ -508,6 +510,7 @@ namespace TVMCalcDroid
         private void Open_Button_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
+            Expression_Compute();
             string Operator = OppPerformed;
             double Operand = StringToNum(CalcDisplay.Text);
             ParenthesisOpen++;
@@ -537,6 +540,7 @@ namespace TVMCalcDroid
             {
                 Button button = (Button)sender;
                 ParenthesisOpen--;
+                Expression_Compute();
 
                 if ((Operators.TryPeek(out string s) == false) || (Operands.TryPeek(out double r) == false))
                 {
